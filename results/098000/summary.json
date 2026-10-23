@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "evaluation_date": "2026-10-23",
+  "checkpoint_iteration": 98000,
+  "third_party_baseline": {
+    "repository": "https://github.com/zita-ch/supermimic_vibed",
+    "revision": "a1508d42c9d1699a52e8233ab16d08c488441ab9"
+  },
+  "policy": {
+    "iteration": 98000,
+    "policy_sha256": "5273c45814c5bdc958e7ceb8b105b7ae1a5a08f5a4da7ec6bbe8854415950e0f",
+    "source_commit": "a2ac25e879de3bd618466659e3f1a62974ff476f",
+    "adaptation": "None: no fine-tuning, optimization, controller/observation changes or data-dependent tuning."
+  },
+  "evaluation_protocol": "Unmodified supermimic.evaluate CLI; MJLab CUDA; upstream control, legacy99 observation, paper-sized policy, original reward and termination. Reset each segment at frame zero, no DR/observation/action noise, run once to clip completion or training termination.",
+  "id": {
+    "checkpoint_iteration": 98000,
+    "n_clips": 40,
+    "normalized_return": 0.871321976184845,
+    "failed_clips": [],
+    "success_fraction": 1.0,
+    "criterion": {
+      "mean_normalized_return_min": 0.82,
+      "failed_clips_max": 0
+    },
+    "criterion_met": true,
+    "tracking_metrics_clip_equal_weighted": {
+      "root_position_mean_m": 0.6430902918934552,
+      "root_xy_mean_m": 0.6426185165930107,
+      "root_height_mae_m": 0.010376613730768224,
+      "root_orientation_mean_deg": 2.4670762551687306,
+      "joint_mae_rad": 0.07673673968464437,
+      "tracked_body_world_mpjpe_m": 0.6438598968088627,
+      "tracked_body_xy_yaw_anchored_mpjpe_m": 0.026122243562713265,
+      "root_position_rmse_m": 0.7471822621539974,
+      "joint_rmse_rad": 0.10807930390776159,
+      "joint_mae_deg": 4.396691317524177,
+      "joint_rmse_deg": 6.1924879666265245
+    },
+    "completed_at_utc": "2026-10-23T07:27:27.609920+00:00"
+  },
+  "id_drift": {
+    "mean_last_recorded_pre_step_root_error_m": 1.07702342185666
+  },
+  "ood": {
+    "overall": {
+      "n_clips": 3573,
+      "n_styles": 100,
+      "n_batches": 14,
+      "n_failed": 4,
+      "n_success": 3569,
+      "success_fraction": 0.9988804925832634,
+      "success_percent": 99.88804925832633,
+      "normalized_return": 0.8045164074111713,
+      "normalized_return_frame_weighted": 0.8037126761854068,
+      "normalized_return_style_equal_from_4dp": 0.7994214690371713,
+      "expected_transitions": 3353047,
+      "valid_pre_step_samples": 3351756,
+      "sample_coverage_fraction": 0.9996149770641449,
+      "expected_duration_seconds": 67060.94,
+      "expected_duration_hours": 18.628038888888888,
+      "mean_segment_duration_seconds": 18.768804925832633,
+      "failed_clips": [
+        "Flapping__Flapping_FR__000000_001000",
+        "LimpLeft__LimpLeft_BR__003000_004000",
+        "LimpLeft__LimpLeft_BR__004000_004966",
+        "WhirlArms__WhirlArms_BR__003000_003751"
+      ]
+    },
+    "tracking_diagnostics": {
+      "scope": "Only recorded pre-step alive=True states; include reset states and exclude frozen padding and final post-step state. These errors are survival-conditioned; report failures separately.",
+      "frame_weighted": {
+        "root_position_mean_m": 0.5043224656054888,
+        "root_xy_mean_m": 0.5028824390438388,
+        "root_height_mae_m": 0.020957167015509832,
+        "root_orientation_mean_deg": 4.828980070985745,
+        "joint_mae_rad": 0.12171293715688855,
+        "joint_mae_deg": 6.973637611230731,
+        "tracked_body_world_mpjpe_m": 0.5086765263412354,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.052187355403456114,
+        "root_position_rmse_m": 0.6754108377348101,
+        "joint_rmse_rad": 0.16289984927026202,
+        "joint_rmse_deg": 9.333473846503278
+      },
+      "clip_equal_weighted": {
+        "root_position_mean_m": 0.49717117337571193,
+        "root_xy_mean_m": 0.49566051514565357,
+        "root_height_mae_m": 0.02107477433033264,
+        "root_orientation_mean_deg": 4.845484952164091,
+        "joint_mae_rad": 0.12199587396233046,
+        "joint_mae_deg": 6.989848696051467,
+        "tracked_body_world_mpjpe_m": 0.5014430080177384,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.052331614042451124,
+        "root_position_rmse_m": 0.6738544383412033,
+        "joint_rmse_rad": 0.1633918037214707,
+        "joint_rmse_deg": 9.361660760270208
+      },
+      "style_equal_then_frame_weighted_within_style": {
+        "root_position_mean_m": 0.5077540906642146,
+        "root_xy_mean_m": 0.5063256189659862,
+        "root_height_mae_m": 0.02086314954799836,
+        "root_orientation_mean_deg": 4.907837609983538,
+        "joint_mae_rad": 0.12356371891706168,
+        "joint_mae_deg": 7.079679594888445,
+        "tracked_body_world_mpjpe_m": 0.5123427136917896,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.05253698468990838,
+        "root_position_rmse_m": 0.6840251193532481,
+        "joint_rmse_rad": 0.16531808565644837,
+        "joint_rmse_deg": 9.472028585296723
+      },
+      "style_equal_then_clip_equal_within_style": {
+        "root_position_mean_m": 0.5002509371758177,
+        "root_xy_mean_m": 0.4987506354333051,
+        "root_height_mae_m": 0.02098754189367813,
+        "root_orientation_mean_deg": 4.919152263468075,
+        "joint_mae_rad": 0.12376661288780992,
+        "joint_mae_deg": 7.0913045631009695,
+        "tracked_body_world_mpjpe_m": 0.5047219581960636,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.05265878574772367,
+        "root_position_rmse_m": 0.6814275690693692,
+        "joint_rmse_rad": 0.16568809996992767,
+        "joint_rmse_deg": 9.493228843818518
+      },
+      "weighting_conventions": {
+        "frame_weighted": "Each valid alive sample has equal weight across all segments.",
+        "clip_equal_weighted": "Each segment has equal weight; means averaged over its alive samples; RMSE squared before averaging and square-rooted after.",
+        "style_equal_then_frame_weighted_within_style": "Each style has equal weight; within a style each alive sample has equal weight.",
+        "style_equal_then_clip_equal_within_style": "Each style has equal weight; within a style each segment has equal weight.",
+        "pooled_rmse": "sqrt(sum_i(weight_i * rmse_i**2) / sum_i(weight_i)); never arithmetic-average RMSE to call it pooled RMSE.",
+        "difference_from_raw_tracking_clip_equal_rmse": "Raw tracking_metrics.json clip_equal_weighted arithmetically averages clip RMSE; this report recomputes all RMSE consistently from squared per-clip RMSE instead."
+      },
+      "joint_count": 29,
+      "tracked_body_count": 14
+    },
+    "return_precision": {
+      "overall_clip_equal": "Reconstructed from full-precision batch norm_return * batch n_clips, divided by 3573; retains batch float32 rounding but does not use rounded per_clip values.",
+      "overall_frame_weighted": "Reconstructed from full-precision batch norm_return_framew * batch expected_transitions, divided by total expected_transitions.",
+      "per_clip_and_per_style": "Upstream saves per_clip returns rounded to 4 decimals. All per-style returns and style-equal returns use these rounded values; mean absolute rounding error is at most approximately 0.00005."
+    },
+    "endpoint_loss": {
+      "frames": 58,
+      "seconds": 1.16,
+      "unchanged_baseline_resampler": true
+    },
+    "joint_limit_audit_summary": {
+      "strict_comparison_tolerance_rad": 0.0,
+      "source_unchanged": true,
+      "clips_with_initial_violation": 678,
+      "clips_with_any_violation": 1949,
+      "frames_with_any_violation": 595038,
+      "max_excess_rad": 0.0006437301635742188,
+      "clips_with_excess_gt_0p001_rad": 0,
+      "interpretation": "Strict numerical boundary crossings are reported without modifying the source. All observed excursions are less than 0.001 rad; these are rounding-scale crossings, not evidence of substantial joint-limit incompatibility."
+    }
+  },
+  "comparison": {
+    "id": {
+      "dataset": "LAFAN1 G1 40 training clips",
+      "n_clips": 40,
+      "normalized_return": 0.871321976184845,
+      "normalized_return_frame_weighted": 0.8709771037101746,
+      "n_failed": 0,
+      "success_fraction": 1.0,
+      "mean_clip_duration_seconds": 220.55,
+      "tracking_frame_weighted": {
+        "root_position_mean_m": 0.659994179241317,
+        "root_xy_mean_m": 0.6595732047039394,
+        "root_height_mae_m": 0.010170533920513059,
+        "root_orientation_mean_deg": 2.4398515387752,
+        "joint_mae_rad": 0.07625833144740604,
+        "joint_mae_deg": 4.369280544646128,
+        "tracked_body_world_mpjpe_m": 0.6607060218005325,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.0258948580183408,
+        "root_position_rmse_m": 0.8728265325417949,
+        "joint_rmse_rad": 0.10910927578526952,
+        "joint_rmse_deg": 6.251501008224895
+      },
+      "tracking_clip_equal_weighted": {
+        "root_position_mean_m": 0.6430902918934552,
+        "root_xy_mean_m": 0.6426185165930107,
+        "root_height_mae_m": 0.010376613730768224,
+        "root_orientation_mean_deg": 2.4670762551687306,
+        "joint_mae_rad": 0.07673673968464437,
+        "joint_mae_deg": 4.396691317524177,
+        "tracked_body_world_mpjpe_m": 0.6438598968088627,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.026122243562713265,
+        "root_position_rmse_m": 0.8526519047234355,
+        "joint_rmse_rad": 0.10974151497565744,
+        "joint_rmse_deg": 6.2877256454768915
+      }
+    },
+    "ood": {
+      "dataset": "100STYLE G1 segmented public release",
+      "n_clips": 3573,
+      "n_styles": 100,
+      "n_batches": 14,
+      "n_failed": 4,
+      "n_success": 3569,
+      "success_fraction": 0.9988804925832634,
+      "success_percent": 99.88804925832633,
+      "normalized_return": 0.8045164074111713,
+      "normalized_return_frame_weighted": 0.8037126761854068,
+      "normalized_return_style_equal_from_4dp": 0.7994214690371713,
+      "expected_transitions": 3353047,
+      "valid_pre_step_samples": 3351756,
+      "sample_coverage_fraction": 0.9996149770641449,
+      "expected_duration_seconds": 67060.94,
+      "expected_duration_hours": 18.628038888888888,
+      "mean_segment_duration_seconds": 18.768804925832633,
+      "failed_clips": [
+        "Flapping__Flapping_FR__000000_001000",
+        "LimpLeft__LimpLeft_BR__003000_004000",
+        "LimpLeft__LimpLeft_BR__004000_004966",
+        "WhirlArms__WhirlArms_BR__003000_003751"
+      ],
+      "tracking_frame_weighted": {
+        "root_position_mean_m": 0.5043224656054888,
+        "root_xy_mean_m": 0.5028824390438388,
+        "root_height_mae_m": 0.020957167015509832,
+        "root_orientation_mean_deg": 4.828980070985745,
+        "joint_mae_rad": 0.12171293715688855,
+        "joint_mae_deg": 6.973637611230731,
+        "tracked_body_world_mpjpe_m": 0.5086765263412354,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.052187355403456114,
+        "root_position_rmse_m": 0.6754108377348101,
+        "joint_rmse_rad": 0.16289984927026202,
+        "joint_rmse_deg": 9.333473846503278
+      },
+      "tracking_clip_equal_weighted": {
+        "root_position_mean_m": 0.49717117337571193,
+        "root_xy_mean_m": 0.49566051514565357,
+        "root_height_mae_m": 0.02107477433033264,
+        "root_orientation_mean_deg": 4.845484952164091,
+        "joint_mae_rad": 0.12199587396233046,
+        "joint_mae_deg": 6.989848696051467,
+        "tracked_body_world_mpjpe_m": 0.5014430080177384,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.052331614042451124,
+        "root_position_rmse_m": 0.6738544383412033,
+        "joint_rmse_rad": 0.1633918037214707,
+        "joint_rmse_deg": 9.361660760270208
+      }
+    },
+    "ood_minus_id": {
+      "normalized_return": -0.06680556877367372,
+      "tracking_frame_weighted": {
+        "root_position_mean_m": -0.1556717136358282,
+        "root_xy_mean_m": -0.15669076566010065,
+        "root_height_mae_m": 0.010786633094996773,
+        "root_orientation_mean_deg": 2.389128532210545,
+        "joint_mae_rad": 0.04545460570948251,
+        "joint_mae_deg": 2.604357066584603,
+        "tracked_body_world_mpjpe_m": -0.15202949545929711,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.026292497385115313,
+        "root_position_rmse_m": -0.19741569480698473,
+        "joint_rmse_rad": 0.0537905734849925,
+        "joint_rmse_deg": 3.081972838278383
+      },
+      "tracking_clip_equal_weighted": {
+        "root_position_mean_m": -0.1459191185177433,
+        "root_xy_mean_m": -0.14695800144735716,
+        "root_height_mae_m": 0.010698160599564417,
+        "root_orientation_mean_deg": 2.37840869699536,
+        "joint_mae_rad": 0.04525913427768609,
+        "joint_mae_deg": 2.59315737852729,
+        "tracked_body_world_mpjpe_m": -0.14241688879112424,
+        "tracked_body_xy_yaw_anchored_mpjpe_m": 0.02620937047973786,
+        "root_position_rmse_m": -0.17879746638223226,
+        "joint_rmse_rad": 0.05365028874581325,
+        "joint_rmse_deg": 3.0739351147933167
+      }
+    },
+    "comparability": "Descriptive side-by-side comparison, not a controlled equal-horizon benchmark. Same fixed policy, environment and metrics; different input dataset/retargeting and episode lengths."
+  },
+  "source_dataset": {
+    "repo": "elijahgalahad/any4hdmi-g1-100style",
+    "revision": "bb3cd09a89dd804a1d8c383690161f594416ecb2",
+    "manifest_sha256": "1a4ef6d71812ac2fa83538ad35bc27d30afd65e82dda262b9da49890bc22b7ac",
+    "file_index_sha256": "27e9eb5432794a53d5880df2553b23fbdd18f3440b9dd6da612a21231031c047",
+    "source_mjcf": "hf://elijahgalahad/g1_xmls@main/g1-mode_13_15.xml",
+    "source_declared_total_hours": 18.64821111111111,
+    "scope": "All 3573 segments of this pinned public G1-retargeted 100STYLE conversion; equivalence to the full original raw 100STYLE collection is not established."
+  },
+  "source_url": "https://huggingface.co/datasets/elijahgalahad/any4hdmi-g1-100style/tree/bb3cd09a89dd804a1d8c383690161f594416ecb2",
+  "caveats": [
+    "100STYLE 是公开 G1 重定向发布版的全部 3573 个分段、100 种风格，约 18.63 小时；并非对原始 100STYLE 全部原始录制文件的覆盖证明。",
+    "100STYLE 每段从参考首帧重置，平均 18.77 秒；LAFAN1 每条平均 220.55 秒。重置频率和连续跟踪时长不同，两者成功率不代表相同难度。",
+    "100STYLE 的源重定向机器人资产与当前训练/评估机器人资产不同；本测试同时包含风格、来源和预处理变化，不能将全部差异归因于纯风格泛化。",
+    "LAFAN1 的 0.82 是第三方训练集复现目标，不是 100STYLE 分布外通过线；本报告不设 OOD pass/fail 阈值。",
+    "姿态误差只统计 alive=True 的存活步；短期误差、片段完成率与失败数必须联合解读。水平位置和朝向对齐后的 MPJPE 不表示全局路径误差。",
+    "原有浮点重采样表达式使 58 个分段各少一个末端参考帧，合计少 1.16 秒；保留该基线行为，未改变输入、裁剪关节或修正根高度。",
+    "Dataset identity differs from training LAFAN1; unique/new clip labels alone cannot exclude cross-source content overlap. No semantic duplicate-detection claim is made.",
+    "策略固定为 98,000 次检查点；没有在 100STYLE 上训练、微调、控制器修改或依结果调参。没有新增模型、数据集或云端训练产物传输。"
+  ]
+}

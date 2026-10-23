@@ -1,0 +1,301 @@
+{
+  "schema_version": 2,
+  "default_robot": "g1_29dof",
+  "robot_paths": {
+    "g1_29dof": "g1_29dof.xml",
+    "g1_29dof_rev_1_0": "g1_29dof_rev_1_0.xml"
+  },
+  "upstream_reproduction_commit": "a1508d42c9d1699a52e8233ab16d08c488441ab9",
+  "default_xml_source": {
+    "generator": "tools/build_default_robot.py",
+    "mujoco_version": "3.8.1",
+    "sources": [
+      {
+        "repository": "https://github.com/mujocolab/mjlab",
+        "revision": "4360096b49c1bcc478668c11ce7d458db747e49d",
+        "tag": "v1.4.0",
+        "path": "src/mjlab/asset_zoo/robots/unitree_g1/xmls/g1.xml",
+        "bundled_path": "sources/mjlab_g1_1.4.0.xml",
+        "sha256": "febdcbeffbbf84051556ae41a5ac1b43fb479a5d76bdb3f54824dbc2721c20aa",
+        "license": "Apache-2.0",
+        "usage": "Base XML, primitive collisions, body/joint ordering and remaining inertial/visual parameters"
+      },
+      {
+        "repository": "https://github.com/unitreerobotics/unitree_ros",
+        "revision": "15ebe53f4cd77e7d745ae83b9d7ff90e685e8998",
+        "path": "robots/g1_description/g1_29dof_mode_15.urdf",
+        "bundled_path": "sources/unitree_g1_29dof_mode_15.urdf",
+        "sha256": "80fc328761b0d0a502d675106c234eceabb70fa09c9f7d5cbcb40c2955629bac",
+        "license": "BSD-3-Clause",
+        "usage": "Only wrist mesh filenames, wrist-pitch inertias, wrist-yaw joint origins"
+      }
+    ],
+    "modifications": "5010 wrist assets/inertias/offsets; generated motors; explicit lighting and sensor selection; portable mesh directory",
+    "redistribution": "Generated from the pinned primary sources; retains Apache-2.0 and BSD-3-Clause notices.",
+    "equivalence_report": "results/robot_asset_equivalence.json",
+    "previous_compiled_model_unchanged": true
+  },
+  "rev_1_0_urdf_source": {
+    "repository": "https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset",
+    "revision": "ce1572906efe6157840e8474d5a0d7aa87481e74",
+    "path": "robot_description/g1/g1_29dof_rev_1_0.urdf",
+    "sha256": "824ce02c2c1e489aa8dece47a10fe02d1872289c0e6d01ba51abd291e66b7b2c",
+    "license": "BSD-3-Clause (Unitree robot description; distinct from motion-data license)",
+    "bundled_normalization": "CRLF to LF, strip trailing whitespace, final newline; XML values unchanged",
+    "bundled_sha256": "4f78ff8a162ca9335c970456cafb70c6d661d4d6f3c24052748904cd5c2a03be"
+  },
+  "mesh_source": {
+    "repository": "https://github.com/unitreerobotics/unitree_ros",
+    "path": "robots/g1_description/meshes",
+    "local_snapshot_commit": "unknown (existing archive without Git metadata)",
+    "license": "BSD-3-Clause",
+    "note": "All 41 meshes are byte-identical to the pre-existing unitree_ros-master archive. No mesh data downloaded. All 35 meshes required by the revision-1.0 URDF additionally match fixed LAFAN retargeting release blob/LFS metadata."
+  },
+  "files": [
+    {
+      "path": "g1_29dof.xml",
+      "bytes": 24198,
+      "sha256": "ac0a40caa37cf38af8dcee55e4bd2cb77fa19fef796d01c3a6765b4ed669d53f"
+    },
+    {
+      "path": "g1_29dof_rev_1_0.urdf",
+      "bytes": 35171,
+      "sha256": "4f78ff8a162ca9335c970456cafb70c6d661d4d6f3c24052748904cd5c2a03be"
+    },
+    {
+      "path": "g1_29dof_rev_1_0.xml",
+      "bytes": 24900,
+      "sha256": "7a4a23d51b4d28d16064d9046deab903997273bb0a1fa83bc4ec78770faeda48"
+    },
+    {
+      "path": "licenses/MJLAB-Apache-2.0.txt",
+      "bytes": 11352,
+      "sha256": "8ca04d9dbbccd20f0f1842fb33e13949f9e57064b150dad36af8e7a751ca3321"
+    },
+    {
+      "path": "licenses/UNITREE-BSD-3-Clause.txt",
+      "bytes": 1558,
+      "sha256": "84aac59fd3246e3ddc49d1387644e8fcf43b0def4f0b9fe687f372e90446df2d"
+    },
+    {
+      "path": "meshes/head_link.STL",
+      "bytes": 932784,
+      "sha256": "005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411"
+    },
+    {
+      "path": "meshes/left_ankle_pitch_link.STL",
+      "bytes": 71184,
+      "sha256": "d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d"
+    },
+    {
+      "path": "meshes/left_ankle_roll_link.STL",
+      "bytes": 653384,
+      "sha256": "c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f"
+    },
+    {
+      "path": "meshes/left_elbow_link.STL",
+      "bytes": 88784,
+      "sha256": "fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3"
+    },
+    {
+      "path": "meshes/left_hip_pitch_link.STL",
+      "bytes": 181684,
+      "sha256": "4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4"
+    },
+    {
+      "path": "meshes/left_hip_roll_link.STL",
+      "bytes": 192184,
+      "sha256": "91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf"
+    },
+    {
+      "path": "meshes/left_hip_yaw_link.STL",
+      "bytes": 296284,
+      "sha256": "a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b"
+    },
+    {
+      "path": "meshes/left_knee_link.STL",
+      "bytes": 854884,
+      "sha256": "8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477"
+    },
+    {
+      "path": "meshes/left_rubber_hand.STL",
+      "bytes": 2287484,
+      "sha256": "cff2221a690fa69303f61fce68f2d155c1517b52efb6ca9262dd56e0bc6e70fe"
+    },
+    {
+      "path": "meshes/left_shoulder_pitch_link.STL",
+      "bytes": 176784,
+      "sha256": "f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52"
+    },
+    {
+      "path": "meshes/left_shoulder_roll_link.STL",
+      "bytes": 400284,
+      "sha256": "fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88"
+    },
+    {
+      "path": "meshes/left_shoulder_yaw_link.STL",
+      "bytes": 249184,
+      "sha256": "1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e"
+    },
+    {
+      "path": "meshes/left_wrist_pitch_link.STL",
+      "bytes": 85984,
+      "sha256": "b251d8e05047f695d0f536cd78c11973cfa4e78d08cfe82759336cc3471de3a9"
+    },
+    {
+      "path": "meshes/left_wrist_pitch_link_5010.STL",
+      "bytes": 91784,
+      "sha256": "65c91c4681228f28ccb73d9fc7e853bc1c857da199352321e834e15f2cd7a7d4"
+    },
+    {
+      "path": "meshes/left_wrist_roll_link.STL",
+      "bytes": 356184,
+      "sha256": "edc387c9a0ba8c2237e9b296d32531426fabeb6f53e58df45c76106bca74148c"
+    },
+    {
+      "path": "meshes/left_wrist_roll_link_5010.STL",
+      "bytes": 899184,
+      "sha256": "b5be0d8d17b6db9f74323049ce6a0b8a7d95b2434a34805650cc22050f4992dd"
+    },
+    {
+      "path": "meshes/left_wrist_yaw_link.STL",
+      "bytes": 318684,
+      "sha256": "83f8fb3a726bf9613d65dd14f0f447cb918c3c95b3938042a0c9c09749267d3b"
+    },
+    {
+      "path": "meshes/left_wrist_yaw_link_5010.STL",
+      "bytes": 682184,
+      "sha256": "d020b9ef67b0899c98b77029d8de80a820c16dba0b7611d0cd7f85033d9241f1"
+    },
+    {
+      "path": "meshes/logo_link.STL",
+      "bytes": 243384,
+      "sha256": "8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b"
+    },
+    {
+      "path": "meshes/pelvis.STL",
+      "bytes": 1060884,
+      "sha256": "5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31"
+    },
+    {
+      "path": "meshes/pelvis_contour_link.STL",
+      "bytes": 1805184,
+      "sha256": "5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420"
+    },
+    {
+      "path": "meshes/right_ankle_pitch_link.STL",
+      "bytes": 71184,
+      "sha256": "15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9"
+    },
+    {
+      "path": "meshes/right_ankle_roll_link.STL",
+      "bytes": 653784,
+      "sha256": "4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5"
+    },
+    {
+      "path": "meshes/right_elbow_link.STL",
+      "bytes": 88784,
+      "sha256": "1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab"
+    },
+    {
+      "path": "meshes/right_hip_pitch_link.STL",
+      "bytes": 181284,
+      "sha256": "e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6"
+    },
+    {
+      "path": "meshes/right_hip_roll_link.STL",
+      "bytes": 192684,
+      "sha256": "4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6"
+    },
+    {
+      "path": "meshes/right_hip_yaw_link.STL",
+      "bytes": 296284,
+      "sha256": "e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668"
+    },
+    {
+      "path": "meshes/right_knee_link.STL",
+      "bytes": 852284,
+      "sha256": "63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8"
+    },
+    {
+      "path": "meshes/right_rubber_hand.STL",
+      "bytes": 2192684,
+      "sha256": "99533b778bca6246144fa511bb9d4e555e075c641f2a0251e04372869cd99d67"
+    },
+    {
+      "path": "meshes/right_shoulder_pitch_link.STL",
+      "bytes": 176784,
+      "sha256": "24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02"
+    },
+    {
+      "path": "meshes/right_shoulder_roll_link.STL",
+      "bytes": 401884,
+      "sha256": "962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81"
+    },
+    {
+      "path": "meshes/right_shoulder_yaw_link.STL",
+      "bytes": 249984,
+      "sha256": "a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5"
+    },
+    {
+      "path": "meshes/right_wrist_pitch_link.STL",
+      "bytes": 79584,
+      "sha256": "d22f8f3b3127f15a63e5be1ee273cd5075786c3142f1c3d9f76cbf43d2a26477"
+    },
+    {
+      "path": "meshes/right_wrist_pitch_link_5010.STL",
+      "bytes": 91784,
+      "sha256": "ac1110adfd93a10396bd32bba7b71ded5ccd757405b9e6d3d0b4ff53dea09582"
+    },
+    {
+      "path": "meshes/right_wrist_roll_link.STL",
+      "bytes": 356084,
+      "sha256": "a7ee9212ff5b94d6cb7f52bb1bbf3f352194d5b598acff74f4c77d340c5b344f"
+    },
+    {
+      "path": "meshes/right_wrist_roll_link_5010.STL",
+      "bytes": 899184,
+      "sha256": "458d62c3fcb63f526cd258397c7ac88350d50fd444f35646054cb0e2015a2042"
+    },
+    {
+      "path": "meshes/right_wrist_yaw_link.STL",
+      "bytes": 341484,
+      "sha256": "bc9dece2d12509707e0057ba2e48df8f3d56db0c79410212963a25e8a50f61a6"
+    },
+    {
+      "path": "meshes/right_wrist_yaw_link_5010.STL",
+      "bytes": 682184,
+      "sha256": "fe36d6fe3f09fb0bb27bf3027b4c388110505d3f46678b80afe2e198a5ea7922"
+    },
+    {
+      "path": "meshes/torso_link_rev_1_0.STL",
+      "bytes": 2570584,
+      "sha256": "11ddb46f2098efbbd8816b1d65893632d8e78be936376c7cdcd6771899ccc723"
+    },
+    {
+      "path": "meshes/waist_roll_link_rev_1_0.STL",
+      "bytes": 85884,
+      "sha256": "b67c347a05abc3e8ddae600d98a082bee273bb39f8e651647708b0a7140a8a97"
+    },
+    {
+      "path": "meshes/waist_yaw_link_rev_1_0.STL",
+      "bytes": 619984,
+      "sha256": "ec6db442b11f25eed898b5add07940c85d804f300de24dcbd264ccd8be7d554c"
+    },
+    {
+      "path": "sources/README.md",
+      "bytes": 1297,
+      "sha256": "0a05fef286bc9d79f902fc256029391fb507ca58dea54c9296627d36e7a675e9"
+    },
+    {
+      "path": "sources/mjlab_g1_1.4.0.xml",
+      "bytes": 22290,
+      "sha256": "febdcbeffbbf84051556ae41a5ac1b43fb479a5d76bdb3f54824dbc2721c20aa"
+    },
+    {
+      "path": "sources/unitree_g1_29dof_mode_15.urdf",
+      "bytes": 33748,
+      "sha256": "80fc328761b0d0a502d675106c234eceabb70fa09c9f7d5cbcb40c2955629bac"
+    }
+  ]
+}

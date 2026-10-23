@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "mujoco_version": "3.8.1",
+  "previous_xml_sha256": "579c8d3d98afa207cc816f1f6bdbe2594c6153cd00d6cdf644a102a4794b5920",
+  "generated_xml_sha256": "ac0a40caa37cf38af8dcee55e4bd2cb77fa19fef796d01c3a6765b4ed669d53f",
+  "comparison": "Exact equality, without numeric tolerance",
+  "raw_model_array_fields_equal": 469,
+  "raw_model_scalar_fields_equal": 96,
+  "raw_options_array_fields_equal": 6,
+  "raw_options_scalar_fields_equal": 23,
+  "upstream_scene_array_fields_equal": 469,
+  "upstream_scene_scalar_fields_equal": 96,
+  "upstream_scene_options_array_fields_equal": 6,
+  "upstream_scene_options_scalar_fields_equal": 23,
+  "upstream_simulation_configuration_equal": true,
+  "native_mujoco_random_control_steps_qpos_qvel_equal": 128,
+  "generator_repeat_build_bytes_equal": true,
+  "generator_inputs": [
+    "supermimic/assets/robots/sources/mjlab_g1_1.4.0.xml",
+    "supermimic/assets/robots/sources/unitree_g1_29dof_mode_15.urdf"
+  ],
+  "generator_uses_previous_xml": false,
+  "scope": "Same trained robot model and upstream scene; no claim that either equals a physical robot or the separate revision-1.0 model."
+}

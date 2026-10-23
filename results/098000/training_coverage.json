@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "conclusion_zh": "当前训练仅使用 LAFAN1 的 G1 29-DoF 重定向版本，完整加载固定版本 g1/ 下全部 40 条 CSV 对应的输入，共 264,705 个 30 Hz 源帧，约 2.45 小时。它是第三方复现采用的全部 40 条重定向序列，但不是 Ubisoft 原始 LAFAN1 的全部数据；原始公开数据为 77 条、496,672 帧、约 4.6 小时。当前已有 40 条动作评估属于训练动作集合上的跟踪评估，不能称为未见动作分布外评估。",
+  "training": {
+    "dataset_families": [
+      "LAFAN1"
+    ],
+    "contains_100style": false,
+    "clip_count": 40,
+    "source_frames": 264705,
+    "source_fps": 30,
+    "duration_hours_approx": 2.450972222222222,
+    "duration_convention": "源帧总数 / 30 Hz 为 8823.5 秒；各序列从首帧到末帧的时间跨度之和为 (264705-40)/30 = 8822.1667 秒，两者均约 2.45 小时。",
+    "clip_names": [
+      "dance1_subject1",
+      "dance1_subject2",
+      "dance1_subject3",
+      "dance2_subject1",
+      "dance2_subject2",
+      "dance2_subject3",
+      "dance2_subject4",
+      "dance2_subject5",
+      "fallAndGetUp1_subject1",
+      "fallAndGetUp1_subject4",
+      "fallAndGetUp1_subject5",
+      "fallAndGetUp2_subject2",
+      "fallAndGetUp2_subject3",
+      "fallAndGetUp3_subject1",
+      "fight1_subject2",
+      "fight1_subject3",
+      "fight1_subject5",
+      "fightAndSports1_subject1",
+      "fightAndSports1_subject4",
+      "jumps1_subject1",
+      "jumps1_subject2",
+      "jumps1_subject5",
+      "run1_subject2",
+      "run1_subject5",
+      "run2_subject1",
+      "run2_subject4",
+      "sprint1_subject2",
+      "sprint1_subject4",
+      "walk1_subject1",
+      "walk1_subject2",
+      "walk1_subject5",
+      "walk2_subject1",
+      "walk2_subject3",
+      "walk2_subject4",
+      "walk3_subject1",
+      "walk3_subject2",
+      "walk3_subject3",
+      "walk3_subject4",
+      "walk3_subject5",
+      "walk4_subject1"
+    ],
+    "theme_counts": {
+      "dance": 8,
+      "fallAndGetUp": 6,
+      "fight": 3,
+      "fightAndSports": 2,
+      "jumps": 3,
+      "run": 4,
+      "sprint": 2,
+      "walk": 12
+    },
+    "subject_clip_counts": {
+      "subject1": 11,
+      "subject2": 9,
+      "subject3": 6,
+      "subject4": 7,
+      "subject5": 7
+    },
+    "training_includes_subject5": true,
+    "scope": "全部 40 条 G1 重定向序列参与同一次训练；不是 Ubisoft 原始 motion-in-betweening 基准的 subject5 留出划分。",
+    "control_resampling": {
+      "source_hz": 30,
+      "control_hz": 50,
+      "method": "root position and joint angles linear interpolation; root rotation quaternion SLERP",
+      "duration_expression": "duration=(T-1)/fps; n=floor(duration/0.02)+1",
+      "clip_cropping_in_loader": false,
+      "maximum_last_sample_loss_seconds_exclusive": 0.02,
+      "note": "每条全时段重采样为 50 Hz；训练 reset bins/horizon 是算法采样机制，不是把数据集裁成一组短片段再丢弃其余帧。"
+    },
+    "input_sha256": "9cd77459dab47bcb756402fa05f4da5422387532ea9060e0d7875b1cb7bbabb3"
+  },
+  "retargeted_release": {
+    "repository": "lvhaidong/LAFAN1_Retargeting_Dataset",
+    "revision": "ce1572906efe6157840e8474d5a0d7aa87481e74",
+    "folder": "g1",
+    "csv_file_count_from_pinned_public_metadata": 40,
+    "all_release_clip_names_equal_protocol_names": true,
+    "training_coverage_of_this_g1_release_percent": 100.0,
+    "metadata_items": [
+      {
+        "type": "file",
+        "oid": "39fa52d7a5e4629ce619088d42ffa29c797136ff",
+        "size": 1348661,
+        "path": "g1/dance1_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "c3be5fdfc1b07040a724897941a4f2637f01e8c6",
+        "size": 1352694,
+        "path": "g1/dance1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "d6e640f963b4b05dbd6693e29d19cf744befe230",
+        "size": 1349707,
+        "path": "g1/dance1_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "80b357da3e4c7bdd05028f83f42fee7e7d0dabcf",
+        "size": 2313604,
+        "path": "g1/dance2_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "631e3023dbf75b62b0d22284b3f1fccc693cca40",
+        "size": 2321777,
+        "path": "g1/dance2_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "debed6a386d55114a3e3ab0cb64c3609144eb9c4",
+        "size": 2313921,
+        "path": "g1/dance2_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "53fc58e32dbe273cd6cd89024af648ba907bfefe",
+        "size": 2315855,
+        "path": "g1/dance2_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "be760ccb0f34130e9d5ffd24c9bd4ca28fbeb8f8",
+        "size": 2314214,
+        "path": "g1/dance2_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "8dbdc1ea04fb913b56812bb652ce43126cce0492",
+        "size": 1725253,
+        "path": "g1/fallAndGetUp1_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "4ad003c4801ce369c08caee0ad6e7ec637838c5a",
+        "size": 1723485,
+        "path": "g1/fallAndGetUp1_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "c980412c22b65b841b4f4276b1b1d498c25db24f",
+        "size": 1725138,
+        "path": "g1/fallAndGetUp1_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "b05c5c6acaef13614a760a0256e4ec0c733aaaf4",
+        "size": 1677557,
+        "path": "g1/fallAndGetUp2_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "5ec93f48d53c4f3d3e1e6a977f667d0dc4f5d094",
+        "size": 1678683,
+        "path": "g1/fallAndGetUp2_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "fdf044cc66175af754aefa79419cb78499a2ec46",
+        "size": 1043143,
+        "path": "g1/fallAndGetUp3_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "86a45177fe39e00fba491cfe3572ac3bdfdaa805",
+        "size": 2524033,
+        "path": "g1/fight1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "dac8b818829a45ab33afd74069e96f0bc78b91a2",
+        "size": 2512647,
+        "path": "g1/fight1_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "28a00f033ba3b75d1bf980ee4e2979febd089cce",
+        "size": 2531701,
+        "path": "g1/fight1_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "6df4e0cedf4fa2c88780ea4e12cc3b31c7dcd31a",
+        "size": 2521797,
+        "path": "g1/fightAndSports1_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "1335d45a7e5ed60600a58a986d8bbaadd89f0d34",
+        "size": 2516936,
+        "path": "g1/fightAndSports1_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "7c4db6f73342d7abc85a4a2dcdd2cb64a5568a16",
+        "size": 2502300,
+        "path": "g1/jumps1_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "ea3ec9e05cfb7b51a0f5c924f583f12b6e99adf5",
+        "size": 2501224,
+        "path": "g1/jumps1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "e452813679c567445c1fd07b97075f4d876d9e7e",
+        "size": 2509391,
+        "path": "g1/jumps1_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "3423047cc2556bef5670e3e328fc1be5912b1db2",
+        "size": 2445458,
+        "path": "g1/run1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "666cd6f5fcbfba80bc35b16ffcb7fecaa9187349",
+        "size": 2439981,
+        "path": "g1/run1_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "3b0a36091f3a365666ef5260de8b5e5c8d7fa757",
+        "size": 2509227,
+        "path": "g1/run2_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "444f97fe610be4df188213be2b5b4f96ac01ef97",
+        "size": 2510023,
+        "path": "g1/run2_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "7891cacd29e90586a243d1bfa82ccee2343076da",
+        "size": 2803922,
+        "path": "g1/sprint1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "c2d9d0e8f43e6faed64577bc5e33caa2b22ae96d",
+        "size": 2790147,
+        "path": "g1/sprint1_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "92aeee0db917618f3075fad348473217b9675f4e",
+        "size": 2670866,
+        "path": "g1/walk1_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "d6c1d4f2b2efb2b61904f8dcde442e4f1b79cf9c",
+        "size": 2679529,
+        "path": "g1/walk1_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "72172bbe357667b944f0dd7797521b0e7eb3b77e",
+        "size": 2666583,
+        "path": "g1/walk1_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "236ac2566f57c3baa613a1447030b7f65fed826a",
+        "size": 2435737,
+        "path": "g1/walk2_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "f2b4426033d4905caa543982f0b4c9d0336019ae",
+        "size": 2434750,
+        "path": "g1/walk2_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "cd64ab686f4948276d870ec2064affda182ac6af",
+        "size": 2437156,
+        "path": "g1/walk2_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "9349cdacb752f3adfa1307ad59275a62124863c9",
+        "size": 2516748,
+        "path": "g1/walk3_subject1.csv"
+      },
+      {
+        "type": "file",
+        "oid": "c9f80b0e833f7955c13d15e0b0575f70f191936b",
+        "size": 2534462,
+        "path": "g1/walk3_subject2.csv"
+      },
+      {
+        "type": "file",
+        "oid": "52b97ab8cec8d51251de79b864ecb3fa29b256f6",
+        "size": 2524188,
+        "path": "g1/walk3_subject3.csv"
+      },
+      {
+        "type": "file",
+        "oid": "3b12c4732683406f132d698479c17d2bea4b3bbd",
+        "size": 2519731,
+        "path": "g1/walk3_subject4.csv"
+      },
+      {
+        "type": "file",
+        "oid": "6a96d7817d28ce4afe1eb633a5f9c7da1fa860a7",
+        "size": 2557372,
+        "path": "g1/walk3_subject5.csv"
+      },
+      {
+        "type": "file",
+        "oid": "adaa10ba74402bfafaf9395a0a9b7d6226b1ecce",
+        "size": 1687675,
+        "path": "g1/walk4_subject1.csv"
+      }
+    ]
+  },
+  "original_lafan1": {
+    "publisher": "Ubisoft La Forge",
+    "subjects": 5,
+    "sequences": 77,
+    "frames": 496672,
+    "fps": 30,
+    "duration_hours_approx": 4.598814814814815,
+    "trained_sequence_count_over_original_percent": 51.94805194805194,
+    "retargeted_frame_count_over_original_frame_count_percent": 53.29573642162232,
+    "frame_ratio_caveat": "这是发布帧数的比值；本次未下载/逐帧核对原始 BVH，因此不单独声称原始 BVH 的每帧重定向对应关系已被本次审计验证。",
+    "absent_original_theme_counts": {
+      "obstacles": 17,
+      "aiming": 5,
+      "ground": 5,
+      "multiple_actions": 4,
+      "push_and_stumble": 3,
+      "push_and_fall": 2,
+      "push": 1
+    },
+    "absent_sequence_count_from_original_theme_table": 37,
+    "subject5_original_protocol": "原始 motion-in-betweening 基准以 subject5 采样测试窗口；当前 SuperMimic 40 条训练包含 subject5，评估目标与划分不同。"
+  },
+  "public_sources": [
+    {
+      "title": "Ubisoft LAFAN1 official repository, Data section",
+      "url": "https://github.com/ubisoft/ubisoft-laforge-animation-dataset#data",
+      "supports": "77 sequences, 496672 frames, 30fps, 5 subjects, theme counts; subject5 test protocol"
+    },
+    {
+      "title": "Pinned SuperMimic third-party README",
+      "url": "https://github.com/zita-ch/supermimic_vibed/blob/a1508d42c9d1699a52e8233ab16d08c488441ab9/README.md",
+      "supports": "Third-party target is 40 G1 retargets, 264705 frames, 2.45h"
+    },
+    {
+      "title": "LAFAN1 retargeted dataset card",
+      "url": "https://huggingface.co/datasets/lvhaidong/LAFAN1_Retargeting_Dataset",
+      "supports": "G1 format 30 FPS, CSV rows represent source motion frames; kinematic rather than dynamic retargeting"
+    },
+    {
+      "title": "Pinned G1 folder public metadata",
+      "url": "https://huggingface.co/api/datasets/lvhaidong/LAFAN1_Retargeting_Dataset/tree/ce1572906efe6157840e8474d5a0d7aa87481e74/g1?recursive=false&limit=100",
+      "supports": "Exactly 40 g1 CSV file names/sizes/git blob hashes match chosen revision and frozen training clip list"
+    }
+  ]
+}

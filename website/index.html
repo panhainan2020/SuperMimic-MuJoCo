@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="SuperMimic 在纯 MJLab 中的动作跟踪评估：完整视频、40 条动作指标与 100STYLE 分布外测试。">
+  <title>SuperMimic · 动作跟踪评估</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="media-config.js" defer></script>
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar wrap">
+    <a href="#top" class="brand" aria-label="SuperMimic 评估主页"><span class="brand-mark" aria-hidden="true">S<span>m</span></span><span>SuperMimic<span class="brand-sub">EXPERIMENT / 098000</span></span></a>
+    <nav aria-label="页面导航"><a href="#videos">视频</a><a href="#metrics">逐动作指标</a><a href="#ood">100STYLE</a><a class="report-link" id="top-report" href="../results/098000/REPORT.md">原始报告 <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="top" class="wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow"><span class="dot"></span> MJLAB / MUJOCO · G1 · 29 DOF</p>
+        <h1 id="page-title">动作跟踪，<br><span>从结果到细节。</span></h1>
+        <p class="hero-intro">SuperMimic 的纯 MuJoCo 复现评估。查看完整动作、对照参考运动，并区分姿态跟踪与全局路径精度。</p>
+        <p class="hero-english" lang="en">A MuJoCo / MJLab reproduction. Frozen 98k policy, trained on 40 LAFAN1 clips and tested on 3,573 unseen-source 100STYLE segments. Completion does not imply precise tracking.</p>
+        <div class="hero-tags"><span>Checkpoint <b>98,000</b></span><span>LAFAN1 <b>40 clips</b></span><span>冻结策略评估</span></div>
+      </div>
+      <aside class="verdict" aria-label="评估结论">
+        <div class="verdict-top"><span class="small-label">训练库内基线</span><span class="status success">已达标</span></div>
+        <div class="score"><span id="main-score">0.8713</span><small>归一化回报</small></div>
+        <div class="score-track" aria-label="归一化回报与0.82基线比较"><div id="score-fill"></div><span class="threshold"></span></div>
+        <div class="score-axis"><span>0</span><span>基线 ≥ 0.82</span><span>1</span></div>
+        <p><strong id="completion">40 / 40</strong> 条完整动作，无提前终止。</p>
+        <a href="#scope" class="text-link">这项结论覆盖什么 <span aria-hidden="true">↓</span></a>
+      </aside>
+    </section>
+
+    <section class="metric-strip" aria-label="主要跟踪指标">
+      <div><span class="small-label">关节角平均误差</span><strong><span id="joint-deg">4.40</span><small>°</small></strong><p>逐关节绝对误差</p></div>
+      <div><span class="small-label">对齐后身体位置误差</span><strong><span id="body-cm">2.61</span><small>cm</small></strong><p>移除水平位移与朝向差异</p></div>
+      <div class="warm"><span class="small-label">世界坐标根位置误差</span><strong><span id="root-cm">64.3</span><small>cm</small></strong><p>完整动作的平均全局误差</p></div>
+      <div class="warm"><span class="small-label">末个记录状态位置误差</span><strong><span id="end-root">1.08</span><small>m</small></strong><p>长时间运行存在位置漂移</p></div>
+    </section>
+
+    <section id="videos" class="section-block" aria-labelledby="videos-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / WATCH THE MOTION</p><h2 id="videos-title">先看动作，再看指标。</h2></div><span class="section-aside">预测在左 · 参考在右</span></div>
+      <div class="video-layout">
+        <div class="screen-area">
+          <div class="screen-top"><div><span class="live-label">LAFAN1</span><strong id="video-title">70 秒动作概览</strong></div><span id="video-time">01:10</span></div>
+          <div class="video-shell">
+            <video id="main-video" controls playsinline preload="none" aria-label="预测与参考动作对比视频"></video>
+            <p class="media-unavailable" id="media-unavailable" hidden>该片段暂未公开，指标见下表。<br><span lang="en">This video is not published. Metrics are available below.</span></p>
+            <button class="play-overlay" id="play-video" aria-label="加载并播放选中视频"><span class="play-circle" aria-hidden="true">▶</span><strong>播放动作对比</strong><small id="load-size">70 秒 · 16.23 MiB</small></button>
+          </div>
+          <div class="screen-bottom"><span id="video-description">七类动作各 10 秒的中段片段；完整过程请切换下方类别。</span><span id="video-return">概览片段</span></div>
+        </div>
+        <aside class="video-menu" aria-label="视频选择"><div class="menu-heading"><span>动作目录</span><small>8 段视频</small></div><div id="video-options"></div></aside>
+      </div>
+      <p class="caption"><span class="note-icon">i</span> 两侧镜头分别跟随机器人，因此视觉上的对齐不能用于判断全局位置误差。完整视频选取每类中回报最低的动作。</p>
+      <p id="video-error" class="error-message" role="alert" hidden></p>
+    </section>
+
+    <section id="scope" class="scope-panel" aria-labelledby="scope-title">
+      <div><p class="eyebrow">READ THE RESULTS CORRECTLY</p><h2 id="scope-title">姿态跟踪准确，<br>全局漂移仍需关注。</h2></div>
+      <div class="scope-copy"><p><strong>2.61 cm 是对齐后的身体位置误差。</strong>它先消除了水平位移和朝向差异，不能解释为全局路径精度。世界坐标下，根位置平均误差为 <strong>64.3 cm</strong>，长时间动作中的漂移会累积。</p><p id="dataset-description">本次使用训练库中的全部 40 条动作，每条完整评估一次，关闭域随机化、观测噪声和动作噪声。训练库内完整完成不等于未见动作泛化。</p><p class="scope-footnote" id="dataset-coverage"></p><a class="text-link" href="https://github.com/ubisoft/ubisoft-laforge-animation-dataset#data" target="_blank" rel="noopener noreferrer">原始 LAFAN1 数据说明 ↗</a></div>
+    </section>
+
+    <section id="metrics" class="section-block" aria-labelledby="metrics-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / CLIP-BY-CLIP</p><h2 id="metrics-title">40 条动作，逐项查看。</h2></div><a id="csv-link" class="text-link" href="../results/098000/lafan_per_clip.csv">完整 CSV <span aria-hidden="true">↗</span></a></div>
+      <div class="table-tools">
+        <label class="search-field"><span aria-hidden="true">⌕</span><input id="clip-search" type="search" placeholder="搜索动作或 subject…" aria-label="搜索动作名称"></label>
+        <label class="filter-field"><span class="sr-only">按动作类别筛选</span><select id="category-filter"><option value="all">全部类别</option></select></label>
+        <label class="filter-field"><span class="sr-only">排序方式</span><select id="sort-order"><option value="return-asc">回报：从低到高</option><option value="return-desc">回报：从高到低</option><option value="root-desc">全局误差：从高到低</option><option value="joint-desc">关节误差：从高到低</option><option value="name-asc">动作名称</option></select></label>
+      </div>
+      <div class="table-wrap" tabindex="0" aria-label="40 条动作评估指标表，可横向滚动"><table><thead><tr><th scope="col">动作 / 类别</th><th scope="col">回报 ↑</th><th scope="col">完成情况</th><th scope="col">关节误差 ↓</th><th scope="col">对齐身体误差 ↓</th><th scope="col">全局根位置误差 ↓</th><th scope="col">时长</th></tr></thead><tbody id="clip-table"></tbody></table></div>
+      <div class="table-footer"><span id="table-count" aria-live="polite">显示 40 / 40 条动作</span><span>每条动作等权 · 50 Hz · 每条评估一次</span></div>
+    </section>
+
+    <section id="ood" class="section-block ood-section" aria-labelledby="ood-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / OUT-OF-DISTRIBUTION</p><h2 id="ood-title">100STYLE 分布外测试</h2></div><span id="ood-status" class="status pending">待评估</span></div>
+      <div id="ood-content" class="ood-content"><p>正在准备训练库以外的动作测试。完成后将在这里单独展示结果。</p></div>
+    </section>
+
+    <footer><div><span class="footer-brand">SuperMimic</span><p>G1 · MJLab / MuJoCo · 固定策略 98,000 次</p></div><div class="footer-links"><a id="metrics-json" href="../results/098000/summary.json">指标记录 ↗</a><a id="repository-link" hidden target="_blank" rel="noopener noreferrer">Code / 代码 ↗</a><a href="https://github.com/zita-ch/supermimic_vibed/blob/a1508d42c9d1699a52e8233ab16d08c488441ab9/MILESTONES.md" target="_blank" rel="noopener noreferrer">第三方复现标准 ↗</a><span>评估日期 2026.10.23</span></div></footer>
+  </main>
+</body>
+</html>

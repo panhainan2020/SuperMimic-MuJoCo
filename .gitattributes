@@ -1,0 +1,8 @@
+# Keep serialized asset hashes portable across checkouts.
+*.py text eol=lf
+*.xml text eol=lf
+*.urdf text eol=lf
+*.pt -text
+*.STL -text
+# Pinned upstream sources must retain their original bytes, including CRLF.
+supermimic/assets/robots/sources/* -text

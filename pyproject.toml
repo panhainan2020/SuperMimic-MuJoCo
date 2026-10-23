@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supermimic-mujoco"
+version = "0.2.0"
+description = "SuperMimic reproduction on native MuJoCo and MJLab"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+  "torch==2.7.1", "mujoco==3.8.1", "mujoco-warp==3.8.1",
+  "warp-lang==1.14.0", "mjlab==1.4.0", "numpy>=1.26,<2",
+  "joblib>=1.5,<2", "pyyaml>=6,<7"
+]
+
+[project.optional-dependencies]
+video = ["imageio>=2.37", "imageio-ffmpeg>=0.6", "pillow>=11"]
+
+[tool.setuptools.packages.find]
+include = ["supermimic*"]
+
+[tool.setuptools.package-data]
+supermimic = ["assets/robots/*.xml", "assets/robots/*.urdf", "assets/robots/*.json", "assets/robots/meshes/*.STL", "assets/robots/licenses/*.txt", "assets/robots/sources/*.xml", "assets/robots/sources/*.urdf", "assets/robots/sources/*.md"]

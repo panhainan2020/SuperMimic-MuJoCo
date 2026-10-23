@@ -1,0 +1,11 @@
+import {readFile} from 'node:fs/promises';
+import {pathToFileURL} from 'node:url';
+import {resolve} from 'node:path';
+const manifest = JSON.parse(await readFile('dist/.openai/hosting.json', 'utf8'));
+if (!manifest.project_id || manifest.r2 !== 'BUCKET' || manifest.d1 !== null) throw new Error('Invalid deployment metadata');
+const worker = (await import(pathToFileURL(resolve('dist/server/index.js')))).default;
+const home = await worker.fetch(new Request('https://example.invalid/'), {});
+if (home.status !== 200 || !(await home.text()).includes('SuperMimic')) throw new Error('Static homepage failed');
+const unavailable = await worker.fetch(new Request('https://example.invalid/admin/media/lafan/overview.mp4', {method:'PUT'}), {});
+if (unavailable.status !== 404) throw new Error('Uploads must be disabled without runtime token');
+console.log('Validated embedded homepage, metadata, and disabled upload endpoint.');

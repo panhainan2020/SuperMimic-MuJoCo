@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-23",
+  "purpose": "Independent packaging and implementation checks, not a convergence benchmark",
+  "unit_tests": {
+    "passed": 38,
+    "skipped": 0,
+    "cuda_enabled": true
+  },
+  "smoke_checks": {
+    "g1_29dof": {
+      "backend": "mjlab",
+      "device": "CUDA",
+      "checks": {
+        "train": "passed",
+        "resume": "passed",
+        "evaluate": "passed"
+      },
+      "evidence_sha256": "07df3f30a1155f103fb74ebe237c3fb5f513458bc58ecf96f1cfe5ee6bcbcbcb"
+    },
+    "g1_29dof_rev_1_0": {
+      "backend": "mjlab",
+      "device": "CUDA",
+      "checks": {
+        "train": "passed",
+        "resume": "passed",
+        "evaluate": "passed"
+      },
+      "evidence_sha256": "3fe73f7cb9f8a9d4ddc0a4ffc2533e96d111f4b2ce58008b3e06643cdaf679cc"
+    }
+  },
+  "wheel": {
+    "standalone_installation": true,
+    "both_bundled_models_load": true,
+    "external_project_paths_in_sys_path": false
+  },
+  "existing_98000_policy_contract": "compatible with default model without editing checkpoint",
+  "evaluation_tools": {
+    "pose_metrics_equal_to_prior_analysis": true,
+    "rendered_frames_decoded": 270
+  },
+  "website": {
+    "browser_qa_passed": true,
+    "worker_tests_passed": 8,
+    "public_url": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site",
+    "anonymous_browser_qa_passed": true,
+    "published_video_files": 5,
+    "public_video_range_status": 206,
+    "upload_endpoint_disabled_status": 404
+  },
+  "training_storage_policy": "Raw training outputs stay on persistent disk. No automatic download of weights, replay, datasets, archives or remote videos. Only small text status and metadata are retrieved; authorized shutdown does not wait for downloads.",
+  "scope": "Historical validation at initial standalone packaging, before the reproducible robot asset rebuild; see robot_asset_equivalence.json for subsequent checks."
+}

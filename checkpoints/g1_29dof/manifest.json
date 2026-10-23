@@ -1,0 +1,49 @@
+{
+  "file": "policy_098000.pt",
+  "artifact_type": "inference_policy_only",
+  "iteration": 98000,
+  "robot": "g1_29dof",
+  "profile": "upstream",
+  "observation_mode": "legacy99",
+  "network_size": "paper",
+  "history_frames": 10,
+  "goal_frames": 10,
+  "bytes": 36487509,
+  "sha256": "9e4b9a075382b38006824954327776e63732280b62df881ad7596ee60023cddb",
+  "policy_tensor_sha256": "4044b5b4e6fe1e782e2a23d89537a8c9a312182daf5663fb646699e2d4670561",
+  "tensor_digest_format": "Sorted name/dtype/shape JSON header, 8-byte little-endian header length, contiguous CPU tensor bytes; see tools/verify_checkpoint.py",
+  "policy_state_tensors": 26,
+  "policy_state_elements": 9118137,
+  "xml_sha256": "ac0a40caa37cf38af8dcee55e4bd2cb77fa19fef796d01c3a6765b4ed669d53f",
+  "source_inference_sha256": "b6c115a8ae49fa91e37891544968efe91dcc3d65b373b622f42f918d83e8a423",
+  "evaluated_local_inference_sha256": "5273c45814c5bdc958e7ceb8b105b7ae1a5a08f5a4da7ec6bbe8854415950e0f",
+  "source_training_checkpoint_sha256": "5cec0c3032bcc1d402bf20866e60b0e08d58db0d4418497efee730b4860a1bc7",
+  "policy_tensors_bitwise_equal_to_both_sources": true,
+  "metadata_changes": {
+    "args_cleared": [
+      "motion_dir",
+      "log_dir",
+      "xml_path",
+      "resume"
+    ],
+    "robot_explicit": "g1_29dof",
+    "contract_xml_path": "repository-relative",
+    "storage_policy": "single-artifact publication authorization recorded",
+    "removed_empty_legacy_fields_count": 2,
+    "xml_contract_update": {
+      "previous_xml_sha256": "579c8d3d98afa207cc816f1f6bdbe2594c6153cd00d6cdf644a102a4794b5920",
+      "current_xml_sha256": "ac0a40caa37cf38af8dcee55e4bd2cb77fa19fef796d01c3a6765b4ed669d53f",
+      "reason": "Reproducible MJLab/Unitree asset generation; compiled model equivalence verified",
+      "evidence": "../../results/robot_asset_equivalence.json",
+      "policy_tensors_changed": false
+    }
+  },
+  "evaluation_snapshot": "../../results/098000/REPORT.md",
+  "includes_world_model": false,
+  "includes_critic": false,
+  "includes_optimizer_state": false,
+  "includes_replay": false,
+  "can_resume_full_training": false,
+  "remote_artifact_downloaded_for_publication": false,
+  "previous_publication_sha256": "40ab52a3a47293e2688d7904b8f144b4a4f4b751f17ac5d5df17f2c4668e111c"
+}

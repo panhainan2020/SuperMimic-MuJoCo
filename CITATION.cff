@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: >-
+  If you use this MuJoCo/MJLab port, please cite this software and the exact
+  revision used. Please also cite the SuperMimic paper for the method and
+  acknowledge the pinned third-party implementation listed in references.
+type: software
+title: "SuperMimic-MuJoCo: A MuJoCo/MJLab Port of a Third-Party SuperMimic Implementation"
+authors:
+  - name: SuperMimic-MuJoCo contributors
+version: 0.2.0
+repository-code: https://github.com/panhainan2020/SuperMimic-MuJoCo
+url: https://github.com/panhainan2020/SuperMimic-MuJoCo
+license-url: https://github.com/panhainan2020/SuperMimic-MuJoCo/blob/main/THIRD_PARTY_NOTICES.md
+abstract: >-
+  Independent MuJoCo/MJLab simulator port based on Chong Zhang's
+  supermimic_vibed implementation of SuperMimic. This project supplies
+  standalone CPU/CUDA simulation, two G1 robot configurations, and training,
+  evaluation and visualization tools. The original method and upstream code
+  are credited separately. This is not official code from the paper authors.
+  Implementation code is MIT-licensed; assets and other components retain
+  their own licenses as documented in THIRD_PARTY_NOTICES.md.
+keywords:
+  - robotics
+  - humanoid control
+  - motion tracking
+  - MuJoCo
+  - MJLab
+references:
+  - type: article
+    title: "SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model"
+    authors:
+      - family-names: Liao
+        given-names: Qiayuan
+      - family-names: Shao
+        given-names: Yiyang
+      - family-names: Long
+        given-names: Junfeng
+      - family-names: Zakka
+        given-names: Kevin
+      - family-names: Horowitz
+        given-names: Roberto
+      - family-names: Abbeel
+        given-names: Pieter
+      - family-names: Sreenath
+        given-names: Koushil
+    year: 2026
+    month: 10
+    journal: arXiv
+    doi: 10.48550/arXiv.2610.28480
+    url: https://arxiv.org/abs/2610.28480v1
+    notes: "Method reference; arXiv:2610.28480v1, submitted 20 October 2026."
+  - type: software
+    title: "supermimic_vibed: Third-Party SuperMimic Implementation"
+    authors:
+      - family-names: Zhang
+        given-names: Chong
+    year: 2026
+    commit: a1508d42c9d1699a52e8233ab16d08c488441ab9
+    repository-code: https://github.com/zita-ch/supermimic_vibed
+    url: https://github.com/zita-ch/supermimic_vibed/tree/a1508d42c9d1699a52e8233ab16d08c488441ab9
+    license: MIT
+    notes: "Direct code baseline. Copyright (c) 2026 ETH Zurich, Chong Zhang."

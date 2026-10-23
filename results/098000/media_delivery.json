@@ -1,0 +1,214 @@
+{
+  "purpose": "Compact local display copies only; authoritative metrics and source recordings unchanged.",
+  "display_label_zh": "网页展示副本：960×360，25 fps，压缩编码；指标来自原始完整评估。",
+  "frame_rate_rounding_note": "25 fps conversion may extend a source ending on an odd 50 Hz frame by 0.02 seconds; no intentional trimming or time scaling.",
+  "total_output_bytes": 12513859,
+  "storage": "External object storage; no video binaries in GitHub",
+  "files": [
+    {
+      "source": "local_evaluation_098000/videos/overview.mp4",
+      "source_sha256": "7f5a07df754c22b88b18b54184a2a64c346a948048a12c3241a5a9c2e09c15f6",
+      "source_media": {
+        "duration_s": 70.0,
+        "decoded_frames": 3500,
+        "width": 1280,
+        "height": 480,
+        "fps": 50.0,
+        "codec": "h264"
+      },
+      "output": "lafan/overview.mp4",
+      "output_bytes": 5473643,
+      "output_sha256": "8fbd62e4d1bcdfcdf2a55867e31e5388e539eb1b4086eda7ff6bb75f6e054930",
+      "output_media": {
+        "duration_s": 70.0,
+        "decoded_frames": 1750,
+        "width": 960,
+        "height": 360,
+        "fps": 25.0,
+        "codec": "h264"
+      },
+      "encoding": {
+        "encoder": "libx264",
+        "preset": "fast",
+        "crf": 24,
+        "width": 960,
+        "height": 360,
+        "fps": 25,
+        "pix_fmt": "yuv420p",
+        "audio": false,
+        "faststart": true,
+        "threads": 2
+      },
+      "decode_validation": {
+        "all_frames_decoded": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      "source_unchanged": true
+    },
+    {
+      "source": "ood_100style_20261023/videos/ood_low.mp4",
+      "source_sha256": "a087d7febd93e1b34f2f92f7e523d507a16d3a7cabc4663e0c0df9d8ff0d00b2",
+      "source_media": {
+        "duration_s": 19.98,
+        "decoded_frames": 999,
+        "width": 1280,
+        "height": 480,
+        "fps": 50.0,
+        "codec": "h264"
+      },
+      "output": "100style/ood_low.mp4",
+      "output_bytes": 2110218,
+      "output_sha256": "3661328298469a30f604d1435e146c8aec080865551f842ffdd3a9498733f100",
+      "output_media": {
+        "duration_s": 20.0,
+        "decoded_frames": 500,
+        "width": 960,
+        "height": 360,
+        "fps": 25.0,
+        "codec": "h264"
+      },
+      "encoding": {
+        "encoder": "libx264",
+        "preset": "fast",
+        "crf": 24,
+        "width": 960,
+        "height": 360,
+        "fps": 25,
+        "pix_fmt": "yuv420p",
+        "audio": false,
+        "faststart": true,
+        "threads": 2
+      },
+      "decode_validation": {
+        "all_frames_decoded": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      "source_unchanged": true
+    },
+    {
+      "source": "ood_100style_20261023/videos/ood_median.mp4",
+      "source_sha256": "fa75d9cea8128e1d66bacf47214a641402618d04b6e376f43bafd77ac1e43913",
+      "source_media": {
+        "duration_s": 19.98,
+        "decoded_frames": 999,
+        "width": 1280,
+        "height": 480,
+        "fps": 50.0,
+        "codec": "h264"
+      },
+      "output": "100style/ood_median.mp4",
+      "output_bytes": 1363051,
+      "output_sha256": "f141d6b870967a816ef820e752123b6c0436b404d4cfa4ccc4a0e5b4267b7c33",
+      "output_media": {
+        "duration_s": 20.0,
+        "decoded_frames": 500,
+        "width": 960,
+        "height": 360,
+        "fps": 25.0,
+        "codec": "h264"
+      },
+      "encoding": {
+        "encoder": "libx264",
+        "preset": "fast",
+        "crf": 24,
+        "width": 960,
+        "height": 360,
+        "fps": 25,
+        "pix_fmt": "yuv420p",
+        "audio": false,
+        "faststart": true,
+        "threads": 2
+      },
+      "decode_validation": {
+        "all_frames_decoded": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      "source_unchanged": true
+    },
+    {
+      "source": "ood_100style_20261023/videos/ood_high.mp4",
+      "source_sha256": "5709ae92b8e2227d01542438371b765c2764f49d92dc565619843ee3dbc1fd5c",
+      "source_media": {
+        "duration_s": 19.98,
+        "decoded_frames": 999,
+        "width": 1280,
+        "height": 480,
+        "fps": 50.0,
+        "codec": "h264"
+      },
+      "output": "100style/ood_high.mp4",
+      "output_bytes": 1439298,
+      "output_sha256": "bd51336df2329d3f6cdd23950811046cd2bd9dfd65ce9dfe33dfbae791124c8b",
+      "output_media": {
+        "duration_s": 20.0,
+        "decoded_frames": 500,
+        "width": 960,
+        "height": 360,
+        "fps": 25.0,
+        "codec": "h264"
+      },
+      "encoding": {
+        "encoder": "libx264",
+        "preset": "fast",
+        "crf": 24,
+        "width": 960,
+        "height": 360,
+        "fps": 25,
+        "pix_fmt": "yuv420p",
+        "audio": false,
+        "faststart": true,
+        "threads": 2
+      },
+      "decode_validation": {
+        "all_frames_decoded": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      "source_unchanged": true
+    },
+    {
+      "source": "ood_100style_20261023/videos/ood_failure.mp4",
+      "source_sha256": "caf331a2154940f9aed139d6d0b3abbecd1312f1abc9df11c27b94234d903368",
+      "source_media": {
+        "duration_s": 17.76,
+        "decoded_frames": 888,
+        "width": 1280,
+        "height": 480,
+        "fps": 50.0,
+        "codec": "h264"
+      },
+      "output": "100style/ood_failure.mp4",
+      "output_bytes": 2127649,
+      "output_sha256": "2f04ea5bebc3382e82da255f833e39393e4fade17e61e7dbb3e66bddb05f2fcc",
+      "output_media": {
+        "duration_s": 17.76,
+        "decoded_frames": 444,
+        "width": 960,
+        "height": 360,
+        "fps": 25.0,
+        "codec": "h264"
+      },
+      "encoding": {
+        "encoder": "libx264",
+        "preset": "fast",
+        "crf": 24,
+        "width": 960,
+        "height": 360,
+        "fps": 25,
+        "pix_fmt": "yuv420p",
+        "audio": false,
+        "faststart": true,
+        "threads": 2
+      },
+      "decode_validation": {
+        "all_frames_decoded": true,
+        "returncode": 0,
+        "stderr": ""
+      },
+      "source_unchanged": true
+    }
+  ]
+}

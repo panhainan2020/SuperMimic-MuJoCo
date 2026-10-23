@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "source": "local_evaluation_098000/evaluation_report.json",
+      "bytes": 7177,
+      "sha256": "84e9c6578cd3e10d2557a7f4affc212957deed7e70e6972d8204e784951c296b"
+    },
+    {
+      "source": "ood_100style_20261023/ood_report.json",
+      "bytes": 67197,
+      "sha256": "7aee1366f37e1eaef501d5011d53e14b2b6b884d7c4123a045f30e68287454e4"
+    },
+    {
+      "source": "ood_100style_20261023/training_coverage.json",
+      "bytes": 14972,
+      "sha256": "c88e982ea107758fa7153d5bdbc7d5b72b1a742c1e84cf8a0c75c934ff554297"
+    },
+    {
+      "source": "local_evaluation_098000/videos/video_index.json",
+      "bytes": 40099,
+      "sha256": "6a440b9a0ec386fc350ffbfb2c0f7f1714288ce43591ccbafb91d5b2789cb0a3"
+    },
+    {
+      "source": "ood_100style_20261023/videos/ood_video_index.json",
+      "bytes": 27087,
+      "sha256": "a726f158913730c46affb06f32db8f7abe151300f9a1220066a635292cd41510"
+    },
+    {
+      "source": "local_evaluation_098000/per_clip_metrics.csv",
+      "bytes": 11778,
+      "sha256": "f8d8e180490904c5a65ca6d59ad8606f7c9b9fe2179894461e558bdf5cbeb794"
+    },
+    {
+      "source": "ood_100style_20261023/per_clip_metrics.csv",
+      "bytes": 1514972,
+      "sha256": "5eb3ca26d4c062baadb149e66d45e277feafeda003e59fdda333ae354ffdb3b7"
+    },
+    {
+      "source": "ood_100style_20261023/style_metrics.csv",
+      "bytes": 50886,
+      "sha256": "fba60de74b8de3e882e094e279479e582f5c299b57966ac432066e11274a6ebe"
+    }
+  ],
+  "exporter": "website/build.py",
+  "raw_artifacts_included": false,
+  "note": "Source names are relative evidence labels, not local machine paths. SHA256 identifies the original evidence; exported fields are an explicit public subset."
+}

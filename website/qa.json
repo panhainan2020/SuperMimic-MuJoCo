@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "mode": "static_and_optional_local_media",
+  "checks": {
+    "unconfigured_zero_network_and_no_invalid_players": true,
+    "counts_search_filter_sort": true,
+    "local_result_links": true,
+    "mobile_390px_no_overflow": true,
+    "five_local_videos_play_and_partial_overrides": true,
+    "zero_media_requests_before_click": true,
+    "javascript_errors": 0
+  },
+  "passed": true
+}

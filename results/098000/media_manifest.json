@@ -1,0 +1,279 @@
+{
+  "schema_version": 1,
+  "media_in_git": false,
+  "videos": [
+    {
+      "duration_seconds": 70.0,
+      "size_bytes": 17020073,
+      "sha256": "7f5a07df754c22b88b18b54184a2a64c346a948048a12c3241a5a9c2e09c15f6",
+      "key": "lafan/overview.mp4",
+      "poster_key": "lafan/overview.png",
+      "source_relative_path": "local_evaluation_098000/videos/overview.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/overview.middle.png",
+      "poster_sha256": "b0dc58a50f7648d9e9fa083e76a2b640d7c28cf64e9dc4220239e34653e50216"
+    },
+    {
+      "category": "dance",
+      "clip": "dance1_subject2",
+      "failed": false,
+      "normalized_return": 0.8369,
+      "duration_seconds": 131.46,
+      "size_bytes": 63790537,
+      "sha256": "2a45c1e5cfa904af9682d9266b97cdc9771c671618cd70eb9fb26a6b5d184623",
+      "key": "lafan/dance.mp4",
+      "poster_key": "lafan/dance.png",
+      "source_relative_path": "local_evaluation_098000/videos/dance_dance1_subject2.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/dance_dance1_subject2.middle.png",
+      "poster_sha256": "5ba014ea93b4d3acf31c40d20d86822ed1276cab31a22ee8c9eeb4949c4952fc"
+    },
+    {
+      "category": "fallAndGetUp",
+      "clip": "fallAndGetUp1_subject4",
+      "failed": false,
+      "normalized_return": 0.852,
+      "duration_seconds": 168.2,
+      "size_bytes": 68219058,
+      "sha256": "a5e436fdbcfab1f58c194684f7dea42162c5dd411b5d20a8eff1ff3c029b671b",
+      "key": "lafan/fallAndGetUp.mp4",
+      "poster_key": "lafan/fallAndGetUp.png",
+      "source_relative_path": "local_evaluation_098000/videos/fallAndGetUp_fallAndGetUp1_subject4.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/fallAndGetUp_fallAndGetUp1_subject4.middle.png",
+      "poster_sha256": "cfca4e9f8128c05dc7553f2212ae0916352d9546e8c6c808781f73f84d11c887"
+    },
+    {
+      "category": "fight",
+      "clip": "fight1_subject2",
+      "failed": false,
+      "normalized_return": 0.8443,
+      "duration_seconds": 244.86,
+      "size_bytes": 128216178,
+      "sha256": "9b9186a42065d008414d8c5e00d8125060e35d22d67bdd8ab9bd891ef18d20c7",
+      "key": "lafan/fight.mp4",
+      "poster_key": "lafan/fight.png",
+      "source_relative_path": "local_evaluation_098000/videos/fight_fight1_subject2.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/fight_fight1_subject2.middle.png",
+      "poster_sha256": "4b38c4421c7de6e660386f800714e9abccca43e0853d332e2f0fd67f225ee7ed"
+    },
+    {
+      "category": "jumps",
+      "clip": "jumps1_subject5",
+      "failed": false,
+      "normalized_return": 0.8348,
+      "duration_seconds": 244.42,
+      "size_bytes": 116985807,
+      "sha256": "89588048ca6cb74f137554b6fe680fc07244eda8e0d306236125ec584670aa46",
+      "key": "lafan/jumps.mp4",
+      "poster_key": "lafan/jumps.png",
+      "source_relative_path": "local_evaluation_098000/videos/jumps_jumps1_subject5.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/jumps_jumps1_subject5.middle.png",
+      "poster_sha256": "fe7aa266ab2837878d41da38b8f2102edb4b64b14fd4a797e16371ae2947c574"
+    },
+    {
+      "category": "run",
+      "clip": "run2_subject1",
+      "failed": false,
+      "normalized_return": 0.8435,
+      "duration_seconds": 244.8,
+      "size_bytes": 139559207,
+      "sha256": "49d234365099eff5e59e30d094b4b1d997dc9bf507743785b55bfa46bfbb0b63",
+      "key": "lafan/run.mp4",
+      "poster_key": "lafan/run.png",
+      "source_relative_path": "local_evaluation_098000/videos/run_run2_subject1.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/run_run2_subject1.middle.png",
+      "poster_sha256": "46098f652aad45d482ef8d33de01589ed2dc944cc622740e3ac391d332674f60"
+    },
+    {
+      "category": "sprint",
+      "clip": "sprint1_subject4",
+      "failed": false,
+      "normalized_return": 0.8396,
+      "duration_seconds": 273.1,
+      "size_bytes": 121075669,
+      "sha256": "39c0091f5c8f57991127c77c42ac459d2379af134ab6e21bf5693d3784b9db4b",
+      "key": "lafan/sprint.mp4",
+      "poster_key": "lafan/sprint.png",
+      "source_relative_path": "local_evaluation_098000/videos/sprint_sprint1_subject4.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/sprint_sprint1_subject4.middle.png",
+      "poster_sha256": "71b5c6c7a4266ee305b33bf8aaa347184c31910a25891e2fcaab0e3b87240e4b"
+    },
+    {
+      "category": "walk",
+      "clip": "walk2_subject3",
+      "failed": false,
+      "normalized_return": 0.8643,
+      "duration_seconds": 238.16,
+      "size_bytes": 101629119,
+      "sha256": "0c6a81eb254d888b4ef7e48a52eed6476316b2f0929666c3246ef2d4714c2e47",
+      "key": "lafan/walk.mp4",
+      "poster_key": "lafan/walk.png",
+      "source_relative_path": "local_evaluation_098000/videos/walk_walk2_subject3.mp4",
+      "source_poster_relative_path": "local_evaluation_098000/videos/walk_walk2_subject3.middle.png",
+      "poster_sha256": "965bef440858c19098adc73f81eb9ddb1e14335fb3ac07eaf82cb3d44005db2b"
+    },
+    {
+      "clip": "Rushed__Rushed_BR__000000_001000",
+      "title": "低分代表（成功片段 10% 分位）· Rushed",
+      "style": "Rushed",
+      "failed": false,
+      "normalized_return": 0.7192,
+      "duration_seconds": 19.98,
+      "reference_duration_seconds": 19.98,
+      "size_bytes": 11245808,
+      "sha256": "a087d7febd93e1b34f2f92f7e523d507a16d3a7cabc4663e0c0df9d8ff0d00b2",
+      "selection": {
+        "kind": "successful_return_quantile",
+        "requested_quantile": 0.1,
+        "eligible_count": 3387,
+        "target_zero_based_rank": 339,
+        "selected_zero_based_rank": 339,
+        "actual_rank_fraction": 0.10011813349084465,
+        "distinct_style_preference_satisfied": true
+      },
+      "key": "100style/ood_low.mp4",
+      "poster_key": "100style/ood_low.png",
+      "source_relative_path": "ood_100style_20261023/videos/ood_low.mp4",
+      "source_poster_relative_path": "ood_100style_20261023/videos/ood_low.middle.png",
+      "poster_sha256": "e382a91712b33ab7c3b9a5e765be16ce49b6e4bd18d771590889f716f29b7a30"
+    },
+    {
+      "clip": "OnPhoneLeft__OnPhoneLeft_SW__001000_002000",
+      "title": "中位代表（成功片段 50% 分位）· OnPhoneLeft",
+      "style": "OnPhoneLeft",
+      "failed": false,
+      "normalized_return": 0.812,
+      "duration_seconds": 19.98,
+      "reference_duration_seconds": 19.98,
+      "size_bytes": 8342314,
+      "sha256": "fa75d9cea8128e1d66bacf47214a641402618d04b6e376f43bafd77ac1e43913",
+      "selection": {
+        "kind": "successful_return_quantile",
+        "requested_quantile": 0.5,
+        "eligible_count": 3387,
+        "target_zero_based_rank": 1693,
+        "selected_zero_based_rank": 1693,
+        "actual_rank_fraction": 0.5,
+        "distinct_style_preference_satisfied": true
+      },
+      "key": "100style/ood_median.mp4",
+      "poster_key": "100style/ood_median.png",
+      "source_relative_path": "ood_100style_20261023/videos/ood_median.mp4",
+      "source_poster_relative_path": "ood_100style_20261023/videos/ood_median.middle.png",
+      "poster_sha256": "fa20edfb4a88f8e8ba7fb7c7340e4d2fb75fb0ba9d1c305f237a7e911d543074"
+    },
+    {
+      "clip": "Old__Old_FR__005000_006000",
+      "title": "高分代表（成功片段 90% 分位）· Old",
+      "style": "Old",
+      "failed": false,
+      "normalized_return": 0.8781,
+      "duration_seconds": 19.98,
+      "reference_duration_seconds": 19.98,
+      "size_bytes": 8576681,
+      "sha256": "5709ae92b8e2227d01542438371b765c2764f49d92dc565619843ee3dbc1fd5c",
+      "selection": {
+        "kind": "successful_return_quantile",
+        "requested_quantile": 0.9,
+        "eligible_count": 3387,
+        "target_zero_based_rank": 3047,
+        "selected_zero_based_rank": 3047,
+        "actual_rank_fraction": 0.8998818665091554,
+        "distinct_style_preference_satisfied": true
+      },
+      "key": "100style/ood_high.mp4",
+      "poster_key": "100style/ood_high.png",
+      "source_relative_path": "ood_100style_20261023/videos/ood_high.mp4",
+      "source_poster_relative_path": "ood_100style_20261023/videos/ood_high.middle.png",
+      "poster_sha256": "c9e68ce4ea59fd06d3a919f0d73239ec4781e203c6359f20c5bb3ac3e7915734"
+    },
+    {
+      "clip": "Flapping__Flapping_FR__000000_001000",
+      "title": "失败例（失败集合中存活时间最长）· Flapping",
+      "style": "Flapping",
+      "failed": true,
+      "normalized_return": 0.4736,
+      "duration_seconds": 17.76,
+      "reference_duration_seconds": 19.98,
+      "size_bytes": 11186637,
+      "sha256": "caf331a2154940f9aed139d6d0b3abbecd1312f1abc9df11c27b94234d903368",
+      "selection": {
+        "kind": "longest_surviving_failed_clip",
+        "candidate_count": 4,
+        "tie_break": "lexicographic clip name; no minimum duration or style exclusion"
+      },
+      "key": "100style/ood_failure.mp4",
+      "poster_key": "100style/ood_failure.png",
+      "source_relative_path": "ood_100style_20261023/videos/ood_failure.mp4",
+      "source_poster_relative_path": "ood_100style_20261023/videos/ood_failure.middle.png",
+      "poster_sha256": "a4963a7df10755a85fb52f07a1c1ab86b4cc4338168cf4519648a58451a9adfd"
+    }
+  ],
+  "selection": {
+    "lafan": [
+      {
+        "category": "dance",
+        "clip": "dance1_subject2",
+        "normalized_return": 0.8369,
+        "category_candidates": 8,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "fallAndGetUp",
+        "clip": "fallAndGetUp1_subject4",
+        "normalized_return": 0.852,
+        "category_candidates": 6,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "fight",
+        "clip": "fight1_subject2",
+        "normalized_return": 0.8443,
+        "category_candidates": 5,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "jumps",
+        "clip": "jumps1_subject5",
+        "normalized_return": 0.8348,
+        "category_candidates": 3,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "run",
+        "clip": "run2_subject1",
+        "normalized_return": 0.8435,
+        "category_candidates": 4,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "sprint",
+        "clip": "sprint1_subject4",
+        "normalized_return": 0.8396,
+        "category_candidates": 2,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      },
+      {
+        "category": "walk",
+        "clip": "walk2_subject3",
+        "normalized_return": 0.8643,
+        "category_candidates": 12,
+        "failed": false,
+        "selection_reason": "Lowest reported normalized return within this category; ties resolved by clip name. The fight category includes fightAndSports."
+      }
+    ],
+    "ood": [
+      "Use all 3573 completed evaluated clips for metrics; video selection never filters the evaluation population.",
+      "Eligible quantile examples: failure flag false, all reference transitions completed, evaluated reference duration >=10 seconds.",
+      "Sort eligible clips ascending by normalized_return (stored at four decimal places), then lexicographic clip name.",
+      "In sequence 10%, 50%, 90% select rank floor(p*(N-1)+0.5). Prefer unused styles, selecting nearest rank; ties choose lower rank. Never repeat clips.",
+      "Fourth example: among every failed clip select maximum alive pre-step samples, tie by lexicographic name; if none failed select largest joint MAE from unselected eligible successes.",
+      "Render every recorded alive pre-step state at 50 Hz. No preview truncation, new inference, time stretching, or source correction.",
+      "Failure status comes from evaluation.json; the terminal post-step state is absent from the baseline recording. Failure video is never labelled a complete reference action."
+    ]
+  }
+}
