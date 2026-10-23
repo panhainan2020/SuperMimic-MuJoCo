@@ -4,8 +4,7 @@
 100STYLE evaluations. It contains 26 policy state tensors (including running
 normalization buffers), the architecture settings and the robot contract.
 It is approximately **34.8 MiB**, tracked directly by Git; Git LFS is not needed
-for this artifact. Ordinary authenticated cloning of this private repository
-includes the file.
+for this artifact. Ordinary cloning of this public repository includes the file.
 
 | Setting | Value |
 | --- | --- |
@@ -59,7 +58,10 @@ state or replay buffer, so it **cannot resume the full training loop** with
 `--resume`. Full resumable checkpoints remain on server persistent storage.
 
 The user explicitly authorized this one already-local policy to be committed
-to the private repository. This does not authorize retrieving or publishing
+to this repository and subsequently authorized its public release. The
+checkpoint's storage-policy text records the earlier private-publication
+authorization; the current scope is documented here and in the manifest.
+This does not authorize retrieving or publishing
 other server weights, datasets, replay, archives or videos. Other large
 training artifacts stay on persistent disk; only small text status/metrics
 are retrieved, integrity checks run on the server, and previously authorized

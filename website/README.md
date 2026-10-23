@@ -36,7 +36,7 @@ window.MEDIA_CONFIG = {
 
 For a media host containing all files, set `baseUrl` to its public HTTPS prefix. Keys and original experiment-relative source filenames are listed in `results/098000/media_manifest.json`. Use a stable public media URL with `Content-Type: video/mp4` and byte-range support. H.264/yuv420p MP4 with `faststart` is suitable. Keep compact delivery encodings outside Git; preserve original hashes and record delivery hashes separately.
 
-No tokens, private credentials or expiring signed URLs should be committed. The website supports only HTTPS remote media, relative URLs, and localhost HTTP for development. A private GitHub repository link may be omitted from public deployment until source publication. Publishing the static website does not make the private code repository public.
+No tokens, private credentials or expiring signed URLs should be committed. The website supports only HTTPS remote media, relative URLs, and localhost HTTP for development. The source repository is now public at https://github.com/panhainan2020/SuperMimic-MuJoCo. Repository visibility is managed separately from static-site hosting.
 
 To run browser smoke checks using an already-installed Playwright/Chromium:
 

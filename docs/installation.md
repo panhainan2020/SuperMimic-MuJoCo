@@ -35,8 +35,8 @@ with Python 3.10. Windows and macOS are not validated reproduction platforms.
 
 ## Install a dedicated environment
 
-Start with Python 3.10 and its `venv` module available. From a shell with access
-to the private repository:
+Start with Python 3.10 and its `venv` module available. The repository is
+public; cloning requires no GitHub authentication:
 
 ```bash
 git clone https://github.com/panhainan2020/SuperMimic-MuJoCo.git

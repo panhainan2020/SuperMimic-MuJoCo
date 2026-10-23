@@ -7,7 +7,7 @@ node --test website/hosting/test_worker.mjs
 python website/hosting/build_host.py --checkout "$REGISTERED_SITE_CHECKOUT" --node node
 ```
 
-The checkout must already contain `.openai/hosting.json` with the existing Site project ID. The builder preserves other manifest fields, removes the static-site declaration, sets `r2: "BUCKET"` and `d1: null`, and emits source and `dist/server/index.js` plus `dist/.openai/hosting.json`. Rebuild from the generated checkout using `node scripts/build.mjs`; validate with `node scripts/validate-artifact.mjs`. The repository's portable site references the public HTTPS media URLs; the hosted build uses only the five same-origin showcase URLs and hides the private repository link.
+The checkout must already contain `.openai/hosting.json` with the existing Site project ID. The builder preserves other manifest fields, removes the static-site declaration, sets `r2: "BUCKET"` and `d1: null`, and emits source and `dist/server/index.js` plus `dist/.openai/hosting.json`. Rebuild from the generated checkout using `node scripts/build.mjs`; validate with `node scripts/validate-artifact.mjs`. The repository's portable site references the public HTTPS media URLs; the hosted build uses only the five same-origin showcase URLs and omits the repository link. The source repository is now public; changing repository visibility does not redeploy the existing website.
 
 Public `GET`/`HEAD /media/<key>` supports one byte range, suffix/open ranges, `206`, unsatisfiable `416`, ETag validation and `If-Range`. Only these keys exist in the route whitelist:
 

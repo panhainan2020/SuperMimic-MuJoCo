@@ -45,5 +45,6 @@
   "includes_replay": false,
   "can_resume_full_training": false,
   "remote_artifact_downloaded_for_publication": false,
-  "previous_publication_sha256": "40ab52a3a47293e2688d7904b8f144b4a4f4b751f17ac5d5df17f2c4668e111c"
+  "previous_publication_sha256": "40ab52a3a47293e2688d7904b8f144b4a4f4b751f17ac5d5df17f2c4668e111c",
+  "public_release_authorization": "Owner explicitly requested public release of this clean repository, including the already-published inference policy, on 2026-10-23. Historical storage-policy wording inside the checkpoint is retained; no policy bytes changed."
 }

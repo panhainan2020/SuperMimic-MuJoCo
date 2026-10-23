@@ -8,7 +8,7 @@ BONES-SEED training corpus, multi-GPU scaling, or every goal interface.
 
 **[Live results / 在线评估](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)** —
 frozen 98k policy, 40 LAFAN training motions and 3,573 unseen 100STYLE segments.
-The page is public; this code repository remains private. Videos use separate
+Both the results page and this code repository are public. Videos use separate
 object storage and are not included in GitHub.
 
 **独立 MuJoCo/MJLab 工程：无需 Isaac Lab、Isaac Sim、Newton 或 USD。**
@@ -54,7 +54,7 @@ python -m pip install -r requirements.lock.txt -e '.[video]'
 python -m supermimic.train --help
 ```
 
-The repository is initially private, so cloning requires repository access.
+The repository is public and can be cloned without authentication.
 For a compatible installation without the complete environment lock, use
 `python -m pip install -e '.[video]'`. The package metadata pins simulation
 versions to prevent accidental changes in physics. No script fetches robot
