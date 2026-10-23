@@ -1,9 +1,7 @@
-/* No dependencies. STATIC_ASSETS is replaced by build_host.py with text only. */
+/* No dependencies. build_host.py injects text assets and reviewed media metadata. */
 const STATIC_ASSETS = /*__STATIC_ASSETS__*/ {};
-const MEDIA_KEYS = new Set([
-  "lafan/overview.mp4", "100style/ood_low.mp4", "100style/ood_median.mp4",
-  "100style/ood_high.mp4", "100style/ood_failure.mp4",
-]);
+const MEDIA_OBJECTS = /*__MEDIA_OBJECTS__*/ {};
+const MEDIA_KEYS = new Set(Object.keys(MEDIA_OBJECTS));
 const MAX_UPLOAD_BYTES = 25 * 1024 * 1024;
 
 function response(body, status = 200, headers = {}) {
@@ -72,25 +70,38 @@ async function upload(request, env, key) {
   const length = Number(value);
   if (!Number.isSafeInteger(length) || length > MAX_UPLOAD_BYTES) return response("Upload exceeds 25 MiB", 413);
   if (length <= 0 || !request.body) return response("Empty media", 400);
+  const expected = MEDIA_OBJECTS[key];
+  if (length !== expected.size) return response("Media size differs from manifest", 400);
   if ((request.headers.get("Content-Type") || "").split(";")[0].trim().toLowerCase() !== "video/mp4") return response("Expected video/mp4", 415);
-  // FixedLengthStream preserves the known length required by R2 while enforcing
-  // the declared bound. The TransformStream fallback is only for Node mock tests.
+  // Allocate only after the declared size matches the bounded manifest entry.
+  // Verify all bytes before writing so a failed upload cannot replace an object.
+  const data = new Uint8Array(length);
+  const reader = request.body.getReader();
   let count = 0;
-  const stream = typeof FixedLengthStream !== "undefined" ? new FixedLengthStream(length) : new TransformStream({
-    transform(chunk, controller) {
-      count += chunk.byteLength;
-      if (count > length) throw new Error("Upload length exceeded");
-      controller.enqueue(chunk);
-    },
-    flush() { if (count !== length) throw new Error("Upload length mismatch"); },
-  });
-  const pumping = request.body.pipeTo(stream.writable);
   try {
-    const storing = env.BUCKET.put(key, stream.readable, {httpMetadata: {contentType: "video/mp4", cacheControl: "public, max-age=3600"}});
-    const [object] = await Promise.all([storing, pumping]);
-    return json({key, size: object.size, etag: object.etag, httpEtag: objectEtag(object)}, 201);
+    for (;;) {
+      const {done, value: chunk} = await reader.read();
+      if (done) break;
+      if (count + chunk.byteLength > length) {
+        await reader.cancel();
+        return response("Upload body length mismatch", 400);
+      }
+      data.set(chunk, count);
+      count += chunk.byteLength;
+    }
+    if (count !== length) return response("Upload body length mismatch", 400);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    const sha256 = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, "0")).join("");
+    if (sha256 !== expected.sha256) return response("Media SHA-256 differs from manifest", 400);
+    const object = await env.BUCKET.put(key, data, {
+      httpMetadata: {contentType: "video/mp4", cacheControl: "public, max-age=3600"},
+      customMetadata: {sha256},
+    });
+    return json({key, size: object.size, sha256, etag: object.etag, httpEtag: objectEtag(object)}, 201);
   } catch {
     return response("Upload failed or body length mismatch", 400, {"Cache-Control": "no-store"});
+  } finally {
+    reader.releaseLock();
   }
 }
 async function media(request, env, key) {
@@ -104,6 +115,7 @@ async function media(request, env, key) {
     "Cache-Control": "public, max-age=3600", "Content-Length": String(object.size),
   };
   if (object.uploaded) headers["Last-Modified"] = new Date(object.uploaded).toUTCString();
+  if (/^[0-9a-f]{64}$/.test(object.customMetadata?.sha256 || "")) headers["X-Content-SHA256"] = object.customMetadata.sha256;
   if (matchesEtag(request.headers.get("If-None-Match"), etag)) return response(null, 304, {ETag: etag, "Cache-Control": headers["Cache-Control"]});
   let rangeHeader = request.headers.get("Range"), range = null;
   const ifRange = request.headers.get("If-Range");

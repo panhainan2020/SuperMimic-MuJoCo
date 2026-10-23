@@ -8,6 +8,7 @@ is a separate, explicitly authorized action by the owner.
 import argparse
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -17,6 +18,31 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 WEBSITE = HERE.parent
 TYPES = {".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "application/javascript; charset=utf-8", ".json": "application/json; charset=utf-8", ".csv": "text/csv; charset=utf-8", ".md": "text/plain; charset=utf-8"}
+MEDIA_MANIFEST = WEBSITE.parent / "results/098000/media_manifest.json"
+MAX_UPLOAD_BYTES = 25 * 1024 * 1024
+
+
+def media_objects():
+    """One reviewed manifest defines both the routes and accepted upload bytes."""
+    objects = {}
+    for video in json.loads(MEDIA_MANIFEST.read_text())["videos"]:
+        key, size, sha256 = video["key"], video["size_bytes"], video["sha256"]
+        if not re.fullmatch(r"[A-Za-z0-9_-]+(?:/[A-Za-z0-9_-]+)*\.mp4", key) or key in objects:
+            raise ValueError(f"Invalid or duplicate media key: {key}")
+        if type(size) is not int or not 0 < size <= MAX_UPLOAD_BYTES:
+            raise ValueError(f"Media size outside 1 byte–25 MiB: {key}")
+        if not isinstance(sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", sha256):
+            raise ValueError(f"Invalid media SHA-256: {key}")
+        objects[key] = {"size": size, "sha256": sha256}
+    if not objects:
+        raise ValueError("Media manifest is empty")
+    return objects
+
+
+def replace_marker(source, marker, value):
+    if source.count(marker) != 1:
+        raise ValueError(f"Expected exactly one template marker: {marker}")
+    return source.replace(marker, json.dumps(value, ensure_ascii=False, separators=(",", ":")))
 
 
 def main():
@@ -31,15 +57,13 @@ def main():
         raise ValueError("Use an already registered Site checkout with its existing project_id")
     manifest.pop("static", None)
     manifest.update({"r2": "BUCKET", "d1": None})
+    media = media_objects()
     assets = {}
     with tempfile.TemporaryDirectory(prefix="supermimic-site-build-") as temp:
         out = Path(temp)
         subprocess.run([sys.executable, str(WEBSITE / "build.py"), "--output-dir", temp], check=True)
-        config = {"enabled": True, "baseUrl": "", "overrides": {key: "media/" + key for key in ["lafan/overview.mp4", "100style/ood_low.mp4", "100style/ood_median.mp4", "100style/ood_high.mp4", "100style/ood_failure.mp4"]}, "repositoryUrl": ""}
+        config = {"enabled": True, "baseUrl": "", "overrides": {key: "media/" + key for key in media}, "repositoryUrl": "https://github.com/panhainan2020/SuperMimic-MuJoCo"}
         (out / "media-config.js").write_text("window.MEDIA_CONFIG = " + json.dumps(config, indent=2) + ";\n")
-        # Published labels describe the five hosted examples, not the full local recordings.
-        index = (out / "index.html").read_text().replace("查看完整动作、对照参考运动", "查看代表动作、对照参考运动").replace("<small>8 段视频</small>", "<small>概览已公开 · 完整指标可查</small>")
-        (out / "index.html").write_text(index)
         for path in sorted(out.rglob("*")):
             if not path.is_file():
                 continue
@@ -50,10 +74,8 @@ def main():
                 raise ValueError("Individual static text asset exceeds 2 MiB")
             assets["/" + path.relative_to(out).as_posix()] = {"body": raw.decode("utf-8"), "type": TYPES[path.suffix], "bytes": len(raw), "etag": '"' + hashlib.sha256(raw).hexdigest() + '"'}
     template = (HERE / "worker.mjs").read_text()
-    marker = "/*__STATIC_ASSETS__*/ {}"
-    if template.count(marker) != 1:
-        raise ValueError("Expected exactly one static asset marker")
-    source = template.replace(marker, json.dumps(assets, ensure_ascii=False, separators=(",", ":")))
+    source = replace_marker(template, "/*__STATIC_ASSETS__*/ {}", assets)
+    source = replace_marker(source, "/*__MEDIA_OBJECTS__*/ {}", media)
     if "MEDIA_UPLOAD_TOKEN =" in source:
         raise ValueError("Secrets belong in runtime environment, never a source assignment")
     (checkout / "worker").mkdir(exist_ok=True)
@@ -65,7 +87,7 @@ def main():
         shutil.copyfile(HERE / name, checkout / "scripts" / name)
     subprocess.run([args.node, "scripts/build.mjs"], cwd=checkout, check=True)
     subprocess.run([args.node, "scripts/validate-artifact.mjs"], cwd=checkout, check=True)
-    print(json.dumps({"embedded_assets": len(assets), "embedded_text_bytes": sum(item["bytes"] for item in assets.values()), "worker_bytes": len(source.encode()), "media_embedded": False}))
+    print(json.dumps({"embedded_assets": len(assets), "embedded_text_bytes": sum(item["bytes"] for item in assets.values()), "worker_bytes": len(source.encode()), "media_keys": len(media), "media_embedded": False}))
 
 
 if __name__ == "__main__":

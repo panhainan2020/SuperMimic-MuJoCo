@@ -2,9 +2,9 @@
 
 ## Current publication restriction
 
-The user's latest instruction on 2026-10-23 supersedes earlier publication permissions for new changes: do not stage, commit, push, upload media, or deploy a website automatically. This checkout's origin is public. Prepare and validate changes locally, then present the exact proposed file list and diff for the user's explicit approval before any new submission or publication. Never include unrelated worktree files. Existing public releases remain unchanged. This restriction applies to all agents and survives context compaction.
+This checkout's origin is public. Publish only changes within the user's authorized scope after checking the exact file list and diff. Stage explicit paths; never include unrelated worktree files, private research details or unreviewed artifacts. These restrictions apply to all agents and survive context compaction.
 
-The user's subsequent approval on 2026-10-23 authorizes committing and pushing the reviewed evaluation website update, its rendering/MAE tools and tests, supporting documentation, sanitized media index and small public MAE tables. This approval covers only that update. It does not authorize uploading video, deploying the hosted website, publishing unrelated worktree files, or any later unreviewed changes. Stage explicit reviewed paths only.
+The current task is explicitly authorized to publish the reviewed evaluation website and its 20 existing demonstration MP4 files to the existing public Site, and to simplify and synchronize the repository documentation. Keep videos in independent object storage, outside Git. This authorization does not cover other artifacts or projects. Disable the temporary media-upload endpoint after verifying storage integrity.
 
 This independent repository ports zita-ch/supermimic_vibed to MuJoCo / MJLab.
 Do not modify other projects or their environments. This repository has no dependency on another application checkout.

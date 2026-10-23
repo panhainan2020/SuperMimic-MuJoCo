@@ -1,28 +1,26 @@
-# Evaluation snapshots
+# Evaluation results
 
-[简体中文](README.md) | **English**
+[简体中文](README.md) | **English** · **[Live results](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)**
 
-This directory contains selected, portable text evidence for the frozen **98,000-iteration** policy. It is a historical snapshot, not a claim about the newest training checkpoint. Raw recordings, checkpoints, motion datasets and videos are excluded from Git.
+This directory contains metrics, evaluation conditions and provenance for the fixed **98,000-iteration** policy. Raw trajectories, full training checkpoints, motion data and videos stay outside Git.
 
-| File | Purpose |
+| File | Contents |
 | --- | --- |
-| [098000/REPORT.md](098000/REPORT.md) | Chinese / English findings and limitations |
-| [098000/summary.json](098000/summary.json) | Full-precision aggregates and evaluation conditions |
-| [098000/training_coverage.json](098000/training_coverage.json) | 40-clip retargeted release versus original 77-sequence LAFAN1 |
-| [098000/lafan_per_clip.csv](098000/lafan_per_clip.csv) | 40 training-motion evaluations |
-| [098000/100style_per_clip.csv](098000/100style_per_clip.csv) | All 3,573 converted 100STYLE segments |
-| [098000/100style_per_style.csv](098000/100style_per_style.csv) | 100 style summaries |
-| [098000/media_manifest.json](098000/media_manifest.json) | Media IDs, selection rules, original hashes; no media payloads |
-| [098000/provenance.json](098000/provenance.json) | SHA256 of the source metadata before public-field selection |
+| [REPORT.md](098000/REPORT.md) | Findings and limitations |
+| [summary.json](098000/summary.json) | Full-precision metrics and evaluation conditions |
+| [training_coverage.json](098000/training_coverage.json) | Coverage of the 40-clip G1 LAFAN release versus the original 77 sequences |
+| [lafan_per_clip.csv](098000/lafan_per_clip.csv) | Per-clip results for 40 LAFAN motions |
+| [100style_per_clip.csv](098000/100style_per_clip.csv) | Per-clip results for 3,573 100STYLE segments |
+| [100style_per_style.csv](098000/100style_per_style.csv) | Summaries for 100 styles |
+| [trajectory_mae.public.json](098000/trajectory_mae.public.json) | Whole-record MAE, coverage, aggregation rules and source hashes |
+| [trajectory_mae.per_clip.csv](098000/trajectory_mae.per_clip.csv) | MAE for all 3,613 trajectories |
+| [media_manifest.json](098000/media_manifest.json) | Video selection, presentation scope, sizes and hashes |
+| [provenance.json](098000/provenance.json) | SHA-256 of the original metric metadata |
 
-The [static results site](../website/index.html) reads these committed snapshots. See [website/README.en.md](../website/README.en.md) for rebuilding and separately hosted media.
+The live website shows solid-policy/cyan-reference overlays in 20 videos: seven LAFAN previews, one overview and 12 100STYLE recordings. The 960×540, 25 fps delivery files total about 38 MiB and are hosted separately. See the [website guide](../website/README.en.md) for builds and media configuration.
 
-The [public evaluation page](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site) serves the same metrics. Five complete demonstration videos use external object storage; [media_delivery.json](098000/media_delivery.json) records their delivery encoding, sizes and hashes. Their compact 960×360, 25 fps copies total 11.93 MiB. Original evaluation recordings remain unchanged and outside Git.
+MAE uses all valid 50 Hz pre-step records; failed clips include only their observed prefix. Both equal-clip and frame-weighted summaries are available. Joint MAE, root XYZ component MAE and root L2 distance have distinct definitions; see the [evaluation guide](../docs/evaluation.en.md).
 
-Training artifacts stay on server persistent storage. Evaluation, backup and publication requests do not imply permission to download remote weights, datasets, replay or full archives. This snapshot was exported from already-authorized local text evidence; its exporter performs no network operations.
+[Environment validation](release_validation.json) and [robot equivalence](robot_asset_equivalence.json) are recorded separately; the tables above retain the original evaluation metrics.
 
-The [release validation](release_validation.json) records the subsequent
-38-test CPU/CUDA check and 40-clip LAFAN evaluation of the bundled policy
-with the reproducibly generated robot. [Robot equivalence](robot_asset_equivalence.json)
-compares the compiled models; the frozen 98k tables above retain their original
-run metrics. The 100STYLE evaluation was not rerun for this packaging change.
+Training artifacts stay on server persistent storage, with integrity and recovery checks performed there. Retrieve only small text metrics and metadata; do not automatically transfer, prefetch or mirror large files. Previously authorized shutdown does not wait for downloads. The website exporter performs no network operations.

@@ -1,25 +1,28 @@
-# Portable evaluation site
+# Evaluation website
 
-[简体中文](README.md) | **English**
+[简体中文](README.md) | **English** · **[Live results](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)**
 
-Open `index.html` directly or serve this directory from a static host. Metrics work without a server or external JavaScript dependencies. Reports in the repository layout use relative links to `../results/098000/`.
+The website presents LAFAN and 100STYLE evaluations of the fixed 98k policy:
+
+- A solid policy robot and cyan reference ghost share one world frame and camera, preserving position differences.
+- Seven LAFAN previews, one overview and 12 100STYLE videos, with video length, reference duration and failure status labeled separately.
+- Whole-record joint MAE and root XYZ component MAE alongside return and pose metrics, with equal-clip/frame-weighted summaries and JSON/CSV downloads.
+
+MAE uses all valid 50 Hz pre-step records, independently of video excerpts. Failed clips include only the observed prefix, with coverage reported separately. See the [evaluation guide](../docs/evaluation.en.md) for metric definitions and rendering commands.
+
+## Build and preview
+
+No external JavaScript dependencies are required. Open `index.html` directly or serve the build directory from a static host:
 
 ```sh
-# Rebuild the committed small text snapshots, including whole-record MAE and ghost video indexes.
+# Use the repository's small metric files and media manifest.
 python website/build.py
 
-# Self-contained deployment directory: HTML + small text results, no media.
+# Build a standalone deployment directory without copying videos.
 python website/build.py --output-dir /tmp/supermimic-site
-
-# Maintainer-only refresh from an explicitly selected, existing experiment root.
-python website/build.py --experiment-dir "$EXPERIMENT_ROOT"
 ```
 
-The export selects public JSON fields and CSV metrics, records original metadata hashes, and rejects private machine paths. It reads no checkpoints, datasets, trajectories or videos. No remote artifact download or upload is performed. Preserve raw experiment evidence separately on persistent storage; do not use publication as an implicit authorization to transfer large training artifacts.
-
-## Local preview with ghost overlays and whole-record MAE
-
-Use the [evaluation tools](../docs/evaluation.en.md) to compute MAE and render ghost videos from existing recordings. Supply the media manifest and metrics explicitly and build into the experiment directory, without replacing the published snapshots in this checkout:
+Build a preview from existing experiment metrics and a media manifest:
 
 ```sh
 python website/build.py \
@@ -28,36 +31,31 @@ python website/build.py \
   --output-dir "$SUPERMIMIC_EXPERIMENT_ROOT/site_preview"
 ```
 
-Ghost videos show a solid policy and cyan reference in the same world frame, preserving position differences. The page distinguishes video preview length, full reference duration and failure status. MAE uses all valid recorded samples, independent of video excerpts. Joint MAE, root XYZ component MAE and root L2 error are labeled separately. Summaries can switch between equal clip weighting and frame weighting; small JSON/CSV files provide the complete values.
+Maintainers can refresh base result snapshots with `--experiment-dir "$SUPERMIMIC_EXPERIMENT_ROOT"`. The exporter selects public JSON/CSV fields, records metadata hashes and rejects private machine paths. It does not read or transfer weights, datasets, trajectories or videos. Raw experiment artifacts stay on server persistent storage.
 
-This mode creates local files only. It does not upload media, push Git or deploy a website. Place media under the output directory's `media/` path or use a local symlink to existing files; the builder does not copy videos. Review an explicit file list and diff before separately approving any new submission or publication.
+## Video hosting
 
-## Separately hosted videos
-
-The repository now indexes 20 ghost videos: seven LAFAN previews, one overview and 12 100STYLE recordings. Video files stay outside Git. This source update does not upload media or deploy the separately hosted site. `media-config.js` disables media by default; complete metrics, MAE and video descriptions remain available. The five split-screen examples on the existing live site belong to the previous release. Their historical encoding metadata remains in `results/098000/media_delivery.json` and does not describe the new ghost files.
-
-Configure the new media keys after media hosting is separately approved. Video source URLs are assigned only when the visitor presses play. Posters are not fetched on page load. Missing keys remain unavailable when `baseUrl` is empty.
+Videos use separate media storage. [`media_manifest.json`](../results/098000/media_manifest.json) lists their keys, presentation scope and file hashes. Configure media URLs in `media-config.js`:
 
 ```js
 window.MEDIA_CONFIG = {
   enabled: true,
-  baseUrl: "",
-  overrides: {
-    "ghost_v1/lafan/overview.mp4": "https://media.example.org/supermimic/overview.mp4",
-    "ghost_v1/100style/ood_low.mp4": "https://media.example.org/supermimic/ood_low.mp4"
-  },
-  repositoryUrl: "https://github.com/OWNER/REPOSITORY"
+  baseUrl: "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media",
+  overrides: {},
+  repositoryUrl: "https://github.com/panhainan2020/SuperMimic-MuJoCo"
 };
 ```
 
-For a media host containing all files, set `baseUrl` to its public HTTPS prefix. Media keys, presentation scope and delivery hashes are listed in `results/098000/media_manifest.json`, without raw recording paths. Use a stable public media URL with `Content-Type: video/mp4` and byte-range support. H.264/yuv420p MP4 with `faststart` is suitable. Keep compact delivery encodings outside Git; preserve original hashes and record delivery hashes separately.
+Media keys are appended to `baseUrl`; `overrides` assigns alternative URLs to individual keys. For offline previews, use a relative `media` path and place existing videos or symlinks there. Videos load only after a visitor presses play; videos and posters are not prefetched.
 
-No tokens, private credentials or expiring signed URLs should be committed. The website supports only HTTPS remote media, relative URLs, and localhost HTTP for development. The source repository is now public at https://github.com/panhainan2020/SuperMimic-MuJoCo. Repository visibility is managed separately from static-site hosting.
+The media service must support `video/mp4` and byte-range requests. H.264/yuv420p MP4 with `faststart` is recommended. Remote URLs must use HTTPS; localhost HTTP is allowed for development. Never include tokens or private credentials in configuration. See the [hosting guide](hosting/README.en.md) for Sites / R2 deployment. Building, pushing Git and deploying the live site are separate steps; the builder does not publish automatically.
 
-To run browser smoke checks using an already-installed Playwright/Chromium:
+## Browser checks
+
+Use an installed Playwright and Chromium:
 
 ```sh
 python website/check_site.py --browser /path/to/chromium
 ```
 
-This check verifies the media-disabled page, result navigation, counts, search, sorting, mobile layout and absence of startup media requests. It neither installs a browser nor downloads artifacts. Optional `--experiment-dir` validates playback using already-local videos through a temporary loopback-only server; this reads local media without copying or publishing it.
+Checks cover metric navigation, video counts, search/sorting, mobile layout and absence of prefetches. Optional `--experiment-dir` tests playback from existing local videos. No browser or remote artifacts are downloaded.

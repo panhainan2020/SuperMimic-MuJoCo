@@ -49,14 +49,14 @@ Global mean returns use full-precision batch aggregates. The baseline stores per
 
 ## Media selection
 
-- All 20 indexed videos now use one camera and world frame: solid policy plus translucent cyan reference, without independent root recentering.
+- All 20 indexed videos use one camera and world frame: solid policy plus translucent cyan reference, without independent root recentering.
 - LAFAN overview: the first 10 seconds from each of seven categories, concatenated into 70 seconds.
 - Seven LAFAN previews: the first 12 seconds of the original lowest-return motion selected within each category. Their MAE still uses the entire recorded trajectory.
-- Four retained OOD examples: 10th, 50th and 90th successful-return percentiles, plus the longest-surviving failure, Flapping (17.76 s recorded / 19.98 s reference).
-- Eight additional styles: exclude the original four styles, alphabetically sort the 96 remaining styles with completed segments of at least 10 seconds, and take ranks 0, 14, 27, 41, 54, 68, 81 and 95. Within each style, sort eligible clips by return then name and select the lower median. The resulting styles are Aeroplane, Cat, FlickLegs, LeftHop, OnToesCrouched, ShieldedRight, SwingArmsRound and Zombie.
+- Four OOD examples: 10th, 50th and 90th successful-return percentiles, plus the longest-surviving failure, Flapping (17.76 s recorded / 19.98 s reference).
+- Eight style examples: exclude those four styles, alphabetically sort the 96 remaining styles with completed segments of at least 10 seconds, and take ranks 0, 14, 27, 41, 54, 68, 81 and 95. Within each style, sort eligible clips by return then name and select the lower median. The resulting styles are Aeroplane, Cat, FlickLegs, LeftHop, OnToesCrouched, ShieldedRight, SwingArmsRound and Zombie.
 - All 12 OOD videos show their complete valid recording; failed examples never imply completion of the full reference. Delivery encoding uses 960×540, 25 fps, H.264; a 19.98-second record may have a 20.00-second container duration after frame-rate conversion.
 
-`media_manifest.json` contains the new ghost delivery-file hashes and presentation metadata, without raw recording paths. `media_delivery.json` is historical metadata for the five previously hosted split-screen files. This source update does not upload the ghost videos or deploy the live site; media is disabled in the checkout by default. Videos and trajectories stay outside Git. The separately authorized 98k inference policy remains bundled under `checkpoints/`.
+`media_manifest.json` contains video hashes and presentation metadata; `media_delivery.json` records encoding, size and public media locations. The 20 demonstration videos use independent object storage and load only on playback. Videos and trajectories stay outside Git. The tested 98k inference policy is bundled under `checkpoints/`.
 
 ## Provenance
 

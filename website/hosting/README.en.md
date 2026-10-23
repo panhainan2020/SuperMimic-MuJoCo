@@ -1,24 +1,22 @@
-# Sites Worker with separate R2 media
+# Sites Worker and R2 media
 
 [简体中文](README.md) | **English**
 
-The Worker embeds only the small static HTML/JS/CSS/JSON/CSV/report files. Videos reside in the Site's R2 binding `BUCKET`, never Git or the deployment bundle. It has no npm dependencies and does not use D1.
+The Worker embeds static pages and small metric files. Videos reside in the R2 binding `BUCKET`, outside Git and the deployment bundle. It has no npm dependencies and does not use D1.
 
 ```sh
 node --test website/hosting/test_worker.mjs
 python website/hosting/build_host.py --checkout "$REGISTERED_SITE_CHECKOUT" --node node
 ```
 
-The checkout must already contain `.openai/hosting.json` with the existing Site project ID. The builder preserves other manifest fields, removes the static-site declaration, sets `r2: "BUCKET"` and `d1: null`, and emits source and `dist/server/index.js` plus `dist/.openai/hosting.json`. Rebuild from the generated checkout using `node scripts/build.mjs`; validate with `node scripts/validate-artifact.mjs`. The repository's portable site references the public HTTPS media URLs; the hosted build uses only the five same-origin showcase URLs and omits the repository link. The source repository is now public; changing repository visibility does not redeploy the existing website.
+Use Node.js 22 or later. The checkout must contain the existing Site's `.openai/hosting.json`. The builder preserves its project ID, configures R2, and emits Worker source and the `dist/` artifact. Run `node scripts/build.mjs` and `node scripts/validate-artifact.mjs` in the generated checkout to rebuild and validate it.
 
-Public `GET`/`HEAD /media/<key>` supports one byte range, suffix/open ranges, `206`, unsatisfiable `416`, ETag validation and `If-Range`. Only these keys exist in the route whitelist:
+Media routes, same-origin video URLs, accepted sizes and SHA-256 hashes come from [media_manifest.json](../../results/098000/media_manifest.json), with no duplicate allowlist. `GET` / `HEAD /media/<key>` supports single byte ranges, `206` / `416`, ETag and `If-Range`. Verified objects return the full-file hash in `X-Content-SHA256`; HEAD transfers no video.
 
-- `lafan/overview.mp4`
-- `100style/ood_low.mp4`
-- `100style/ood_median.mp4`
-- `100style/ood_high.mp4`
-- `100style/ood_failure.mp4`
+To publish approved local demonstration videos:
 
-To publish owner-authorized media, temporarily configure the runtime secret **`MEDIA_UPLOAD_TOKEN`** and the runtime flag **`MEDIA_UPLOAD_ENABLED="true"`** through Sites. Both are required: a missing flag, `"false"`, or any other value keeps the route disabled even if an older token remains in the runtime. `PUT /admin/media/<key>` requires `Authorization: Bearer …`, exact `Content-Length`, `Content-Type: video/mp4`, a nonempty body and at most **25 MiB per file**. The body streams into R2 through a fixed-length stream; the response includes R2's stored size and ETag. No token is written by the build or returned to visitors. After verified uploads, explicitly set **`MEDIA_UPLOAD_ENABLED="false"`**, remove the token, deploy the new source/environment version, and confirm that an anonymous empty PUT returns `404`. Do not place secrets in CLI arguments, source files, manifests, browser configuration or logs.
+1. Temporarily set the runtime secret `MEDIA_UPLOAD_TOKEN` and flag `MEDIA_UPLOAD_ENABLED="true"` through Sites, then deploy that environment.
+2. Send `PUT /admin/media/<key>` with `Authorization: Bearer …`, exact `Content-Length` and `Content-Type: video/mp4`. Each file must match the manifest size and be at most 25 MiB. The Worker reads within that bound and verifies SHA-256 before writing to R2; the receipt includes size, hash and ETag.
+3. Verify receipts and HEAD metadata, set the flag to `"false"`, remove the secret and deploy. Confirm that anonymous PUT returns `404`.
 
-The builder and unit tests do not upload, download or access the network. They do not copy media into the code repository. Training artifacts remain on server persistent storage; this hosting implementation does not imply permission to retrieve remote weights, motion datasets, replay or full archives. Media publication uses already-local, explicitly approved demonstration encodings as a separate operation.
+Keep secrets in the runtime environment, never CLI arguments, source, manifests or logs. Building and testing require no network access. Training artifacts remain on server persistent storage; this procedure does not authorize downloading remote weights, datasets, replay or archives. It publishes only already-local, explicitly approved demonstration videos.

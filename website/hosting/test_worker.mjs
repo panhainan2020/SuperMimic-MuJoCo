@@ -1,16 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import worker, {handle, parseRange} from './worker.mjs';
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+
+const manifest = JSON.parse(await readFile(new URL('../../results/098000/media_manifest.json', import.meta.url)));
+const mediaObjects = Object.fromEntries(manifest.videos.map(video => [video.key, {size:video.size_bytes,sha256:video.sha256}]));
+const mediaKey = manifest.videos[0].key;
+const uploadSha256 = createHash('sha256').update('abcd').digest('hex');
+// Tiny upload fixture; route names still come from the actual release manifest.
+mediaObjects[mediaKey] = {size:4,sha256:uploadSha256};
+const template = await readFile(new URL('./worker.mjs', import.meta.url), 'utf8');
+const marker = '/*__MEDIA_OBJECTS__*/ {}';
+assert.equal(template.split(marker).length, 2);
+const source = template.replace(marker, JSON.stringify(mediaObjects));
+const {default:worker, handle, parseRange} = await import('data:text/javascript;base64,' + Buffer.from(source).toString('base64'));
 
 const encoder = new TextEncoder();
-const mediaKey = 'lafan/overview.mp4';
 const token = 'test-only-not-a-deployed-secret';
 const bytes = encoder.encode('0123456789');
 class MockR2 {
-  constructor() { this.items = new Map([[mediaKey, bytes]]); this.putCount = 0; }
+  constructor() { this.items = new Map([[mediaKey, bytes]]); this.metadata = new Map(); this.putCount = 0; }
   object(key) {
     const data = this.items.get(key);
-    return data ? {key, size:data.byteLength, etag:'mock-etag', httpEtag:'"mock-etag"', uploaded:new Date('2026-10-23T00:00:00Z')} : null;
+    return data ? {key, size:data.byteLength, etag:'mock-etag', httpEtag:'"mock-etag"', uploaded:new Date('2026-10-23T00:00:00Z'), customMetadata:this.metadata.get(key)} : null;
   }
   async head(key) { return this.object(key); }
   async get(key, options) {
@@ -19,9 +31,9 @@ class MockR2 {
     if (options?.range) data = data.slice(options.range.offset, options.range.offset + options.range.length);
     return {...item, body:new Response(data).body};
   }
-  async put(key, stream) {
-    const data = new Uint8Array(await new Response(stream).arrayBuffer());
-    this.items.set(key,data); this.putCount++;
+  async put(key, body, options) {
+    const data = new Uint8Array(await new Response(body).arrayBuffer());
+    this.items.set(key,data); this.metadata.set(key,options.customMetadata); this.putCount++;
     return this.object(key);
   }
 }
@@ -72,6 +84,18 @@ test('strict route whitelist and read methods', async () => {
   assert.equal((await handle(req('/media/'+mediaKey,{method:'POST'}),env)).status,405);
   assert.equal((await handle(req('/media/100style/ood_low.mp4'),env)).status,404);
 });
+test('every manifest video is routable; upload size is checked per key', async () => {
+  const bucket = new MockR2();
+  const env = {BUCKET:bucket,MEDIA_UPLOAD_TOKEN:token,MEDIA_UPLOAD_ENABLED:'true'};
+  for (const video of manifest.videos) {
+    bucket.items.set(video.key, bytes);
+    assert.equal((await handle(req('/media/'+video.key,{method:'HEAD'}),env)).status,200,video.key);
+    const invalidLength = mediaObjects[video.key].size + 1;
+    const res = await handle(uploadRequest({key:video.key,length:String(invalidLength)}),env);
+    assert.equal(res.status,400,video.key);
+  }
+  assert.equal(bucket.putCount,0);
+});
 test('upload disabled without token; unauthorized writes rejected', async () => {
   const bucket=new MockR2();
   assert.equal((await handle(uploadRequest(),{BUCKET:bucket})).status,404);
@@ -87,14 +111,20 @@ test('explicit upload enable flag required even with a residual valid token', as
   assert.equal((await handle(uploadRequest(),{BUCKET:bucket,MEDIA_UPLOAD_ENABLED:'true'})).status,404);
   assert.equal(bucket.putCount,0);
 });
-test('bounded streaming upload returns server size/etag and rejects bad input', async () => {
+test('bounded upload verifies manifest size and SHA-256 before storage', async () => {
   const bucket=new MockR2(),env={BUCKET:bucket,MEDIA_UPLOAD_TOKEN:token,MEDIA_UPLOAD_ENABLED:'true'};
   let res=await handle(uploadRequest(),env);
-  assert.equal(res.status,201); assert.deepEqual(await res.json(),{key:mediaKey,size:4,etag:'mock-etag',httpEtag:'"mock-etag"'}); assert.equal(bucket.putCount,1);
-  for (const [options,status] of [[{length:null},411],[{length:String(25*1024*1024+1)},413],[{type:'text/plain'},415],[{key:'unknown.mp4'},404],[{method:'POST'},405],[{length:'3',body:'abcd'},400],[{length:'6',body:'abcd'},400]]) {
+  assert.equal(res.status,201); assert.deepEqual(await res.json(),{key:mediaKey,size:4,sha256:uploadSha256,etag:'mock-etag',httpEtag:'"mock-etag"'}); assert.equal(bucket.putCount,1);
+  for (const [options,status] of [[{length:null},411],[{length:'not-a-number'},400],[{length:'0'},400],[{length:String(25*1024*1024+1)},413],[{type:'text/plain'},415],[{key:'unknown.mp4'},404],[{method:'POST'},405],[{length:'3',body:'abcd'},400],[{length:'6',body:'abcd'},400],[{body:'abc'},400],[{body:'abcde'},400],[{body:'abce'},400]]) {
     res=await handle(uploadRequest(options),env); assert.equal(res.status,status,JSON.stringify(options));
   }
   assert.equal(bucket.putCount,1); assert.equal((await bucket.head(mediaKey)).size,4);
+  for (const method of ['GET','HEAD']) {
+    const verified = await handle(req('/media/'+mediaKey,{method,headers:{Range:'bytes=0-1'}}),env);
+    assert.equal(verified.status,206);
+    assert.equal(verified.headers.get('X-Content-SHA256'),uploadSha256);
+    assert.equal(await verified.text(),method === 'HEAD' ? '' : 'ab');
+  }
 });
 test('static assets only, HEAD, ETag, and no secret values in responses', async () => {
   const assets={'/index.html':{body:'<h1>SuperMimic</h1>',bytes:19,type:'text/html; charset=utf-8',etag:'"static"'}};
