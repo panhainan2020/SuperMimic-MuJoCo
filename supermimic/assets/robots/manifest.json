@@ -284,8 +284,13 @@
     },
     {
       "path": "sources/README.md",
-      "bytes": 1297,
-      "sha256": "0a05fef286bc9d79f902fc256029391fb507ca58dea54c9296627d36e7a675e9"
+      "bytes": 1345,
+      "sha256": "ad5c141d8029ee9bc535dca9daf6896f37ed7712723e90401dcacc3437529d77"
+    },
+    {
+      "path": "sources/README.en.md",
+      "bytes": 1338,
+      "sha256": "e4900a25b576167f567fc759af7cd860fcfd97fd52ee3bc1d282c0c9c39e255d"
     },
     {
       "path": "sources/mjlab_g1_1.4.0.xml",

@@ -1,15 +1,17 @@
-# Sites Worker with separate R2 media
+# 使用独立 R2 媒体存储的 Sites Worker
 
-The Worker embeds only the small static HTML/JS/CSS/JSON/CSV/report files. Videos reside in the Site's R2 binding `BUCKET`, never Git or the deployment bundle. It has no npm dependencies and does not use D1.
+**简体中文** | [English](README.en.md)
+
+Worker 仅嵌入小体积的静态 HTML、JS、CSS、JSON、CSV 和报告文件。视频保存在 Site 的 R2 绑定 `BUCKET` 中，不进入 Git 或部署包。该 Worker 没有 npm 依赖，也不使用 D1。
 
 ```sh
 node --test website/hosting/test_worker.mjs
 python website/hosting/build_host.py --checkout "$REGISTERED_SITE_CHECKOUT" --node node
 ```
 
-The checkout must already contain `.openai/hosting.json` with the existing Site project ID. The builder preserves other manifest fields, removes the static-site declaration, sets `r2: "BUCKET"` and `d1: null`, and emits source and `dist/server/index.js` plus `dist/.openai/hosting.json`. Rebuild from the generated checkout using `node scripts/build.mjs`; validate with `node scripts/validate-artifact.mjs`. The repository's portable site references the public HTTPS media URLs; the hosted build uses only the five same-origin showcase URLs and omits the repository link. The source repository is now public; changing repository visibility does not redeploy the existing website.
+指定的检出目录必须已有 `.openai/hosting.json`，其中包含现有 Site 的项目 ID。构建工具保留清单中的其他字段，移除静态网站声明，设置 `r2: "BUCKET"` 和 `d1: null`，并生成源码、`dist/server/index.js` 及 `dist/.openai/hosting.json`。在生成的检出目录中使用 `node scripts/build.mjs` 重新构建，使用 `node scripts/validate-artifact.mjs` 验证。仓库中的可移植网页引用公开 HTTPS 媒体地址；托管版本仅使用五个同源演示视频地址，并省略仓库链接。源码仓库现已公开；更改仓库可见性不会重新部署现有网站。
 
-Public `GET`/`HEAD /media/<key>` supports one byte range, suffix/open ranges, `206`, unsatisfiable `416`, ETag validation and `If-Range`. Only these keys exist in the route whitelist:
+公开路由 `GET`/`HEAD /media/<key>` 支持单个字节范围、后缀范围和开放范围、`206` 响应、无法满足范围时的 `416` 响应、ETag 验证及 `If-Range`。路由白名单中仅包含以下媒体键：
 
 - `lafan/overview.mp4`
 - `100style/ood_low.mp4`
@@ -17,6 +19,6 @@ Public `GET`/`HEAD /media/<key>` supports one byte range, suffix/open ranges, `2
 - `100style/ood_high.mp4`
 - `100style/ood_failure.mp4`
 
-To publish owner-authorized media, temporarily configure the runtime secret **`MEDIA_UPLOAD_TOKEN`** and the runtime flag **`MEDIA_UPLOAD_ENABLED="true"`** through Sites. Both are required: a missing flag, `"false"`, or any other value keeps the route disabled even if an older token remains in the runtime. `PUT /admin/media/<key>` requires `Authorization: Bearer …`, exact `Content-Length`, `Content-Type: video/mp4`, a nonempty body and at most **25 MiB per file**. The body streams into R2 through a fixed-length stream; the response includes R2's stored size and ETag. No token is written by the build or returned to visitors. After verified uploads, explicitly set **`MEDIA_UPLOAD_ENABLED="false"`**, remove the token, deploy the new source/environment version, and confirm that an anonymous empty PUT returns `404`. Do not place secrets in CLI arguments, source files, manifests, browser configuration or logs.
+发布所有者已授权的媒体时，应通过 Sites 临时配置运行时密钥 **`MEDIA_UPLOAD_TOKEN`** 和运行时开关 **`MEDIA_UPLOAD_ENABLED="true"`**。两者缺一不可：开关缺失、值为 `"false"` 或其他值时，路由均保持禁用，即使运行时仍残留旧令牌。`PUT /admin/media/<key>` 要求 `Authorization: Bearer …`、准确的 `Content-Length`、`Content-Type: video/mp4`、非空请求体，且**每个文件不超过 25 MiB**。请求体通过定长流写入 R2；响应返回 R2 保存的大小和 ETag。构建过程不会写入令牌，也不会向访问者返回令牌。上传并验证后，必须显式设置 **`MEDIA_UPLOAD_ENABLED="false"`**、移除令牌、部署新的源码及环境版本，并确认匿名空 PUT 请求返回 `404`。不得将密钥放入命令行参数、源码、清单、浏览器配置或日志。
 
-The builder and unit tests do not upload, download or access the network. They do not copy media into the code repository. Training artifacts remain on server persistent storage; this hosting implementation does not imply permission to retrieve remote weights, motion datasets, replay or full archives. Media publication uses already-local, explicitly approved demonstration encodings as a separate operation.
+构建工具和单元测试均不会上传、下载或访问网络，也不会把媒体复制到代码仓库。训练产物保存在服务器持久盘；此托管实现不构成下载远端权重、动作数据集、回放或完整归档的授权。媒体发布单独执行，仅使用本地已有且明确获准发布的演示编码文件。

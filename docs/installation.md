@@ -1,42 +1,30 @@
-# Environment setup / 环境配置
+# 环境配置
 
-This repository installs independently of Isaac Lab, Isaac Sim, Newton and
-USD. Both G1 models and their licenses are included. Use a separate Python
-environment for this project.
+**简体中文** | [English](installation.en.md)
 
-## Validated software
+本项目可独立安装，无需 Isaac Lab、Isaac Sim、Newton 或 USD。仓库已包含两种 G1 机器人模型及其许可证。请为本项目创建单独的 Python 环境。
 
-| Component | Version / scope |
+## 已验证的软件版本
+
+| 组件 | 版本或适用范围 |
 | --- | --- |
-| Operating system | Linux x86_64; server deployment on Ubuntu 22.04 |
-| Python | 3.10; independent local environment verified with 3.10.20 |
-| PyTorch | 2.7.1, CUDA 12.6 build |
+| 操作系统 | Linux x86_64；服务器部署使用 Ubuntu 22.04 |
+| Python | 3.10；独立本地环境已验证 3.10.20 |
+| PyTorch | 2.7.1，CUDA 12.6 构建版本 |
 | MJLab | 1.4.0 |
 | MuJoCo / MuJoCo-Warp | 3.8.1 / 3.8.1 |
 | Warp | 1.14.0 |
 | NumPy | 1.26.4 |
 
-The complete validated package versions are in
-[`requirements.lock.txt`](../requirements.lock.txt). The package accepts Python
-3.10–3.12, but the complete lock and reproduction environment were validated
-with Python 3.10. Windows and macOS are not validated reproduction platforms.
+完整的已验证依赖版本见 [`requirements.lock.txt`](../requirements.lock.txt)。软件包声明支持 Python 3.10–3.12，但完整锁定依赖和复现环境仅验证了 Python 3.10。Windows 和 macOS 尚未作为复现平台验证。
 
-- **CUDA training and parallel evaluation:** use `--backend mjlab --device
-  cuda:0` with an NVIDIA GPU and a working host driver. The recorded server
-  deployment used driver 580.126.09; this is a tested version, **not a claimed
-  minimum driver version**.
-- **CPU debugging and small evaluations:** use `--backend mujoco --device cpu`.
-  This still imports MJLab for scene construction, then advances native MuJoCo
-  physics on the CPU. The same environment works for this mode. The full lock
-  includes CUDA runtime packages even when you select the CPU backend.
-- **Video rendering:** requires an OpenGL backend in addition to the Python
-  packages. Numerical training/evaluation does not require a desktop session
-  or video rendering.
+- **CUDA 训练与并行评估：** 使用 `--backend mjlab --device cuda:0`，需要 NVIDIA GPU 和正常工作的主机驱动。已记录的服务器部署使用驱动 580.126.09；这是经过验证的版本，**不代表最低驱动版本要求**。
+- **CPU 调试与小规模评估：** 使用 `--backend mujoco --device cpu`。该模式仍会导入 MJLab 构建场景，然后在 CPU 上使用原生 MuJoCo 推进物理仿真，因此可使用同一套环境。即使选择 CPU 后端，完整锁定依赖仍包含 CUDA 运行时软件包。
+- **视频渲染：** 除 Python 依赖外，还需要 OpenGL 后端。纯数值训练和评估无需桌面会话，也不依赖视频渲染。
 
-## Install a dedicated environment
+## 安装独立环境
 
-Start with Python 3.10 and its `venv` module available. The repository is
-public; cloning requires no GitHub authentication:
+请先安装 Python 3.10 及其 `venv` 模块。仓库已公开，克隆无需 GitHub 身份认证：
 
 ```bash
 git clone https://github.com/panhainan2020/SuperMimic-MuJoCo.git
@@ -48,11 +36,7 @@ python -m pip install -r requirements.lock.txt -e '.[video]'
 python -m pip check
 ```
 
-The last installation command includes the video extras (`imageio`,
-`imageio-ffmpeg`, and Pillow). The lock includes the CUDA 12.6 dependencies used
-by the validated PyTorch build. If your package index supplies a different
-PyTorch build, select the official CUDA 12.6 wheels explicitly **before** the
-locked installation:
+上述安装命令包含视频扩展依赖 `imageio`、`imageio-ffmpeg` 和 Pillow。锁定依赖包含已验证 PyTorch 构建所用的 CUDA 12.6 依赖。如果所用软件源提供的是其他 PyTorch 构建版本，请在安装锁定依赖**之前**显式选择官方 CUDA 12.6 安装包：
 
 ```bash
 python -m pip install torch==2.7.1 torchvision==0.22.1 \
@@ -61,16 +45,11 @@ python -m pip install -r requirements.lock.txt -e '.[video]'
 python -m pip check
 ```
 
-The version/build selection follows the
-[official PyTorch 2.7.1 installation instructions](https://pytorch.org/get-started/previous-versions/#v271).
-The `CUDA Version` displayed by `nvidia-smi` and the runtime reported by
-`torch.version.cuda` are different checks; inspect the latter to confirm the
-installed PyTorch build. Do not upgrade the simulator packages independently
-when comparing against the published evaluation.
+版本选择依据 [PyTorch 2.7.1 官方安装说明](https://pytorch.org/get-started/previous-versions/#v271)。`nvidia-smi` 显示的 `CUDA Version` 与 `torch.version.cuda` 报告的运行时版本含义不同；请检查后者，确认实际安装的 PyTorch 构建版本。对照已发布评估结果时，请勿单独升级仿真器相关软件包。
 
-## Verify imports and GPU visibility
+## 检查导入与 GPU 可见性
 
-Run from the activated environment:
+激活环境后执行：
 
 ```bash
 python - <<'PY'
@@ -97,16 +76,11 @@ python -m supermimic.train --help
 python -m supermimic.evaluate --help
 ```
 
-For MJLab/CUDA runs, expect `CUDA available: True` and a CUDA build of `12.6`.
-If CUDA is unavailable, check `nvidia-smi`, whether the GPU is exposed to the
-container, the active Python interpreter, and the installed PyTorch build.
-`False` is expected on a CPU-only machine using the native backend. An import
-check alone does not validate physics or training.
+使用 MJLab/CUDA 时，预期看到 `CUDA available: True`，CUDA 构建版本为 `12.6`。若 CUDA 不可用，请检查 `nvidia-smi`、容器是否能访问 GPU、当前 Python 解释器和已安装的 PyTorch 构建版本。在仅使用 CPU 原生后端的机器上，显示 `False` 属于正常情况。导入成功本身不能证明物理仿真或训练正确。
 
-## Optional implementation checks
+## 可选的实现检查
 
-Set a writable output directory on the executing machine's persistent storage.
-Replace the example path before running:
+请将输出目录设为执行机器持久盘上的可写目录，运行前替换示例路径：
 
 ```bash
 export SUPERMIMIC_EXPERIMENT_ROOT=/path/to/persistent/supermimic
@@ -120,7 +94,9 @@ python tools/smoke.py --backend mujoco --device cpu --robot g1_29dof \
   --out "$SUPERMIMIC_EXPERIMENT_ROOT/validation/g1_cpu"
 ```
 
-On a GPU machine, optionally verify the CUDA backend as well:
+上述命令先检查 CPU 物理约束、动作、运动学和原生后端，再使用合成站立动作运行小规模的训练、续训和评估流程。
+
+在 GPU 机器上，还可检查 CUDA 后端：
 
 ```bash
 SUPERMIMIC_TEST_CUDA=1 OMP_NUM_THREADS=2 \
@@ -129,46 +105,23 @@ python tools/smoke.py --backend mjlab --device cuda:0 --robot g1_29dof \
   --out "$SUPERMIMIC_EXPERIMENT_ROOT/validation/g1_cuda"
 ```
 
-Use a fresh `--out` directory for each smoke run. These checks use tiny networks
-and synthetic references; they do not measure the released policy's performance.
-The alternate model can be checked with `--robot g1_29dof_rev_1_0` and a separate
-output directory. The released 98k policy is for the default `g1_29dof` only.
+每次冒烟测试均应使用新的 `--out` 目录。这些检查采用小网络和合成参考动作，不衡量已发布策略的性能。检查另一种模型时，使用 `--robot g1_29dof_rev_1_0` 并另设输出目录。已发布的 98k 策略仅适用于默认的 `g1_29dof`。
 
-## Headless video rendering
+## 无桌面视频渲染
 
-`tools/render_rollout.py` uses EGL by default. In minimal Ubuntu 22.04 server
-images, the following system libraries were needed in addition to the NVIDIA
-driver and Python environment:
+`tools/render_rollout.py` 默认使用 EGL。在最小化 Ubuntu 22.04 服务器镜像中，除 NVIDIA 驱动和 Python 环境外，还需要以下系统库：
 
 ```bash
 sudo apt-get update
 sudo apt-get install --no-install-recommends libegl1 libgl1 libopengl0 libglib2.0-0
 ```
 
-Installing these libraries does not install or repair the NVIDIA host driver.
-In containers, the host's graphics/EGL driver libraries must also be accessible.
-Use the renderer's `--gl osmesa` option only when a working OSMesa installation
-already exists, or `--gl glfw` with a working display. Changing the graphics
-backend affects video generation, not the saved numerical rollout.
+安装这些库不会安装或修复 NVIDIA 主机驱动。在容器中，还必须能访问主机的图形/EGL 驱动库。只有已正确安装 OSMesa 时，才使用渲染器的 `--gl osmesa`；有可用显示环境时可使用 `--gl glfw`。切换图形后端只影响视频生成，不改变已保存的数值轨迹。
 
-The [evaluation guide](evaluation.md) provides the released-policy command,
-trajectory analysis and side-by-side MP4 rendering commands. Data is supplied
-through an existing local `--motion_dir`; no dataset download is performed by
-the project. The bundled policy is inference-only and cannot restore the full
-world-model/critic/optimizer training state.
+[评估指南](evaluation.md)提供已发布策略的评估命令、轨迹分析和并排 MP4 渲染命令。动作数据须通过 `--motion_dir` 指向现有本地文件，本项目不会下载数据集。仓库附带的策略仅供推理，无法恢复世界模型、critic 或优化器的完整训练状态。
 
-## Storage and network scope
+## 存储与网络范围
 
-The installation commands fetch software dependencies when executed. They do
-not fetch motion datasets, remote training archives, replay or additional
-checkpoints. The user's explicit publication request permits the single tested
-`checkpoints/g1_29dof/policy_098000.pt` in this repository; it is not general
-authorization to retrieve or publish other artifacts.
+安装命令执行时会获取软件依赖，但不会获取动作数据集、远端训练归档、经验回放或额外权重。用户已明确授权本仓库发布唯一的已测试策略 `checkpoints/g1_29dof/policy_098000.pt`；此授权不涵盖其他产物的获取或发布。
 
-Training outputs, replay, recorded trajectories, videos and other large
-artifacts stay on the training server's persistent disk. Do not automatically
-download, prefetch, mirror, resume-transfer or stream them. Only small text
-status, metrics and necessary metadata may be retrieved; integrity and recovery
-checks run on the server. Previously authorized shutdown follows training,
-persistent-storage verification and authorized tests, retains the persistent
-disk, and does not wait for downloads.
+训练输出、经验回放、已记录轨迹、视频和其他大体积产物保留在训练服务器持久盘上，不得自动下载、预取、镜像、断点续传或流式传输。只可获取少量文本状态、指标和必要元数据；完整性与恢复检查在服务器上执行。已有授权的关机应在训练、持久盘保存核验和授权测试完成后执行，保留持久盘，不等待下载。

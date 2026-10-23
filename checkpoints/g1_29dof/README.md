@@ -1,68 +1,38 @@
-# Tested G1 policy — 98,000 iterations
+# 已测试的 G1 策略：98,000 次迭代
 
-`policy_098000.pt` is the inference policy used by the published LAFAN1 and
-100STYLE evaluations. It contains 26 policy state tensors (including running
-normalization buffers), the architecture settings and the robot contract.
-It is approximately **34.8 MiB**, tracked directly by Git; Git LFS is not needed
-for this artifact. Ordinary cloning of this public repository includes the file.
+**简体中文** | [English](README.en.md)
 
-| Setting | Value |
+`policy_098000.pt` 是已发布 LAFAN1 与 100STYLE 评估所用的推理策略。它包含 26 个策略状态张量（含运行归一化缓冲区）、网络结构配置和机器人物理约束信息。文件约 **34.8 MiB**，直接由 Git 跟踪，无需为此文件使用 Git LFS。正常克隆本公开仓库即会包含该文件。
+
+| 配置项 | 取值 |
 | --- | --- |
-| Training iteration | 98,000 |
-| Robot | `g1_29dof` (default, 5010 wrist assets) |
-| Controller | `upstream` |
-| Observation | `legacy99` (the third-party 99D observation) |
-| Network | `paper` |
-| History / goal frames | 10 / 10 |
-| Training motions | 40 complete clips of the third-party G1 LAFAN release |
-| OOD evaluation | 3,573 segments / 100 styles; no finetuning |
+| 训练迭代数 | 98,000 |
+| 机器人 | `g1_29dof`（默认，5010 腕部资产） |
+| 控制配置 | `upstream` |
+| 观测 | `legacy99`（第三方的 99 维观测） |
+| 网络 | `paper` |
+| 历史帧数 / 目标帧数 | 10 / 10 |
+| 训练动作 | 第三方 G1 LAFAN 发布版本中的 40 条完整片段 |
+| 分布外评估 | 3,573 个片段 / 100 种风格；未微调 |
 
-This is an independently trained reproduction artifact, not official author
-weights. It is not a trained policy for `g1_29dof_rev_1_0`.
+这是独立训练的复现产物，不是论文作者的官方权重，也不是为 `g1_29dof_rev_1_0` 训练的策略。
 
-## Integrity and use
+## 完整性与使用方法
 
-From the repository root, after following the
-[environment setup guide](../../docs/installation.md):
+按照[环境配置指南](../../docs/installation.md)安装后，在仓库根目录运行：
 
 ```bash
 python tools/verify_checkpoint.py
 ```
 
-The command checks file SHA256/size, tensor digest, architecture and physical
-contract, then performs a finite-output CPU forward pass without motion data.
-It is a load check, not a new tracking-quality evaluation. For actual evaluation
-and video commands see the [main README](../../README.md#evaluation-and-videos)
-and [evaluation guide](../../docs/evaluation.md).
+该命令检查文件 SHA256 与大小、张量摘要、网络结构和物理约束，然后在无需动作数据的情况下执行一次 CPU 前向推理并检查输出是否为有限数值。这是加载检查，不是新的动作跟踪质量评估。实际评估与视频命令见[主 README](../../README.md#evaluation-and-videos)和[评估指南](../../docs/evaluation.md)。
 
-[`manifest.json`](manifest.json) records the published file hash, original
-inference-file hash, evaluated local-file hash and original training-checkpoint
-hash. Every policy tensor was compared with both existing inference files and
-is bitwise identical. Only deployment metadata was made portable: machine
-paths were cleared/replaced, the default robot was named explicitly and empty
-legacy integration fields were removed. Consequently the serialized file SHA
-changes, while the learned policy and normalization values do not.
+[`manifest.json`](manifest.json) 记录发布文件、原始推理文件、实际评估过的本地文件，以及原始训练检查点的哈希。每个策略张量均与两份已有推理文件逐一比较，位级完全一致。修改仅涉及部署元数据的可迁移性：清除或替换机器路径，明确默认机器人名称，移除空的历史集成字段。因此，序列化文件的 SHA 会变化，而学习得到的策略和归一化数值保持不变。
 
-The default robot XML is rebuilt directly from pinned MJLab and Unitree
-sources. Its compiled model is identical to the trained asset; the XML text
-and its hash differ. The checkpoint's XML-hash metadata was updated after
-[compiled-model equivalence checks](../../results/robot_asset_equivalence.json),
-with every policy tensor unchanged. The published XML is still checked by
-its exact SHA256. Reports and reference results are under
-[`results/098000/`](../../results/098000/).
+默认机器人 XML 直接根据固定版本的 MJLab 与 Unitree 来源重建。其编译后模型与训练资产完全相同，但 XML 文本及其哈希不同。权重中的 XML 哈希元数据已在[编译后模型等价检查](../../results/robot_asset_equivalence.json)通过后更新，所有策略张量保持不变。发布的 XML 仍按精确 SHA256 检查。报告和参考结果位于 [`results/098000/`](../../results/098000/)。
 
-## Scope and storage
+## 使用范围与存储
 
-This file includes **only the policy**. It has no world model, critic, optimizer
-state or replay buffer, so it **cannot resume the full training loop** with
-`--resume`. Full resumable checkpoints remain on server persistent storage.
+该文件**仅包含策略**，不包含世界模型、critic、优化器状态或经验回放缓冲区，因此**不能通过 `--resume` 恢复完整训练流程**。完整可续训检查点保留在服务器持久盘。
 
-The user explicitly authorized this one already-local policy to be committed
-to this repository and subsequently authorized its public release. The
-checkpoint's storage-policy text records the earlier private-publication
-authorization; the current scope is documented here and in the manifest.
-This does not authorize retrieving or publishing
-other server weights, datasets, replay, archives or videos. Other large
-training artifacts stay on persistent disk; only small text status/metrics
-are retrieved, integrity checks run on the server, and previously authorized
-shutdown does not wait for downloads.
+用户已明确授权将这一份已有本地策略提交到本仓库，并随后授权公开发布。权重中的存储策略文本记录了早期的私人仓库发布授权；当前授权范围见本文和清单文件。该授权不包含获取或发布其他服务器权重、数据集、经验回放、归档或视频。其他大体积训练产物保留在持久盘，只获取少量文本状态和指标；完整性检查在服务器上执行，已有授权的关机不等待下载。

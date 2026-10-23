@@ -1,26 +1,24 @@
-# Evaluation snapshots
+# 评估结果快照
 
-This directory contains selected, portable text evidence for the frozen **98,000-iteration** policy. It is a historical snapshot, not a claim about the newest training checkpoint. Raw recordings, checkpoints, motion datasets and videos are excluded from Git.
+**简体中文** | [English](README.en.md)
 
-| File | Purpose |
+本目录保存固定于 **98,000 次迭代**的策略所对应、经过筛选且可移植的文本证据。这些是历史结果快照，不代表最新训练检查点的表现。原始轨迹、训练检查点、动作数据集和视频不纳入 Git。
+
+| 文件 | 用途 |
 | --- | --- |
-| [098000/REPORT.md](098000/REPORT.md) | Chinese / English findings and limitations |
-| [098000/summary.json](098000/summary.json) | Full-precision aggregates and evaluation conditions |
-| [098000/training_coverage.json](098000/training_coverage.json) | 40-clip retargeted release versus original 77-sequence LAFAN1 |
-| [098000/lafan_per_clip.csv](098000/lafan_per_clip.csv) | 40 training-motion evaluations |
-| [098000/100style_per_clip.csv](098000/100style_per_clip.csv) | All 3,573 converted 100STYLE segments |
-| [098000/100style_per_style.csv](098000/100style_per_style.csv) | 100 style summaries |
-| [098000/media_manifest.json](098000/media_manifest.json) | Media IDs, selection rules, original hashes; no media payloads |
-| [098000/provenance.json](098000/provenance.json) | SHA256 of the source metadata before public-field selection |
+| [098000/REPORT.md](098000/REPORT.md) | 中英文评估结论与局限 |
+| [098000/summary.json](098000/summary.json) | 完整精度的汇总指标及评估条件 |
+| [098000/training_coverage.json](098000/training_coverage.json) | 40 条动作的重定向发布集与原始 LAFAN1 的 77 条序列之间的覆盖关系 |
+| [098000/lafan_per_clip.csv](098000/lafan_per_clip.csv) | 40 条训练动作的逐条评估结果 |
+| [098000/100style_per_clip.csv](098000/100style_per_clip.csv) | 全部 3,573 个转换后 100STYLE 片段的评估结果 |
+| [098000/100style_per_style.csv](098000/100style_per_style.csv) | 100 种风格的汇总结果 |
+| [098000/media_manifest.json](098000/media_manifest.json) | 媒体标识、选取规则及原始哈希，不包含媒体文件 |
+| [098000/provenance.json](098000/provenance.json) | 筛选公开字段之前的源元数据 SHA-256 |
 
-The [static results site](../website/index.html) reads these committed snapshots. See [website/README.md](../website/README.md) for rebuilding and separately hosted media.
+[静态结果网页](../website/index.html)读取这些已提交的快照。重新构建网页及配置独立媒体托管的说明见 [website/README.md](../website/README.md)。
 
-The [public evaluation page](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site) serves the same metrics. Five complete demonstration videos use external object storage; [media_delivery.json](098000/media_delivery.json) records their delivery encoding, sizes and hashes. Their compact 960×360, 25 fps copies total 11.93 MiB. Original evaluation recordings remain unchanged and outside Git.
+[公开评估页面](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)展示同一组指标。五段完整演示视频由外部对象存储提供；[media_delivery.json](098000/media_delivery.json)记录其发布编码、大小和哈希。用于展示的 960×360、25 fps 压缩副本合计 11.93 MiB。原始评估录像保持不变，并保存在 Git 之外。
 
-Training artifacts stay on server persistent storage. Evaluation, backup and publication requests do not imply permission to download remote weights, datasets, replay or full archives. This snapshot was exported from already-authorized local text evidence; its exporter performs no network operations.
+训练产物保存在服务器持久盘。评估、备份和发布请求均不隐含下载远端权重、数据集、回放或完整归档的授权。本快照来自此前已获授权的本地文本证据；导出工具不执行网络操作。
 
-The [release validation](release_validation.json) records the subsequent
-38-test CPU/CUDA check and 40-clip LAFAN evaluation of the bundled policy
-with the reproducibly generated robot. [Robot equivalence](robot_asset_equivalence.json)
-compares the compiled models; the frozen 98k tables above retain their original
-run metrics. The 100STYLE evaluation was not rerun for this packaging change.
+[发布验证记录](release_validation.json)记录了后续针对随仓库提供的策略及可复现生成的机器人所做的 38 项 CPU/CUDA 检查和 40 条 LAFAN 动作评估。[机器人等价性记录](robot_asset_equivalence.json)对比了编译后的模型；上面的固定 98k 结果表保留原始运行指标。本次打包调整没有重新运行 100STYLE 评估。

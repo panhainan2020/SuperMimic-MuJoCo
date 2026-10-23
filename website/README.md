@@ -1,23 +1,25 @@
-# Portable evaluation site
+# 可移植评估网页
 
-Open `index.html` directly or serve this directory from a static host. Metrics work without a server or external JavaScript dependencies. Reports in the repository layout use relative links to `../results/098000/`.
+**简体中文** | [English](README.en.md)
+
+可直接打开 `index.html`，也可通过静态网站服务托管此目录。指标展示无需服务器或外部 JavaScript 依赖。按照仓库目录结构访问时，报告通过相对链接指向 `../results/098000/`。
 
 ```sh
-# Rebuild using only the committed small text snapshots.
+# 仅使用已提交的小体积文本快照重新构建。
 python website/build.py
 
-# Self-contained deployment directory: HTML + small text results, no media.
+# 生成独立部署目录：包含 HTML 和小体积文本结果，不包含媒体文件。
 python website/build.py --output-dir /tmp/supermimic-site
 
-# Maintainer-only refresh from an explicitly selected, existing experiment root.
+# 仅限维护者：从明确指定且已存在的实验目录刷新结果。
 python website/build.py --experiment-dir "$EXPERIMENT_ROOT"
 ```
 
-The export selects public JSON fields and CSV metrics, records original metadata hashes, and rejects private machine paths. It reads no checkpoints, datasets, trajectories or videos. No remote artifact download or upload is performed. Preserve raw experiment evidence separately on persistent storage; do not use publication as an implicit authorization to transfer large training artifacts.
+导出时仅选取可公开的 JSON 字段和 CSV 指标，记录原始元数据哈希，并拒绝包含私有机器路径的内容。导出工具不读取检查点、数据集、轨迹或视频，也不下载或上传远端产物。原始实验证据应单独保存在持久存储中；发布网页不构成传输大体积训练产物的隐含授权。
 
-## Separately hosted videos
+## 独立托管视频
 
-The configured demonstration site serves five selected examples from R2; `media-config.js` uses public HTTPS URLs so a repository checkout can play them too. The full result tables are always available. Unpublished video slots say “该片段暂未公开，指标见下表 / Video not published.” Video source URLs are assigned only when the visitor presses play. Posters are not fetched on page load. Missing keys remain unavailable when `baseUrl` is empty. Set `enabled: false` for an entirely offline metadata-only page.
+演示网站目前通过 R2 提供五个选定示例；`media-config.js` 使用公开 HTTPS 地址，因此在检出的仓库中也可以播放。完整结果表始终可用。尚未发布的视频位置会显示未公开提示。只有访问者点击播放时，页面才设置视频源地址；页面加载时不会请求封面图片。当 `baseUrl` 为空时，未配置的媒体键保持不可用。将 `enabled` 设为 `false` 可得到完全离线、仅展示元数据的页面。
 
 ```js
 window.MEDIA_CONFIG = {
@@ -34,14 +36,14 @@ window.MEDIA_CONFIG = {
 };
 ```
 
-For a media host containing all files, set `baseUrl` to its public HTTPS prefix. Keys and original experiment-relative source filenames are listed in `results/098000/media_manifest.json`. Use a stable public media URL with `Content-Type: video/mp4` and byte-range support. H.264/yuv420p MP4 with `faststart` is suitable. Keep compact delivery encodings outside Git; preserve original hashes and record delivery hashes separately.
+若媒体托管服务包含全部文件，可将 `baseUrl` 设为其公开 HTTPS 前缀。媒体键及原始文件相对于实验目录的路径列于 `results/098000/media_manifest.json`。请使用稳定的公开媒体地址，并确保服务支持 `Content-Type: video/mp4` 和字节范围请求。推荐使用 H.264/yuv420p 编码、启用 `faststart` 的 MP4 文件。用于发布的压缩副本保存在 Git 之外；保留原始哈希，并单独记录发布文件的哈希。
 
-No tokens, private credentials or expiring signed URLs should be committed. The website supports only HTTPS remote media, relative URLs, and localhost HTTP for development. The source repository is now public at https://github.com/panhainan2020/SuperMimic-MuJoCo. Repository visibility is managed separately from static-site hosting.
+不得提交令牌、私有凭据或有时限的签名地址。网页仅允许 HTTPS 远端媒体地址、相对地址，以及开发时使用的 localhost HTTP 地址。源码已在 [GitHub 仓库](https://github.com/panhainan2020/SuperMimic-MuJoCo)公开。仓库可见性与静态网站托管独立管理。
 
-To run browser smoke checks using an already-installed Playwright/Chromium:
+使用已安装的 Playwright/Chromium 运行浏览器冒烟检查：
 
 ```sh
 python website/check_site.py --browser /path/to/chromium
 ```
 
-This check verifies the media-disabled page, result navigation, counts, search, sorting, mobile layout and absence of startup media requests. It neither installs a browser nor downloads artifacts. Optional `--experiment-dir` validates playback using already-local videos through a temporary loopback-only server; this reads local media without copying or publishing it.
+该检查验证禁用媒体时的页面、结果导航、数量、搜索、排序、移动端布局，以及启动时没有媒体请求。它不会安装浏览器或下载产物。可选的 `--experiment-dir` 参数通过临时的本机回环服务器使用已有本地视频验证播放；此过程只读取本地媒体，不会复制或发布它们。
