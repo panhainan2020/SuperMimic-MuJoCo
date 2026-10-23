@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="SuperMimic 在纯 MJLab 中的动作跟踪评估：完整视频、40 条动作指标与 100STYLE 分布外测试。">
+  <meta name="description" content="SuperMimic 在纯 MJLab 中的动作跟踪评估：视频对照、整段轨迹 MAE、40 条动作指标与 100STYLE 分布外测试。">
   <title>SuperMimic · 动作跟踪评估</title>
   <link rel="stylesheet" href="styles.css">
   <script src="media-config.js" defer></script>
@@ -21,7 +21,7 @@
       <div>
         <p class="eyebrow"><span class="dot"></span> MJLAB / MUJOCO · G1 · 29 DOF</p>
         <h1 id="page-title">动作跟踪，<br><span>从结果到细节。</span></h1>
-        <p class="hero-intro">SuperMimic 的纯 MuJoCo 复现评估。查看完整动作、对照参考运动，并区分姿态跟踪与全局路径精度。</p>
+        <p class="hero-intro">SuperMimic 的纯 MuJoCo 复现评估。查看动作对照和整段轨迹指标，区分姿态跟踪与全局路径精度。</p>
         <p class="hero-english" lang="en">A MuJoCo / MJLab reproduction. Frozen 98k policy, trained on 40 LAFAN1 clips and tested on 3,573 unseen-source 100STYLE segments. Completion does not imply precise tracking.</p>
         <div class="hero-tags"><span>Checkpoint <b>98,000</b></span><span>LAFAN1 <b>40 clips</b></span><span>冻结策略评估</span></div>
       </div>
@@ -36,27 +36,38 @@
     </section>
 
     <section class="metric-strip" aria-label="主要跟踪指标">
-      <div><span class="small-label">关节角平均误差</span><strong><span id="joint-deg">4.40</span><small>°</small></strong><p>逐关节绝对误差</p></div>
-      <div><span class="small-label">对齐后身体位置误差</span><strong><span id="body-cm">2.61</span><small>cm</small></strong><p>移除水平位移与朝向差异</p></div>
-      <div class="warm"><span class="small-label">世界坐标根位置误差</span><strong><span id="root-cm">64.3</span><small>cm</small></strong><p>完整动作的平均全局误差</p></div>
+      <div><span class="small-label">关节角 MAE</span><strong><span id="joint-deg">4.40</span><small>°</small></strong><p>逐关节绝对误差的均值</p></div>
+      <div><span class="small-label">对齐后身体 MPJPE</span><strong><span id="body-cm">2.61</span><small>cm</small></strong><p>移除水平位移与朝向差异</p></div>
+      <div class="warm"><span class="small-label">世界坐标根位置 L2</span><strong><span id="root-cm">64.3</span><small>cm</small></strong><p>逐帧欧氏距离的均值</p></div>
       <div class="warm"><span class="small-label">末个记录状态位置误差</span><strong><span id="end-root">1.08</span><small>m</small></strong><p>长时间运行存在位置漂移</p></div>
     </section>
 
+    <section id="trajectory-mae" class="trajectory-section" aria-labelledby="trajectory-title" hidden>
+      <div class="trajectory-heading"><div><p class="eyebrow">完整记录 / 逐帧误差</p><h2 id="trajectory-title">整段已记录轨迹 MAE</h2></div><label class="filter-field"><span class="sr-only">轨迹 MAE 汇总方式</span><select id="mae-weighting"><option value="clipEqualWeighted">每条轨迹等权</option><option value="frameWeighted">每个记录帧等权</option></select></label></div>
+      <p class="trajectory-intro">对每条动作的全部已记录状态计算，不只统计网页中展示的片段。沿用步前记录，包含初始状态，不含最后一步推进后的终态。关节角和根位置分别计算。</p>
+      <div class="comparison-wrap trajectory-table-wrap"><table class="comparison-table" id="trajectory-table"><thead><tr><th scope="col">数据集</th><th scope="col">关节角 MAE ↓</th><th scope="col">根位置 XYZ MAE ↓</th><th scope="col">完整动作</th><th scope="col">记录覆盖率</th></tr></thead><tbody id="trajectory-rows"></tbody></table></div>
+      <p class="trajectory-note" id="mae-aggregation-note"></p>
+      <div class="ood-links" id="mae-links"></div>
+      <details class="metric-definition"><summary>MAE 的定义与统计范围</summary><div><p><strong>关节角 MAE（°）</strong>：每个记录帧、29 个受控关节的 |策略角度 − 参考角度| 的平均值。</p><p><strong>根位置 XYZ MAE（cm）</strong>：在同一世界坐标系中，对根位置 x、y、z 三个分量分别求绝对误差，再取平均；不重新对齐水平位置或朝向。它与先计算三维欧氏距离的根位置 L2、以及身体 MPJPE 是不同指标。</p><p>沿用本次评估的步前记录：包含初始状态，不含最后一次仿真推进后的终态。提前终止的动作仅统计终止前记录，不填补未执行帧；覆盖率为实际记录数 / 参考预期记录数。</p></div></details>
+    </section>
+
     <section id="videos" class="section-block" aria-labelledby="videos-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / WATCH THE MOTION</p><h2 id="videos-title">先看动作，再看指标。</h2></div><span class="section-aside">预测在左 · 参考在右</span></div>
+      <div class="section-heading"><div><p class="eyebrow">01 / 动作对照</p><h2 id="videos-title">先看动作，再看指标。</h2></div><span class="section-aside" id="video-layout-label"></span></div>
+      <div class="overlay-legend" id="main-overlay-legend" aria-label="机器人显示图例" hidden><span><i class="legend-policy" aria-hidden="true"></i>实体机器人：策略</span><span><i class="legend-reference" aria-hidden="true"></i>青色虚影：参考</span><small>保留真实位置与朝向差异</small></div>
       <div class="video-layout">
         <div class="screen-area">
           <div class="screen-top"><div><span class="live-label">LAFAN1</span><strong id="video-title">70 秒动作概览</strong></div><span id="video-time">01:10</span></div>
           <div class="video-shell">
-            <video id="main-video" controls playsinline preload="none" aria-label="预测与参考动作对比视频"></video>
-            <p class="media-unavailable" id="media-unavailable" hidden>该片段暂未公开，指标见下表。<br><span lang="en">This video is not published. Metrics are available below.</span></p>
-            <button class="play-overlay" id="play-video" aria-label="加载并播放选中视频"><span class="play-circle" aria-hidden="true">▶</span><strong>播放动作对比</strong><small id="load-size">70 秒 · 16.23 MiB</small></button>
+            <video id="main-video" controls playsinline preload="none" aria-label="策略实体与参考虚影同镜头对比视频"></video>
+            <p class="media-unavailable" id="media-unavailable" hidden>该片段暂未公开，指标见下表。</p>
+            <button class="play-overlay" id="play-video" aria-label="加载并播放选中视频"><span class="play-circle" aria-hidden="true">▶</span><strong>播放动作对比</strong><small id="load-size">点击后加载视频</small></button>
           </div>
-          <div class="screen-bottom"><span id="video-description">七类动作各 10 秒的中段片段；完整过程请切换下方类别。</span><span id="video-return">概览片段</span></div>
+          <div class="screen-bottom"><span id="video-description">选定动作片段；整段轨迹指标见各动作。</span><span id="video-return">概览片段</span></div>
+          <div class="selected-video-mae" id="selected-video-mae" aria-live="polite"></div>
         </div>
-        <aside class="video-menu" aria-label="视频选择"><div class="menu-heading"><span>动作目录</span><small>8 段视频</small></div><div id="video-options"></div></aside>
+        <aside class="video-menu" aria-label="视频选择"><div class="menu-heading"><span>动作目录</span><small id="video-count"></small></div><div id="video-options"></div></aside>
       </div>
-      <p class="caption"><span class="note-icon">i</span> 两侧镜头分别跟随机器人，因此视觉上的对齐不能用于判断全局位置误差。完整视频选取每类中回报最低的动作。</p>
+      <p class="caption"><span class="note-icon">i</span><span id="video-layout-note"></span></p>
       <p id="video-error" class="error-message" role="alert" hidden></p>
     </section>
 
@@ -72,7 +83,7 @@
         <label class="filter-field"><span class="sr-only">按动作类别筛选</span><select id="category-filter"><option value="all">全部类别</option></select></label>
         <label class="filter-field"><span class="sr-only">排序方式</span><select id="sort-order"><option value="return-asc">回报：从低到高</option><option value="return-desc">回报：从高到低</option><option value="root-desc">全局误差：从高到低</option><option value="joint-desc">关节误差：从高到低</option><option value="name-asc">动作名称</option></select></label>
       </div>
-      <div class="table-wrap" tabindex="0" aria-label="40 条动作评估指标表，可横向滚动"><table><thead><tr><th scope="col">动作 / 类别</th><th scope="col">回报 ↑</th><th scope="col">完成情况</th><th scope="col">关节误差 ↓</th><th scope="col">对齐身体误差 ↓</th><th scope="col">全局根位置误差 ↓</th><th scope="col">时长</th></tr></thead><tbody id="clip-table"></tbody></table></div>
+      <div class="table-wrap" tabindex="0" aria-label="40 条动作评估指标表，可横向滚动"><table><thead><tr><th scope="col">动作 / 类别</th><th scope="col">回报 ↑</th><th scope="col">完成情况</th><th scope="col">关节 MAE ↓</th><th scope="col">根 XYZ MAE ↓</th><th scope="col">对齐身体 MPJPE ↓</th><th scope="col">全局根 L2 ↓</th><th scope="col">时长</th></tr></thead><tbody id="clip-table"></tbody></table></div>
       <div class="table-footer"><span id="table-count" aria-live="polite">显示 40 / 40 条动作</span><span>每条动作等权 · 50 Hz · 每条评估一次</span></div>
     </section>
 

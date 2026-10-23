@@ -56,7 +56,24 @@ The JSON preserves the reported analysis conventions:
 
 These pose diagnostics are descriptive and conditional on survival. They neither reconstruct reward from the NPZ nor create a new paper acceptance criterion. Compare completion, horizon lengths, retargeting conventions and pose errors together; a high completion rate alone does not establish accurate imitation.
 
-## Render prediction and reference
+## Compute MAE over the full recorded trajectory
+
+The following CPU-only command reads existing recordings without inference, downloads or uploads. Each `rollout.npz` must have its matching `evaluation.json` beside it. Directory inputs are searched recursively for recordings.
+
+```bash
+python tools/trajectory_mae.py \
+  --dataset id="$SUPERMIMIC_EXPERIMENT_ROOT/eval/rollout.npz" \
+  --dataset ood="$SUPERMIMIC_EXPERIMENT_ROOT/ood/batches" \
+  --output-dir "$SUPERMIMIC_EXPERIMENT_ROOT/trajectory_mae"
+```
+
+Joint MAE averages absolute errors over all valid recorded samples and 29 joints. Root XYZ MAE averages absolute errors over the world X, Y and Z components. It uses no trajectory alignment and differs from mean Euclidean root error (L2). All valid 50 Hz samples contribute, independently of video preview lengths or frame rates.
+
+The convention includes the initial state and excludes the unrecorded final post-step state. Failed clips report only their observed prefix, together with coverage; unexecuted states are never zero-padded. Summaries include all clips, completed clips and failed clips separately, with both equal clip weighting and frame weighting.
+
+Outputs include a raw JSON with source paths, `trajectory_mae.public.json` without machine paths, and per-clip CSV/JSON. Keep the raw JSON in the experiment directory. Public-format files are not automatically committed or published either.
+
+## Render a solid policy with a reference ghost
 
 List the names in the recording or use a name from `evaluation.json`:
 
@@ -68,10 +85,12 @@ python tools/render_rollout.py \
   --record "$SUPERMIMIC_EXPERIMENT_ROOT/eval/rollout.npz" \
   --clip EXACT_CLIP_NAME \
   --output "$SUPERMIMIC_EXPERIMENT_ROOT/eval/clip.mp4" \
-  --robot g1_29dof --side-by-side
+  --robot g1_29dof --comparison ghost
 ```
 
-Rendering replays recorded poses; it does not simulate a new rollout. Prediction appears on the left and reference on the right. Each panel follows its own root, so use the world-space metrics to assess accumulated drift. By default the output includes every alive frame at 50 fps. `--max-seconds 10` creates an explicitly marked preview. `--width` and `--height` set each panel's dimensions and must be divisible by 16. EGL is the default offscreen backend; `--gl osmesa` requires an existing OSMesa installation.
+Rendering replays recorded poses; it does not simulate a new rollout. Default `ghost` mode shows the solid policy and a translucent cyan reference in the same world frame and camera, retaining their actual position difference. The ghost adds visual geometry only, without changing physics or duplicating the ground. The camera follows their midpoint and expands with their separation; the trajectories are never independently recentered. Use `--reference-alpha 0.35` to adjust opacity.
+
+`--comparison policy` shows only the policy. `--comparison side-by-side` and the old `--side-by-side` flag retain the two-panel mode. By default the output includes every alive frame at 50 fps. `--max-seconds 10` creates an explicitly marked preview. `--width` and `--height` set each panel's dimensions and must be divisible by 16. EGL is the default offscreen backend; `--gl osmesa` requires an existing OSMesa installation.
 
 The adjacent `.video.json` records input/output SHA-256 hashes, the selected robot/XML, frame counts, full reference length, early-ending status and preview truncation. A video is not an independent success metric. Partial output from a rendering failure is retained for diagnosis and has no successful metadata receipt.
 

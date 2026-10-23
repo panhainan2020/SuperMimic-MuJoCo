@@ -1,16 +1,10 @@
-/* Optional public media configuration. Never put tokens or signed private URLs here.
- * Overrides permit publishing selected clips only. With an empty baseUrl,
- * missing keys remain unavailable. Media is fetched only when a visitor plays.
+/* The current ghost videos are indexed but not uploaded by this source release.
+ * Configure separately authorized media hosting here; never store credentials.
+ * External local-preview builds use their own relative media configuration.
  */
 window.MEDIA_CONFIG = {
-  enabled: true,
+  enabled: false,
   baseUrl: "",
-  overrides: {
-    "lafan/overview.mp4": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media/lafan/overview.mp4",
-    "100style/ood_low.mp4": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media/100style/ood_low.mp4",
-    "100style/ood_median.mp4": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media/100style/ood_median.mp4",
-    "100style/ood_high.mp4": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media/100style/ood_high.mp4",
-    "100style/ood_failure.mp4": "https://supermimic-mujoco-results.zippyaspen7.chatgpt.site/media/100style/ood_failure.mp4"
-  },
+  overrides: {},
   repositoryUrl: "https://github.com/panhainan2020/SuperMimic-MuJoCo"
 };

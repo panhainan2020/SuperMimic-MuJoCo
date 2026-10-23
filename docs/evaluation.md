@@ -56,7 +56,24 @@ python tools/analyze_rollout.py \
 
 这些姿态指标仅描述仍在运行的有效样本。它们不会从 NPZ 重构奖励，也不是新增的论文验收标准。应结合完成情况、片段时长、动作重定向约定和姿态误差共同判断；完成率高本身不能证明模仿准确。
 
-## 并排渲染预测与参考动作
+## 计算整段已记录轨迹 MAE
+
+以下命令读取已有轨迹，使用 CPU 计算指标，不重新推理，也不下载或上传文件。每份 `rollout.npz` 旁必须有对应的 `evaluation.json`；目录输入会递归读取其中的轨迹。
+
+```bash
+python tools/trajectory_mae.py \
+  --dataset id="$SUPERMIMIC_EXPERIMENT_ROOT/eval/rollout.npz" \
+  --dataset ood="$SUPERMIMIC_EXPERIMENT_ROOT/ood/batches" \
+  --output-dir "$SUPERMIMIC_EXPERIMENT_ROOT/trajectory_mae"
+```
+
+关节 MAE 为整段有效记录中 29 个关节角绝对误差的平均值；根位置 XYZ MAE 为世界坐标 X、Y、Z 三个分量绝对误差的平均值。后者不做轨迹对齐，也不同于根位置的平均欧氏距离（L2）。计算使用全部 50 Hz 有效记录，不受网页预览长度或视频帧率影响。
+
+口径包含初始帧，不包含未被记录的最后一个步后状态。提前失败的片段仅报告终止前记录的 MAE，同时给出覆盖率，绝不为未执行部分补零。汇总分别提供全部片段、完整完成片段和失败片段，并同时提供逐片等权、逐帧加权结果。
+
+输出包括带来源路径的原始 JSON、去除机器路径的 `trajectory_mae.public.json`，以及逐片 CSV/JSON。原始 JSON 仅保存在实验目录；公开格式文件也不会自动提交或发布。
+
+## 实体策略与参考虚影叠加渲染
 
 列出轨迹文件中的动作名称，或使用 `evaluation.json` 中的名称：
 
@@ -68,10 +85,12 @@ python tools/render_rollout.py \
   --record "$SUPERMIMIC_EXPERIMENT_ROOT/eval/rollout.npz" \
   --clip EXACT_CLIP_NAME \
   --output "$SUPERMIMIC_EXPERIMENT_ROOT/eval/clip.mp4" \
-  --robot g1_29dof --side-by-side
+  --robot g1_29dof --comparison ghost
 ```
 
-渲染器回放已记录的姿态，不会重新仿真轨迹。左侧为预测，右侧为参考。两侧相机分别跟随各自根部，因此累积漂移应通过世界坐标指标判断。默认以 50 fps 输出所有有效帧。`--max-seconds 10` 可生成明确标记的预览。`--width` 和 `--height` 指定每个画面的尺寸，均须能被 16 整除。默认离屏后端为 EGL；`--gl osmesa` 需要已有可用的 OSMesa 安装。
+渲染器回放已记录的姿态，不会重新仿真轨迹。默认 `ghost` 模式将实体策略机器人和青色半透明参考机器人置于同一世界坐标、同一相机中，保留真实位置偏差。虚影只添加渲染几何，不参与物理仿真，也不添加第二块地面。相机跟随两者中点，并随距离变化扩大视野；不会分别重定位两条轨迹。`--reference-alpha 0.35` 可调整虚影透明度。
+
+`--comparison policy` 只显示策略，`--comparison side-by-side` 或旧参数 `--side-by-side` 保留并排模式。默认以 50 fps 输出所有有效帧。`--max-seconds 10` 可生成明确标记的预览。`--width` 和 `--height` 指定每个画面的尺寸，均须能被 16 整除。默认离屏后端为 EGL；`--gl osmesa` 需要已有可用的 OSMesa 安装。
 
 同目录的 `.video.json` 记录输入/输出 SHA-256 哈希、所选机器人/XML、帧数、完整参考长度、是否提前结束以及预览是否截断。视频不是独立的成功指标。渲染失败后的部分输出会保留用于诊断，但不会生成表示成功的元数据记录。
 

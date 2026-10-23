@@ -13,6 +13,8 @@ frozen 98k policy, 40 LAFAN training motions and 3,573 unseen 100STYLE segments.
 Both the results page and this code repository are public. Videos use separate
 object storage and are not included in GitHub.
 
+The [updated website source](website/README.en.md) adds solid-policy/reference-ghost overlays, 12 indexed 100STYLE videos and whole-record MAE. This update publishes source and small result text files only. New videos have not been uploaded, and the live site remains at its previous version.
+
 **A standalone MuJoCo/MJLab project: no Isaac Lab, Isaac Sim, Newton or USD required.**
 The package includes XML files, meshes and licenses for both G1 models. The
 defaults retain the trained and evaluated robot, the third-party controller

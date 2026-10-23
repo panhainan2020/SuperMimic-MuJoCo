@@ -23,88 +23,181 @@ window.EVALUATION_DATA = {
   },
   "videos": [
     {
-      "path": "lafan/dance.mp4",
-      "poster": "lafan/dance.png",
-      "durationSeconds": 131.46,
-      "sizeBytes": 63790537,
+      "path": "ghost_v1/lafan/dance.mp4",
+      "poster": "ghost_v1/lafan/dance.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 818331,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 131.46,
+      "referenceDurationSeconds": 131.46,
       "category": "dance",
       "label": "舞蹈 / Dance",
       "clip": "dance1_subject2",
       "return": 0.8369,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 4.228093855832688,
+        "rootXyzCm": 42.34647088271199,
+        "sampleCount": 6573,
+        "expectedSampleCount": 6573,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/fallAndGetUp.mp4",
-      "poster": "lafan/fallAndGetUp.png",
-      "durationSeconds": 168.2,
-      "sizeBytes": 68219058,
+      "path": "ghost_v1/lafan/fallAndGetUp.mp4",
+      "poster": "ghost_v1/lafan/fallAndGetUp.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 1072839,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 168.2,
+      "referenceDurationSeconds": 168.2,
       "category": "fallAndGetUp",
       "label": "跌倒与起身 / Recovery",
       "clip": "fallAndGetUp1_subject4",
       "return": 0.852,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 5.138282790167163,
+        "rootXyzCm": 16.66141323991985,
+        "sampleCount": 8410,
+        "expectedSampleCount": 8410,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/fight.mp4",
-      "poster": "lafan/fight.png",
-      "durationSeconds": 244.86,
-      "sizeBytes": 128216178,
+      "path": "ghost_v1/lafan/fight.mp4",
+      "poster": "ghost_v1/lafan/fight.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 1259801,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 244.86,
+      "referenceDurationSeconds": 244.86,
       "category": "fight",
       "label": "格斗与运动 / Fight",
       "clip": "fight1_subject2",
       "return": 0.8443,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 4.556204106072392,
+        "rootXyzCm": 35.97496560041321,
+        "sampleCount": 12243,
+        "expectedSampleCount": 12243,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/jumps.mp4",
-      "poster": "lafan/jumps.png",
-      "durationSeconds": 244.42,
-      "sizeBytes": 116985807,
+      "path": "ghost_v1/lafan/jumps.mp4",
+      "poster": "ghost_v1/lafan/jumps.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 1357944,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 244.42,
+      "referenceDurationSeconds": 244.42,
       "category": "jumps",
       "label": "跳跃 / Jump",
       "clip": "jumps1_subject5",
       "return": 0.8348,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 5.074396410305666,
+        "rootXyzCm": 84.00259735140018,
+        "sampleCount": 12221,
+        "expectedSampleCount": 12221,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/run.mp4",
-      "poster": "lafan/run.png",
-      "durationSeconds": 244.8,
-      "sizeBytes": 139559207,
+      "path": "ghost_v1/lafan/run.mp4",
+      "poster": "ghost_v1/lafan/run.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 1281272,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 244.8,
+      "referenceDurationSeconds": 244.8,
       "category": "run",
       "label": "跑步 / Run",
       "clip": "run2_subject1",
       "return": 0.8435,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 4.411005602731752,
+        "rootXyzCm": 26.667032957161357,
+        "sampleCount": 12240,
+        "expectedSampleCount": 12240,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/sprint.mp4",
-      "poster": "lafan/sprint.png",
-      "durationSeconds": 273.1,
-      "sizeBytes": 121075669,
+      "path": "ghost_v1/lafan/sprint.mp4",
+      "poster": "ghost_v1/lafan/sprint.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 832700,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 273.1,
+      "referenceDurationSeconds": 273.1,
       "category": "sprint",
       "label": "冲刺 / Sprint",
       "clip": "sprint1_subject4",
       "return": 0.8396,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 4.946122088580392,
+        "rootXyzCm": 41.71685908002564,
+        "sampleCount": 13655,
+        "expectedSampleCount": 13655,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
-      "path": "lafan/walk.mp4",
-      "poster": "lafan/walk.png",
-      "durationSeconds": 238.16,
-      "sizeBytes": 101629119,
+      "path": "ghost_v1/lafan/walk.mp4",
+      "poster": "ghost_v1/lafan/walk.jpg",
+      "durationSeconds": 12.0,
+      "sizeBytes": 808502,
+      "layout": "overlay_world",
+      "preview": true,
+      "recordedDurationSeconds": 238.16,
+      "referenceDurationSeconds": 238.16,
       "category": "walk",
       "label": "行走 / Walk",
       "clip": "walk2_subject3",
       "return": 0.8643,
-      "failed": false
+      "failed": false,
+      "trajectoryMae": {
+        "jointDeg": 4.591042949354102,
+        "rootXyzCm": 32.412729310176225,
+        "sampleCount": 11908,
+        "expectedSampleCount": 11908,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     }
   ],
   "overview": {
-    "path": "lafan/overview.mp4",
-    "poster": "lafan/overview.png",
+    "path": "ghost_v1/lafan/overview.mp4",
+    "poster": "ghost_v1/lafan/overview.jpg",
     "durationSeconds": 70.0,
-    "sizeBytes": 17020073
+    "sizeBytes": 5393531,
+    "layout": "overlay_world",
+    "preview": true
   },
   "clips": [
     {
@@ -115,7 +208,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.074396410305668,
       "alignedBodyCm": 3.221030533313751,
       "rootCm": 216.9811682090431,
-      "durationSeconds": 244.42
+      "durationSeconds": 244.42,
+      "trajectoryMae": {
+        "jointDeg": 5.074396410305666,
+        "rootXyzCm": 84.00259735140018,
+        "sampleCount": 12221,
+        "expectedSampleCount": 12221,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance1_subject2",
@@ -125,7 +227,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.228093855832688,
       "alignedBodyCm": 2.241641655564308,
       "rootCm": 89.9236426322598,
-      "durationSeconds": 131.46
+      "durationSeconds": 131.46,
+      "trajectoryMae": {
+        "jointDeg": 4.228093855832688,
+        "rootXyzCm": 42.34647088271199,
+        "sampleCount": 6573,
+        "expectedSampleCount": 6573,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "sprint1_subject4",
@@ -135,7 +246,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.946122088580391,
       "alignedBodyCm": 2.60888934135437,
       "rootCm": 105.68952221973096,
-      "durationSeconds": 273.1
+      "durationSeconds": 273.1,
+      "trajectoryMae": {
+        "jointDeg": 4.946122088580392,
+        "rootXyzCm": 41.71685908002564,
+        "sampleCount": 13655,
+        "expectedSampleCount": 13655,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "jumps1_subject2",
@@ -145,7 +265,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.12515446289757,
       "alignedBodyCm": 3.258630260825157,
       "rootCm": 94.89837060025104,
-      "durationSeconds": 244.42
+      "durationSeconds": 244.42,
+      "trajectoryMae": {
+        "jointDeg": 5.125154462897571,
+        "rootXyzCm": 41.50047924050085,
+        "sampleCount": 12221,
+        "expectedSampleCount": 12221,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "run2_subject1",
@@ -155,7 +284,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.411005602731753,
       "alignedBodyCm": 2.653243951499462,
       "rootCm": 57.47262842442985,
-      "durationSeconds": 244.8
+      "durationSeconds": 244.8,
+      "trajectoryMae": {
+        "jointDeg": 4.411005602731752,
+        "rootXyzCm": 26.667032957161357,
+        "sampleCount": 12240,
+        "expectedSampleCount": 12240,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fight1_subject2",
@@ -165,7 +303,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.556204106072392,
       "alignedBodyCm": 2.6917314156889915,
       "rootCm": 89.25737660220156,
-      "durationSeconds": 244.86
+      "durationSeconds": 244.86,
+      "trajectoryMae": {
+        "jointDeg": 4.556204106072392,
+        "rootXyzCm": 35.97496560041321,
+        "sampleCount": 12243,
+        "expectedSampleCount": 12243,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "run1_subject5",
@@ -175,7 +322,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.77778903838875,
       "alignedBodyCm": 2.723550796508789,
       "rootCm": 91.91021530392953,
-      "durationSeconds": 237.8
+      "durationSeconds": 237.8,
+      "trajectoryMae": {
+        "jointDeg": 4.77778903838875,
+        "rootXyzCm": 38.68167761820407,
+        "sampleCount": 11890,
+        "expectedSampleCount": 11890,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "jumps1_subject1",
@@ -185,7 +341,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.64666868687598,
       "alignedBodyCm": 2.925281785428524,
       "rootCm": 63.415595656759436,
-      "durationSeconds": 244.42
+      "durationSeconds": 244.42,
+      "trajectoryMae": {
+        "jointDeg": 4.646668686875979,
+        "rootXyzCm": 27.995460140581446,
+        "sampleCount": 12221,
+        "expectedSampleCount": 12221,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "sprint1_subject2",
@@ -195,7 +360,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.139770012726982,
       "alignedBodyCm": 2.595118246972561,
       "rootCm": 67.79050508136588,
-      "durationSeconds": 273.1
+      "durationSeconds": 273.1,
+      "trajectoryMae": {
+        "jointDeg": 5.139770012726982,
+        "rootXyzCm": 30.44065765853651,
+        "sampleCount": 13655,
+        "expectedSampleCount": 13655,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fightAndSports1_subject1",
@@ -205,7 +379,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.2194845718664835,
       "alignedBodyCm": 2.66121719032526,
       "rootCm": 97.22131368218987,
-      "durationSeconds": 245.12
+      "durationSeconds": 245.12,
+      "trajectoryMae": {
+        "jointDeg": 4.219484571866484,
+        "rootXyzCm": 42.27648796021094,
+        "sampleCount": 12256,
+        "expectedSampleCount": 12256,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "run2_subject4",
@@ -215,7 +398,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.312345252226533,
       "alignedBodyCm": 2.5145696476101875,
       "rootCm": 55.62940243684306,
-      "durationSeconds": 244.8
+      "durationSeconds": 244.8,
+      "trajectoryMae": {
+        "jointDeg": 4.312345252226534,
+        "rootXyzCm": 23.5320094216926,
+        "sampleCount": 12240,
+        "expectedSampleCount": 12240,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp1_subject4",
@@ -225,7 +417,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.138282790167163,
       "alignedBodyCm": 3.2066039741039276,
       "rootCm": 41.25275373219678,
-      "durationSeconds": 168.2
+      "durationSeconds": 168.2,
+      "trajectoryMae": {
+        "jointDeg": 5.138282790167163,
+        "rootXyzCm": 16.66141323991985,
+        "sampleCount": 8410,
+        "expectedSampleCount": 8410,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance1_subject1",
@@ -235,7 +436,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.3084100255590565,
       "alignedBodyCm": 2.578742615878582,
       "rootCm": 50.09417180087456,
-      "durationSeconds": 131.46
+      "durationSeconds": 131.46,
+      "trajectoryMae": {
+        "jointDeg": 4.3084100255590565,
+        "rootXyzCm": 20.942481852541054,
+        "sampleCount": 6573,
+        "expectedSampleCount": 6573,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance2_subject4",
@@ -245,7 +455,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.118651656888818,
       "alignedBodyCm": 2.443944662809372,
       "rootCm": 102.54181114055253,
-      "durationSeconds": 225.66
+      "durationSeconds": 225.66,
+      "trajectoryMae": {
+        "jointDeg": 4.118651656888818,
+        "rootXyzCm": 40.04947547768246,
+        "sampleCount": 11283,
+        "expectedSampleCount": 11283,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance2_subject2",
@@ -255,7 +474,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.166414757565232,
       "alignedBodyCm": 2.2935424000024796,
       "rootCm": 56.39019900148063,
-      "durationSeconds": 225.66
+      "durationSeconds": 225.66,
+      "trajectoryMae": {
+        "jointDeg": 4.1664147575652315,
+        "rootXyzCm": 23.71027592632586,
+        "sampleCount": 11283,
+        "expectedSampleCount": 11283,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance2_subject1",
@@ -265,7 +493,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.31223966320731,
       "alignedBodyCm": 2.6610486209392548,
       "rootCm": 64.75272881326941,
-      "durationSeconds": 225.66
+      "durationSeconds": 225.66,
+      "trajectoryMae": {
+        "jointDeg": 4.3122396632073094,
+        "rootXyzCm": 28.104370017019242,
+        "sampleCount": 11283,
+        "expectedSampleCount": 11283,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp1_subject1",
@@ -275,7 +512,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.352996213280847,
       "alignedBodyCm": 3.2186370342969894,
       "rootCm": 35.139003000214636,
-      "durationSeconds": 168.2
+      "durationSeconds": 168.2,
+      "trajectoryMae": {
+        "jointDeg": 5.352996213280847,
+        "rootXyzCm": 15.160277937185132,
+        "sampleCount": 8410,
+        "expectedSampleCount": 8410,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fight1_subject3",
@@ -285,7 +531,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.99635818414438,
       "alignedBodyCm": 2.448321133852005,
       "rootCm": 61.85962276174226,
-      "durationSeconds": 244.86
+      "durationSeconds": 244.86,
+      "trajectoryMae": {
+        "jointDeg": 3.996358184144381,
+        "rootXyzCm": 24.474293837559312,
+        "sampleCount": 12243,
+        "expectedSampleCount": 12243,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk2_subject3",
@@ -295,7 +550,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.591042949354102,
       "alignedBodyCm": 2.62155681848526,
       "rootCm": 71.29864676335683,
-      "durationSeconds": 238.16
+      "durationSeconds": 238.16,
+      "trajectoryMae": {
+        "jointDeg": 4.591042949354102,
+        "rootXyzCm": 32.412729310176225,
+        "sampleCount": 11908,
+        "expectedSampleCount": 11908,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp3_subject1",
@@ -305,7 +569,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.874400651065415,
       "alignedBodyCm": 3.043198771774769,
       "rootCm": 71.03663936258954,
-      "durationSeconds": 102.16
+      "durationSeconds": 102.16,
+      "trajectoryMae": {
+        "jointDeg": 4.874400651065416,
+        "rootXyzCm": 32.95868174291928,
+        "sampleCount": 5108,
+        "expectedSampleCount": 5108,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fight1_subject5",
@@ -315,7 +588,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.394768119801494,
       "alignedBodyCm": 2.418859489262104,
       "rootCm": 87.56163832757896,
-      "durationSeconds": 244.86
+      "durationSeconds": 244.86,
+      "trajectoryMae": {
+        "jointDeg": 4.394768119801494,
+        "rootXyzCm": 36.84994783122078,
+        "sampleCount": 12243,
+        "expectedSampleCount": 12243,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance1_subject3",
@@ -325,7 +607,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.356877112196729,
       "alignedBodyCm": 2.3821674287319183,
       "rootCm": 76.05431143784648,
-      "durationSeconds": 131.46
+      "durationSeconds": 131.46,
+      "trajectoryMae": {
+        "jointDeg": 4.35687711219673,
+        "rootXyzCm": 30.01919180953994,
+        "sampleCount": 6573,
+        "expectedSampleCount": 6573,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fightAndSports1_subject4",
@@ -335,7 +626,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.223807964878258,
       "alignedBodyCm": 2.4670813232660294,
       "rootCm": 55.25017695902499,
-      "durationSeconds": 245.12
+      "durationSeconds": 245.12,
+      "trajectoryMae": {
+        "jointDeg": 4.223807964878258,
+        "rootXyzCm": 24.467152586222962,
+        "sampleCount": 12256,
+        "expectedSampleCount": 12256,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance2_subject3",
@@ -345,7 +645,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.8708676363789287,
       "alignedBodyCm": 2.1942904219031334,
       "rootCm": 72.59262006963134,
-      "durationSeconds": 225.66
+      "durationSeconds": 225.66,
+      "trajectoryMae": {
+        "jointDeg": 3.8708676363789287,
+        "rootXyzCm": 29.327140222170183,
+        "sampleCount": 11283,
+        "expectedSampleCount": 11283,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk3_subject3",
@@ -355,7 +664,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.490227510743592,
       "alignedBodyCm": 4.213866591453552,
       "rootCm": 52.453690429554044,
-      "durationSeconds": 246.6
+      "durationSeconds": 246.6,
+      "trajectoryMae": {
+        "jointDeg": 5.490227510743592,
+        "rootXyzCm": 24.486960014888304,
+        "sampleCount": 12330,
+        "expectedSampleCount": 12330,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk3_subject5",
@@ -365,7 +683,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.26639244117268,
       "alignedBodyCm": 2.261601947247982,
       "rootCm": 97.9155368713532,
-      "durationSeconds": 246.6
+      "durationSeconds": 246.6,
+      "trajectoryMae": {
+        "jointDeg": 4.26639244117268,
+        "rootXyzCm": 38.408946998085504,
+        "sampleCount": 12330,
+        "expectedSampleCount": 12330,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk2_subject4",
@@ -375,7 +702,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.1187924289997975,
       "alignedBodyCm": 2.372938208281994,
       "rootCm": 44.876308970139036,
-      "durationSeconds": 238.16
+      "durationSeconds": 238.16,
+      "trajectoryMae": {
+        "jointDeg": 4.118792428999797,
+        "rootXyzCm": 18.832079780182955,
+        "sampleCount": 11908,
+        "expectedSampleCount": 11908,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "dance2_subject5",
@@ -385,7 +721,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.4302187727364726,
       "alignedBodyCm": 2.2038476541638374,
       "rootCm": 82.40844077296569,
-      "durationSeconds": 225.66
+      "durationSeconds": 225.66,
+      "trajectoryMae": {
+        "jointDeg": 3.4302187727364735,
+        "rootXyzCm": 35.08981928143193,
+        "sampleCount": 11283,
+        "expectedSampleCount": 11283,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk3_subject4",
@@ -395,7 +740,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.953060844424369,
       "alignedBodyCm": 2.288123592734337,
       "rootCm": 66.13217031608191,
-      "durationSeconds": 246.6
+      "durationSeconds": 246.6,
+      "trajectoryMae": {
+        "jointDeg": 3.95306084442437,
+        "rootXyzCm": 30.266756839016068,
+        "sampleCount": 12330,
+        "expectedSampleCount": 12330,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp1_subject5",
@@ -405,7 +759,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.728790399502827,
       "alignedBodyCm": 2.9197240248322487,
       "rootCm": 22.579180547057675,
-      "durationSeconds": 168.2
+      "durationSeconds": 168.2,
+      "trajectoryMae": {
+        "jointDeg": 4.728790399502827,
+        "rootXyzCm": 10.279408264055107,
+        "sampleCount": 8410,
+        "expectedSampleCount": 8410,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk1_subject5",
@@ -415,7 +778,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.2796951731176476,
       "alignedBodyCm": 2.017878368496895,
       "rootCm": 70.71246136407744,
-      "durationSeconds": 261.3
+      "durationSeconds": 261.3,
+      "trajectoryMae": {
+        "jointDeg": 3.279695173117647,
+        "rootXyzCm": 33.09181695118552,
+        "sampleCount": 13065,
+        "expectedSampleCount": 13065,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk1_subject2",
@@ -425,7 +797,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.8069117250695337,
       "alignedBodyCm": 1.8261434510350227,
       "rootCm": 46.869777112131786,
-      "durationSeconds": 261.3
+      "durationSeconds": 261.3,
+      "trajectoryMae": {
+        "jointDeg": 3.8069117250695346,
+        "rootXyzCm": 19.646405803148948,
+        "sampleCount": 13065,
+        "expectedSampleCount": 13065,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "run1_subject2",
@@ -435,7 +816,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.108780393623319,
       "alignedBodyCm": 2.2560782730579376,
       "rootCm": 22.73521525861665,
-      "durationSeconds": 237.8
+      "durationSeconds": 237.8,
+      "trajectoryMae": {
+        "jointDeg": 4.108780393623318,
+        "rootXyzCm": 9.942085601257872,
+        "sampleCount": 11890,
+        "expectedSampleCount": 11890,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk2_subject1",
@@ -445,7 +835,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 4.154712572555865,
       "alignedBodyCm": 2.5409717112779617,
       "rootCm": 30.116874245813946,
-      "durationSeconds": 238.16
+      "durationSeconds": 238.16,
+      "trajectoryMae": {
+        "jointDeg": 4.154712572555865,
+        "rootXyzCm": 12.641737733594082,
+        "sampleCount": 11908,
+        "expectedSampleCount": 11908,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk3_subject2",
@@ -455,7 +854,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.6245053322463594,
       "alignedBodyCm": 1.7931029200553894,
       "rootCm": 56.16212035903531,
-      "durationSeconds": 246.6
+      "durationSeconds": 246.6,
+      "trajectoryMae": {
+        "jointDeg": 3.6245053322463603,
+        "rootXyzCm": 22.95482398693822,
+        "sampleCount": 12330,
+        "expectedSampleCount": 12330,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp2_subject3",
@@ -465,7 +873,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 6.194892291581411,
       "alignedBodyCm": 3.8548052310943604,
       "rootCm": 14.049943088719468,
-      "durationSeconds": 163.9
+      "durationSeconds": 163.9,
+      "trajectoryMae": {
+        "jointDeg": 6.194892291581411,
+        "rootXyzCm": 6.380646591981863,
+        "sampleCount": 8195,
+        "expectedSampleCount": 8195,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk3_subject1",
@@ -475,7 +892,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.8537549979925796,
       "alignedBodyCm": 2.5075875222682953,
       "rootCm": 29.349468293840324,
-      "durationSeconds": 246.6
+      "durationSeconds": 246.6,
+      "trajectoryMae": {
+        "jointDeg": 3.8537549979925796,
+        "rootXyzCm": 12.808652602074112,
+        "sampleCount": 12330,
+        "expectedSampleCount": 12330,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "fallAndGetUp2_subject2",
@@ -485,7 +911,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 5.0824839656705105,
       "alignedBodyCm": 3.078644350171089,
       "rootCm": 16.82421722346808,
-      "durationSeconds": 163.9
+      "durationSeconds": 163.9,
+      "trajectoryMae": {
+        "jointDeg": 5.0824839656705105,
+        "rootXyzCm": 7.629333825676593,
+        "sampleCount": 8195,
+        "expectedSampleCount": 8195,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk1_subject1",
@@ -495,7 +930,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 3.6438110784870195,
       "alignedBodyCm": 2.2275248542428017,
       "rootCm": 24.990085477789904,
-      "durationSeconds": 261.3
+      "durationSeconds": 261.3,
+      "trajectoryMae": {
+        "jointDeg": 3.6438110784870203,
+        "rootXyzCm": 10.766195302910083,
+        "sampleCount": 13065,
+        "expectedSampleCount": 13065,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     },
     {
       "name": "walk4_subject1",
@@ -505,7 +949,16 @@ window.EVALUATION_DATA = {
       "jointDeg": 2.9884709600501873,
       "alignedBodyCm": 2.0532360300421715,
       "rootCm": 18.171613223813342,
-      "durationSeconds": 163.9
+      "durationSeconds": 163.9,
+      "trajectoryMae": {
+        "jointDeg": 2.9884709600501873,
+        "rootXyzCm": 7.965370611905096,
+        "sampleCount": 8195,
+        "expectedSampleCount": 8195,
+        "coverageFraction": 1.0,
+        "complete": true,
+        "scope": "full_recorded_trajectory"
+      }
     }
   ],
   "links": {
@@ -663,10 +1116,22 @@ window.EVALUATION_DATA = {
         "style": "Rushed",
         "failed": false,
         "normalized_return": 0.7192,
-        "duration_seconds": 19.98,
+        "duration_seconds": 20.0,
         "reference_duration_seconds": 19.98,
-        "path": "100style/ood_low.mp4",
-        "poster": "100style/ood_low.png"
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/ood_low.mp4",
+        "poster": "ghost_v1/100style/ood_low.jpg",
+        "trajectoryMae": {
+          "jointDeg": 6.227401166537728,
+          "rootXyzCm": 19.84793066141154,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
       },
       {
         "title": "中位代表（成功片段 50% 分位）· OnPhoneLeft",
@@ -674,10 +1139,22 @@ window.EVALUATION_DATA = {
         "style": "OnPhoneLeft",
         "failed": false,
         "normalized_return": 0.812,
-        "duration_seconds": 19.98,
+        "duration_seconds": 20.0,
         "reference_duration_seconds": 19.98,
-        "path": "100style/ood_median.mp4",
-        "poster": "100style/ood_median.png"
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/ood_median.mp4",
+        "poster": "ghost_v1/100style/ood_median.jpg",
+        "trajectoryMae": {
+          "jointDeg": 6.361674600517497,
+          "rootXyzCm": 20.66263357080422,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
       },
       {
         "title": "高分代表（成功片段 90% 分位）· Old",
@@ -685,10 +1162,22 @@ window.EVALUATION_DATA = {
         "style": "Old",
         "failed": false,
         "normalized_return": 0.8781,
-        "duration_seconds": 19.98,
+        "duration_seconds": 20.0,
         "reference_duration_seconds": 19.98,
-        "path": "100style/ood_high.mp4",
-        "poster": "100style/ood_high.png"
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/ood_high.mp4",
+        "poster": "ghost_v1/100style/ood_high.jpg",
+        "trajectoryMae": {
+          "jointDeg": 5.183958849035243,
+          "rootXyzCm": 12.937658211225031,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
       },
       {
         "title": "失败例（失败集合中存活时间最长）· Flapping",
@@ -698,8 +1187,204 @@ window.EVALUATION_DATA = {
         "normalized_return": 0.4736,
         "duration_seconds": 17.76,
         "reference_duration_seconds": 19.98,
-        "path": "100style/ood_failure.mp4",
-        "poster": "100style/ood_failure.png"
+        "recorded_duration_seconds": 17.76,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/ood_failure.mp4",
+        "poster": "ghost_v1/100style/ood_failure.jpg",
+        "trajectoryMae": {
+          "jointDeg": 11.006543619240949,
+          "rootXyzCm": 25.70490520798399,
+          "sampleCount": 888,
+          "expectedSampleCount": 999,
+          "coverageFraction": 0.8888888888888888,
+          "complete": false,
+          "scope": "observed_until_termination"
+        }
+      },
+      {
+        "title": "风格中位成功例 · Aeroplane",
+        "clip": "Aeroplane__Aeroplane_TR1__001000_002000",
+        "style": "Aeroplane",
+        "failed": false,
+        "normalized_return": 0.7939,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_aeroplane.mp4",
+        "poster": "ghost_v1/100style/style_aeroplane.jpg",
+        "trajectoryMae": {
+          "jointDeg": 7.280659304600207,
+          "rootXyzCm": 15.916554842470424,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · Cat",
+        "clip": "Cat__Cat_TR1__002000_003000",
+        "style": "Cat",
+        "failed": false,
+        "normalized_return": 0.8483,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_cat.mp4",
+        "poster": "ghost_v1/100style/style_cat.jpg",
+        "trajectoryMae": {
+          "jointDeg": 5.483684807566896,
+          "rootXyzCm": 17.341484953688283,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · FlickLegs",
+        "clip": "FlickLegs__FlickLegs_SW__005000_006000",
+        "style": "FlickLegs",
+        "failed": false,
+        "normalized_return": 0.82,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_flicklegs.mp4",
+        "poster": "ghost_v1/100style/style_flicklegs.jpg",
+        "trajectoryMae": {
+          "jointDeg": 6.700783040518573,
+          "rootXyzCm": 15.226656242680997,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · LeftHop",
+        "clip": "LeftHop__LeftHop_BW__001000_002000",
+        "style": "LeftHop",
+        "failed": false,
+        "normalized_return": 0.6846,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_lefthop.mp4",
+        "poster": "ghost_v1/100style/style_lefthop.jpg",
+        "trajectoryMae": {
+          "jointDeg": 7.684083608117802,
+          "rootXyzCm": 72.61474548381763,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · OnToesCrouched",
+        "clip": "OnToesCrouched__OnToesCrouched_BR__002000_003000",
+        "style": "OnToesCrouched",
+        "failed": false,
+        "normalized_return": 0.8831,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_ontoescrouched.mp4",
+        "poster": "ghost_v1/100style/style_ontoescrouched.jpg",
+        "trajectoryMae": {
+          "jointDeg": 4.2232404509091594,
+          "rootXyzCm": 11.357624120191327,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · ShieldedRight",
+        "clip": "ShieldedRight__ShieldedRight_TR1__004000_005000",
+        "style": "ShieldedRight",
+        "failed": false,
+        "normalized_return": 0.803,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_shieldedright.mp4",
+        "poster": "ghost_v1/100style/style_shieldedright.jpg",
+        "trajectoryMae": {
+          "jointDeg": 8.146549771682198,
+          "rootXyzCm": 24.277671551433496,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · SwingArmsRound",
+        "clip": "SwingArmsRound__SwingArmsRound_FW__000000_001000",
+        "style": "SwingArmsRound",
+        "failed": false,
+        "normalized_return": 0.7699,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_swingarmsround.mp4",
+        "poster": "ghost_v1/100style/style_swingarmsround.jpg",
+        "trajectoryMae": {
+          "jointDeg": 8.324896326326432,
+          "rootXyzCm": 12.744809633753999,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
+      },
+      {
+        "title": "风格中位成功例 · Zombie",
+        "clip": "Zombie__Zombie_SW__000000_001000",
+        "style": "Zombie",
+        "failed": false,
+        "normalized_return": 0.7858,
+        "duration_seconds": 20.0,
+        "reference_duration_seconds": 19.98,
+        "recorded_duration_seconds": 19.98,
+        "preview": false,
+        "layout": "overlay_world",
+        "path": "ghost_v1/100style/style_zombie.mp4",
+        "poster": "ghost_v1/100style/style_zombie.jpg",
+        "trajectoryMae": {
+          "jointDeg": 7.277387535134357,
+          "rootXyzCm": 19.55452490767459,
+          "sampleCount": 999,
+          "expectedSampleCount": 999,
+          "coverageFraction": 1.0,
+          "complete": true,
+          "scope": "full_recorded_trajectory"
+        }
       }
     ],
     "links": [
@@ -714,6 +1399,14 @@ window.EVALUATION_DATA = {
       {
         "label": "完整报告 / Report",
         "path": "../results/098000/REPORT.md"
+      },
+      {
+        "label": "MAE 完整定义与汇总 JSON",
+        "path": "../results/098000/trajectory_mae.public.json"
+      },
+      {
+        "label": "全部轨迹 MAE CSV",
+        "path": "../results/098000/trajectory_mae.per_clip.csv"
       }
     ],
     "styles": [
@@ -1616,6 +2309,50 @@ window.EVALUATION_DATA = {
         "return": 0.7930972972972973,
         "jointDeg": 7.57662857211003,
         "alignedBodyCm": 6.899782562175312
+      }
+    ]
+  },
+  "trajectoryMae": {
+    "id": {
+      "clipEqualWeighted": {
+        "jointDeg": 4.396691317524178,
+        "rootXyzCm": 27.286579247256338
+      },
+      "frameWeighted": {
+        "jointDeg": 4.369280544646128,
+        "rootXyzCm": 27.93535294181367
+      },
+      "nComplete": 40,
+      "nFailed": 0,
+      "sampleCount": 441100,
+      "expectedSampleCount": 441100,
+      "coverageFraction": 1.0,
+      "scope": "all_observed_pre_step_alive"
+    },
+    "ood": {
+      "clipEqualWeighted": {
+        "jointDeg": 6.989848696051466,
+        "rootXyzCm": 21.68170558810731
+      },
+      "frameWeighted": {
+        "jointDeg": 6.973637611230744,
+        "rootXyzCm": 21.98860236780561
+      },
+      "nComplete": 3569,
+      "nFailed": 4,
+      "sampleCount": 3351756,
+      "expectedSampleCount": 3353047,
+      "coverageFraction": 0.9996149770641449,
+      "scope": "all_observed_pre_step_alive"
+    },
+    "links": [
+      {
+        "label": "MAE 完整定义与汇总 JSON",
+        "path": "../results/098000/trajectory_mae.public.json"
+      },
+      {
+        "label": "全部轨迹 MAE CSV",
+        "path": "../results/098000/trajectory_mae.per_clip.csv"
       }
     ]
   }

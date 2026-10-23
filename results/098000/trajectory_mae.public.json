@@ -1,0 +1,373 @@
+{
+  "schemaVersion": 1,
+  "controlDtSeconds": 0.02,
+  "conventions": {
+    "phase": "pre_step_alive",
+    "sampling": "All recorded alive=True samples at 50 Hz; reset included; terminal executed state excluded. No video subsampling.",
+    "referenceIndex": "Recorded state at t is compared with the reference at recorded global f[t], without a frame shift.",
+    "jointMae": "mean over observed time and 29 bounded SDK-order joints of abs(q - reference_q), without angle wrapping",
+    "rootXyzMae": "mean over observed time and world X/Y/Z coordinates of abs(root_position - reference_root_position), in metres",
+    "rootL2Mean": "mean over observed time of the Euclidean world root position error, in metres; this is not coordinate MAE",
+    "alignment": "No XY, yaw or other alignment is applied to the root-position errors.",
+    "clipEqual": "Compute each clip's mean over its observed samples, then weight clips equally.",
+    "frameWeighted": "Pool all observed samples; longer observed trajectories receive proportionally more weight.",
+    "failedClips": "Only the observed prefix is measurable; never pad unexecuted states or invent full-reference-trajectory MAE. Report failure and duration coverage separately.",
+    "completedOnly": "Includes only clips with no authoritative failure and all expected transitions executed.",
+    "coverage": "Executed transitions / (reference frames - 1); 100% transition coverage does not mean the terminal state was recorded."
+  },
+  "summary": {
+    "id": {
+      "allObserved": {
+        "nClips": 40,
+        "nFailed": 0,
+        "nCompleted": 40,
+        "observedSamples": 441100,
+        "expectedTransitions": 441100,
+        "coverageFraction": 1.0,
+        "executedDurationSeconds": 8822.0,
+        "referenceDurationSeconds": 8822.0,
+        "clipEqual": {
+          "jointMaeRad": 0.07673673968464437,
+          "jointMaeDeg": 4.396691317524178,
+          "rootXyzMaeM": 0.2728657924725634,
+          "rootXMaeM": 0.4197734111245627,
+          "rootYMaeM": 0.3884473525623591,
+          "rootZMaeM": 0.010376613730768224,
+          "rootL2MeanM": 0.6430902918934552
+        },
+        "frameWeighted": {
+          "jointMaeRad": 0.07625833144740603,
+          "jointMaeDeg": 4.369280544646128,
+          "rootXyzMaeM": 0.2793535294181367,
+          "rootXMaeM": 0.42200727020495377,
+          "rootYMaeM": 0.40588278412894335,
+          "rootZMaeM": 0.010170533920513059,
+          "rootL2MeanM": 0.6599941792413169
+        }
+      },
+      "completedOnly": {
+        "nClips": 40,
+        "nFailed": 0,
+        "nCompleted": 40,
+        "observedSamples": 441100,
+        "expectedTransitions": 441100,
+        "coverageFraction": 1.0,
+        "executedDurationSeconds": 8822.0,
+        "referenceDurationSeconds": 8822.0,
+        "clipEqual": {
+          "jointMaeRad": 0.07673673968464437,
+          "jointMaeDeg": 4.396691317524178,
+          "rootXyzMaeM": 0.2728657924725634,
+          "rootXMaeM": 0.4197734111245627,
+          "rootYMaeM": 0.3884473525623591,
+          "rootZMaeM": 0.010376613730768224,
+          "rootL2MeanM": 0.6430902918934552
+        },
+        "frameWeighted": {
+          "jointMaeRad": 0.07625833144740603,
+          "jointMaeDeg": 4.369280544646128,
+          "rootXyzMaeM": 0.2793535294181367,
+          "rootXMaeM": 0.42200727020495377,
+          "rootYMaeM": 0.40588278412894335,
+          "rootZMaeM": 0.010170533920513059,
+          "rootL2MeanM": 0.6599941792413169
+        }
+      },
+      "failedOnly": {
+        "nClips": 0,
+        "nFailed": 0,
+        "nCompleted": 0,
+        "observedSamples": 0,
+        "expectedTransitions": 0,
+        "coverageFraction": null,
+        "executedDurationSeconds": 0.0,
+        "referenceDurationSeconds": 0.0,
+        "clipEqual": null,
+        "frameWeighted": null
+      },
+      "failedClips": []
+    },
+    "ood": {
+      "allObserved": {
+        "nClips": 3573,
+        "nFailed": 4,
+        "nCompleted": 3569,
+        "observedSamples": 3351756,
+        "expectedTransitions": 3353047,
+        "coverageFraction": 0.9996149770641449,
+        "executedDurationSeconds": 67035.12,
+        "referenceDurationSeconds": 67060.94,
+        "clipEqual": {
+          "jointMaeRad": 0.12199587396233047,
+          "jointMaeDeg": 6.989848696051466,
+          "rootXyzMaeM": 0.2168170558810731,
+          "rootXMaeM": 0.3369425885626312,
+          "rootYMaeM": 0.29243380475025543,
+          "rootZMaeM": 0.02107477433033264,
+          "rootL2MeanM": 0.49717117337571193
+        },
+        "frameWeighted": {
+          "jointMaeRad": 0.12171293715688865,
+          "jointMaeDeg": 6.973637611230744,
+          "rootXyzMaeM": 0.2198860236780561,
+          "rootXMaeM": 0.34224096767145357,
+          "rootYMaeM": 0.2964599363472059,
+          "rootZMaeM": 0.020957167015509832,
+          "rootL2MeanM": 0.50432246560549
+        }
+      },
+      "completedOnly": {
+        "nClips": 3569,
+        "nFailed": 0,
+        "nCompleted": 3569,
+        "observedSamples": 3349334,
+        "expectedTransitions": 3349334,
+        "coverageFraction": 1.0,
+        "executedDurationSeconds": 66986.68000000001,
+        "referenceDurationSeconds": 66986.68000000001,
+        "clipEqual": {
+          "jointMaeRad": 0.12179793706767604,
+          "jointMaeDeg": 6.978507747377843,
+          "rootXyzMaeM": 0.21644317739631264,
+          "rootXMaeM": 0.3364244212095164,
+          "rootYMaeM": 0.29185080032058347,
+          "rootZMaeM": 0.021054310658838105,
+          "rootL2MeanM": 0.49626899434842653
+        },
+        "frameWeighted": {
+          "jointMaeRad": 0.12160388968625624,
+          "jointMaeDeg": 6.967389651396934,
+          "rootXyzMaeM": 0.21962172194101828,
+          "rootXMaeM": 0.34176048437807616,
+          "rootYMaeM": 0.2961548528986489,
+          "rootZMaeM": 0.020949828546330537,
+          "rootL2MeanM": 0.5037090521643434
+        }
+      },
+      "failedOnly": {
+        "nClips": 4,
+        "nFailed": 4,
+        "nCompleted": 0,
+        "observedSamples": 2422,
+        "expectedTransitions": 3713,
+        "coverageFraction": 0.6523027201723673,
+        "executedDurationSeconds": 48.44,
+        "referenceDurationSeconds": 74.26,
+        "clipEqual": {
+          "jointMaeRad": 0.2986050682177315,
+          "jointMaeDeg": 17.108810150092047,
+          "rootXyzMaeM": 0.5504101339085936,
+          "rootXMaeM": 0.799277409379308,
+          "rootYMaeM": 0.8126195071251411,
+          "rootZMaeM": 0.039333485221331996,
+          "rootL2MeanM": 1.3021404104711405
+        },
+        "frameWeighted": {
+          "jointMaeRad": 0.27251244211270054,
+          "jointMaeDeg": 15.613812797860902,
+          "rootXyzMaeM": 0.5853834613824933,
+          "rootXMaeM": 1.0066914346166094,
+          "rootYMaeM": 0.7183535643773938,
+          "rootZMaeM": 0.031105385153476706,
+          "rootL2MeanM": 1.3525993006549084
+        }
+      },
+      "failedClips": [
+        {
+          "key": "ood:Flapping__Flapping_FR__000000_001000",
+          "datasetId": "ood",
+          "name": "Flapping__Flapping_FR__000000_001000",
+          "failed": true,
+          "completed": false,
+          "observedSamples": 888,
+          "expectedTransitions": 999,
+          "coverageFraction": 0.8888888888888888,
+          "executedDurationSeconds": 17.76,
+          "referenceDurationSeconds": 19.98,
+          "lastRecordedTimeSeconds": 17.740000000000002,
+          "jointMaeRad": 0.19210042542012765,
+          "jointMaeDeg": 11.006543619240949,
+          "rootXyzMaeM": 0.2570490520798399,
+          "rootXMaeM": 0.41353099351394335,
+          "rootYMaeM": 0.33882678777641756,
+          "rootZMaeM": 0.01878937494915885,
+          "rootL2MeanM": 0.5672644273379681
+        },
+        {
+          "key": "ood:LimpLeft__LimpLeft_BR__003000_004000",
+          "datasetId": "ood",
+          "name": "LimpLeft__LimpLeft_BR__003000_004000",
+          "failed": true,
+          "completed": false,
+          "observedSamples": 172,
+          "expectedTransitions": 999,
+          "coverageFraction": 0.17217217217217218,
+          "executedDurationSeconds": 3.44,
+          "referenceDurationSeconds": 19.98,
+          "lastRecordedTimeSeconds": 3.42,
+          "jointMaeRad": 0.4328898853031338,
+          "jointMaeDeg": 24.80276342177185,
+          "rootXyzMaeM": 0.5155413131312604,
+          "rootXMaeM": 0.1450748377815322,
+          "rootYMaeM": 1.329403590714169,
+          "rootZMaeM": 0.07214551089807998,
+          "rootL2MeanM": 1.3443916701775356
+        },
+        {
+          "key": "ood:LimpLeft__LimpLeft_BR__004000_004966",
+          "datasetId": "ood",
+          "name": "LimpLeft__LimpLeft_BR__004000_004966",
+          "failed": true,
+          "completed": false,
+          "observedSamples": 792,
+          "expectedTransitions": 965,
+          "coverageFraction": 0.8207253886010363,
+          "executedDurationSeconds": 15.84,
+          "referenceDurationSeconds": 19.3,
+          "lastRecordedTimeSeconds": 15.82,
+          "jointMaeRad": 0.40724242489900775,
+          "jointMaeDeg": 23.333272185386534,
+          "rootXyzMaeM": 1.2896733433408003,
+          "rootXMaeM": 2.44185176016316,
+          "rootYMaeM": 1.389349402108399,
+          "rootZMaeM": 0.037818867750842165,
+          "rootL2MeanM": 2.981050302473753
+        },
+        {
+          "key": "ood:WhirlArms__WhirlArms_BR__003000_003751",
+          "datasetId": "ood",
+          "name": "WhirlArms__WhirlArms_BR__003000_003751",
+          "failed": true,
+          "completed": false,
+          "observedSamples": 570,
+          "expectedTransitions": 750,
+          "coverageFraction": 0.76,
+          "executedDurationSeconds": 11.4,
+          "referenceDurationSeconds": 15.0,
+          "lastRecordedTimeSeconds": 11.38,
+          "jointMaeRad": 0.16218753724865662,
+          "jointMaeDeg": 9.292661373968857,
+          "rootXyzMaeM": 0.13937682708247418,
+          "rootXMaeM": 0.19665204605859654,
+          "rootYMaeM": 0.192898247901579,
+          "rootZMaeM": 0.028580187287246973,
+          "rootL2MeanM": 0.3158552418953052
+        }
+      ]
+    }
+  },
+  "historicalJointMaeCheck": {
+    "comparedClips": 3613,
+    "maxAbsoluteDifferenceRad": 5.551115123125783e-17,
+    "note": "Same samples and formula; differences are float64 reduction rounding only."
+  },
+  "sources": [
+    {
+      "datasetId": "id",
+      "recordId": "id/000",
+      "recordSha256": "38aad4590c333a0f6706709aaac1fc06271ce94c8e722af0589147e88885f801",
+      "evaluationSha256": "ab1195efd6156b581ba38e000bf9ac1d78abf5c6d5f3f15bc59439ac910c058f",
+      "historicalTrackingSha256": "3705579aa67bce721e785c4aa7136a0801d4cde99213a51b176068f5d2a60db2"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/000",
+      "recordSha256": "a33f8d1340e961ec001af2a53a47eae0edcd3bd5c2dc94142bcd65e51e17fd46",
+      "evaluationSha256": "f012592add733d2335c55c74c1db2e1d60958e57fed7b02a5fa25bb18f4245bf",
+      "historicalTrackingSha256": "b30f3df6d93d5a35a869e0f7af537e9ccb99cbb154aeaaa7abafd94da12efd2c"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/001",
+      "recordSha256": "2578b5099297b5cd66df4e6ec802d49d74e2ea3c697d908e5f62bb174095bad4",
+      "evaluationSha256": "652e1099e3097b99e8d110fc13b65e24f19b9a728d454b55cabfbfe66c4c5317",
+      "historicalTrackingSha256": "7973bf03a51f49d3e2a720d398294792b88cffe435bf0ac7c4dd2d9830e93620"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/002",
+      "recordSha256": "79c1c3e74a9e3e9f87d3607ebd3a719417bf016a6ede4e66090d404de2ea06f1",
+      "evaluationSha256": "15eb5a56dcea91a71600f6c4fc37cfb41636bbf8ccc17d2a17004f9d46b235ff",
+      "historicalTrackingSha256": "d37f9cbeae625a10d482839b80622e4e2b953fc1d2cde05a4a84bfa25ebdaa4f"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/003",
+      "recordSha256": "10726d991a9bbbc467905d7ba805295f7a194fccaf2bd34b960e463a422092aa",
+      "evaluationSha256": "864459d1c81f4098423c590740cb05497f853a9a859d66d877084adf0fd01c2d",
+      "historicalTrackingSha256": "05069ecba5c234b5782fd7842ecab773d46251df4333ef1097c245b5984104df"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/004",
+      "recordSha256": "7c8309e3ee90b3da8d805e77bb31a0667b65f2c8c53110fbbe35db8b024f205a",
+      "evaluationSha256": "d6555e5218608cd5fca798797b8f103c0e8285726b309a49bc57c38daee128f4",
+      "historicalTrackingSha256": "289c65688c6ca16748e9e9ae5da42271f7146281b6bc0f83465555a135a3a619"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/005",
+      "recordSha256": "297d0633538c891159bbb2bdeeacecb17bf8222d5fcd1e6fdd5a868512b579c6",
+      "evaluationSha256": "802b8b594cb85475e32bc1ae658ad89e89baa7fa8598cf1616856fa1b4013cb5",
+      "historicalTrackingSha256": "2637f6ac0e5a2cd28528560d4e60ffeace4903b5cec8926bc6cd72524402a8ea"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/006",
+      "recordSha256": "f1c1119015ae44a77c7c6afe1990769f55855c25ffa443bd7343bed9910121a1",
+      "evaluationSha256": "67ba3e953e5cfcf2203bf93c3cdc24c17ed2f641eaeaeefbbc1e18420570b27b",
+      "historicalTrackingSha256": "0fba82a2ce9eed43fe4392af12aeee05ad3f06d28f31c1fdf851cef72af298a6"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/007",
+      "recordSha256": "a36b78624d82b0cefd6ce6f3960a61375537943a0c80fd5610f0219052b62903",
+      "evaluationSha256": "64a39a3eaa843e36dfe3422054b944f1ce094d7dbd1bc62f11b5f253de4d3767",
+      "historicalTrackingSha256": "3d133b863deea052ba42f47449d1ca28b2a90039bd03684056743b50321d7ba6"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/008",
+      "recordSha256": "6b274431b1cdde26844d649fd1a5ad31f766876c8bbe961e0cf2ac6fb00f3ce6",
+      "evaluationSha256": "f3938aa77e3b0a7939e21b9566209bc9402620cb7ff92a0f89989f67d94947cc",
+      "historicalTrackingSha256": "b0900a29c3237466dfd92e9be8f2704b3c8569e1adfa60b169d881b289c43ffc"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/009",
+      "recordSha256": "4d615053ed40fb22f68874fc367d0977ed91cf57c528c585ca153f431d3e957a",
+      "evaluationSha256": "2f3084f0b86fa756451b4bd481269e15a318b521e02e9af4e8518c63960396e4",
+      "historicalTrackingSha256": "9db79f055139c3989e03e6d4a5c830894d167ef70d2bf9c01514def6aa13f921"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/010",
+      "recordSha256": "f0f0a8c386a23f74bad86567d9716558da05cbdc06f39306ae4c2b8b1411c5c6",
+      "evaluationSha256": "13a5d8dcf92910e1416d1ed64b3fca4f2feb52eaeb897f97ef2922c62085a696",
+      "historicalTrackingSha256": "7122345ba93eece89d9fdb24b7a20550e99927c437413bd070895e79e4a71bc8"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/011",
+      "recordSha256": "745271a45d645834e74ff45e50bf2c5f2a385428a86f9f6b957e391ef4dbfd98",
+      "evaluationSha256": "99f5fb8c968cdd2a3ec95cb76139bbbd5db2dc6537a92de82cb19b154cc6a3c2",
+      "historicalTrackingSha256": "7ebc9da98874c7261f6ffa2de0414a3fb312b63ed4ef19a54a9d1b0c646f02cb"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/012",
+      "recordSha256": "a7d2a2867d03d57198a8857ac451db0d5c4297fe78c9a3e1d0734c90b1c8d8d6",
+      "evaluationSha256": "2c9d6663e90b788d6a0c1c3ff8bb3e92abfe7078d33b69234561730df707b1aa",
+      "historicalTrackingSha256": "2f44f3c50e500e058816469e8320201680e1c6d6f764d77bdbe2397efada1ddc"
+    },
+    {
+      "datasetId": "ood",
+      "recordId": "ood/013",
+      "recordSha256": "8d7b78027c35bc944ea1d0e631b02f5b024aee35067d71bee8b16a493aaa5805",
+      "evaluationSha256": "10f2a8258ae74d65aa584ed5ced77673a1ad72c7afb4b36323e2f9d822a0c2d8",
+      "historicalTrackingSha256": "fe544c515b7d3d3bea7f26a5109b7341479e9d9bd4cd653e85e12721fc83bae0"
+    }
+  ],
+  "implementationSha256": "fd76fcacbadb0c43a6406f905600cc94159e0ea7eaf2c57db89fa6eccf2f21d9",
+  "storagePolicy": "Artifacts stay on the training server's persistent disk. No automatic download, prefetch, archive/replay/weight transfer, mirroring or resume-transfer. Integrity/recovery checks run on the server; retrieve only small text metrics and metadata. Previously authorized shutdown follows training/storage/test completion without waiting for downloads."
+}

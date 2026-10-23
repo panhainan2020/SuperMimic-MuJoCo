@@ -8,6 +8,7 @@ Evaluated 2026-10-23. This snapshot uses the trained default G1 model, upstream 
 | Completed segments | 40 / 40 | 3569 / 3573 |
 | Completion rate ↑ | 100% | 99.8880% |
 | Joint mean absolute error ↓ | 4.3967° | 6.9898° |
+| World root XYZ component MAE ↓ | 27.2866 cm | 21.6817 cm |
 | XY/yaw-aligned 14-body MPJPE ↓ | 2.6122 cm | 5.2332 cm |
 | Mean segment duration | 220.55 s | 18.7688 s |
 
@@ -26,7 +27,15 @@ Evaluated 2026-10-23. This snapshot uses the trained default G1 model, upstream 
 
 完成率只表示未触发训练时定义的高度/倾角终止条件，不代表精确动作复现。100STYLE 平均 18.77 秒，LAFAN1 平均 220.55 秒，两者重置频率和连续跟踪难度不同。源机器人资产和重定向处理也不同，本测试包含风格、来源和预处理变化，不能把误差差值全部归因于风格泛化。未做跨来源语义重复检测，不能仅以文件名不同证明运动内容完全无重合。
 
-身体 MPJPE 消除了水平位移和朝向差异，不是全局路径精度。LAFAN1 世界坐标根位置平均误差仍为 64.31 cm，末个记录状态平均误差约 1.08 m。100STYLE 的较短片段不能用来证明全局漂移改善。左右视频镜头分别跟随机器人，也不能凭画面对齐判断全局误差。
+身体 MPJPE 消除了水平位移和朝向差异，不是全局路径精度。LAFAN1 世界坐标根位置平均 L2 误差仍为 64.31 cm，末个记录状态平均误差约 1.08 m。100STYLE 的较短片段不能用来证明全局漂移改善。新版视频在同一世界坐标、同一相机下显示实体策略与青色参考虚影，保留位置偏差；旧版分屏各自跟随根部的画面不能用于判断全局漂移。
+
+## 整段已记录轨迹 MAE
+
+新增根位置 XYZ MAE 对每帧世界坐标 x、y、z 的绝对误差取平均，不做平移或朝向对齐；它不同于先计算欧氏距离的根位置 L2。关节 MAE 对 29 个关节和全部有效记录帧平均。指标使用完整 50 Hz 记录，不依赖视频是否截取为预览或降到 25 fps。
+
+统计沿用步前 `alive=True` 口径：包含初始状态，不包含未记录的最后步后状态。提前终止片段仅计算已记录前缀，缺失帧不补零。LAFAN 记录覆盖率为 100%，100STYLE 为 99.9615%；完成率另计为 3569/3573。
+
+`trajectory_mae.public.json` 提供全部、完整完成、失败三组的逐片等权和逐帧加权汇总，以及公式与来源哈希；`trajectory_mae.per_clip.csv` 提供全部 3,613 条轨迹。历史关节 MAE 的重算差异不超过 5.56e-17 rad，未重新运行策略或修改冻结评估。
 
 ## Evaluation and interpretation
 
@@ -40,12 +49,14 @@ Global mean returns use full-precision batch aggregates. The baseline stores per
 
 ## Media selection
 
-- LAFAN overview: seven 10-second middle excerpts; a 70-second montage, not full rollouts.
-- Seven complete LAFAN examples: lowest-return motion within each displayed category.
-- OOD complete examples: 10th, 50th and 90th return percentiles among successful segments of at least 10 s, with distinct styles where available.
-- OOD failure: the longest-surviving failed segment, Flapping; recorded 17.76 s of its 19.98 s reference.
+- All 20 indexed videos now use one camera and world frame: solid policy plus translucent cyan reference, without independent root recentering.
+- LAFAN overview: the first 10 seconds from each of seven categories, concatenated into 70 seconds.
+- Seven LAFAN previews: the first 12 seconds of the original lowest-return motion selected within each category. Their MAE still uses the entire recorded trajectory.
+- Four retained OOD examples: 10th, 50th and 90th successful-return percentiles, plus the longest-surviving failure, Flapping (17.76 s recorded / 19.98 s reference).
+- Eight additional styles: exclude the original four styles, alphabetically sort the 96 remaining styles with completed segments of at least 10 seconds, and take ranks 0, 14, 27, 41, 54, 68, 81 and 95. Within each style, sort eligible clips by return then name and select the lower median. The resulting styles are Aeroplane, Cat, FlickLegs, LeftHop, OnToesCrouched, ShieldedRight, SwingArmsRound and Zombie.
+- All 12 OOD videos show their complete valid recording; failed examples never imply completion of the full reference. Delivery encoding uses 960×540, 25 fps, H.264; a 19.98-second record may have a 20.00-second container duration after frame-rate conversion.
 
-Public playback may use separately hosted compact encodings. Original recording SHA256 values are in `media_manifest.json`; transcoded delivery files have distinct hashes and must not be represented as byte-identical originals. Videos, trajectories and policies are not stored in this repository.
+`media_manifest.json` contains the new ghost delivery-file hashes and presentation metadata, without raw recording paths. `media_delivery.json` is historical metadata for the five previously hosted split-screen files. This source update does not upload the ghost videos or deploy the live site; media is disabled in the checkout by default. Videos and trajectories stay outside Git. The separately authorized 98k inference policy remains bundled under `checkpoints/`.
 
 ## Provenance
 
