@@ -6,6 +6,19 @@ An **unofficial MuJoCo/MJLab port of SuperMimic**, based on [zita-ch/supermimic_
 
 **[Live results](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)**: solid policy and cyan reference ghost in one scene, with LAFAN examples, 12 100STYLE videos, whole-record trajectory MAE and full metric tables. Videos are hosted separately from Git.
 
+## Self-collision training demos
+
+Two policies trained **from scratch on one GPU each, with self-collision enabled**. Click the side-by-side posters to play: the solid policy robot and red translucent reference share one world-coordinate view, without split-screen panels.
+
+| LAFAN · Dance | SONIC / BONES-SEED · Challenging flips |
+| :---: | :---: |
+| [![LAFAN self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![Hard-motion self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
+| Policy iteration **27,800** · 131.46 seconds | Policy iteration **29,675** · six clips, 41.46 seconds |
+
+LAFAN training uses 40 G1-retargeted motions. The hard-motion run uses **514 selected G1-retargeted BONES-SEED motions**, from the dataset used by [GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl): 108 cartwheels, 56 flips, 162 handstands, 140 jumps and 48 rolls, totaling about 44.4 minutes. Download: [BONES-SEED on Hugging Face](https://huggingface.co/datasets/bones-studio/seed), with G1 CSVs under `g1/csv/`. Only motion data is used: these policies are trained by this project, without SONIC weights or the full BONES-SEED corpus.
+
+These preliminary self-collision results are separate from the original 98k policy below: one dance evaluation returns 0.8590 with no failure; six flip evaluations average 0.8120 with three flagged failures, retaining end-of-rollout labels in the video. LAFAN stopped at iteration 28,589, but its video uses the earlier 27,800 policy. Neither run completed the planned 320k iterations. See [media and evaluation provenance](results/self_collision_20261028/manifest.json). Videos and posters are hosted separately as GitHub Release assets.
+
 ## Install
 
 Validated on Linux x86_64 with Python 3.10, PyTorch 2.7.1, MJLab 1.4.0, MuJoCo / MuJoCo-Warp 3.8.1 and Warp 1.14.0. MJLab parallel training requires CUDA; small evaluations can use the native MuJoCo CPU backend.
@@ -100,6 +113,20 @@ python -m supermimic.train \
 For the second model, select `--robot g1_29dof_rev_1_0` and a different run directory. GPU memory use depends on parallel environment count and replay capacity.
 
 Add `--resume /path/to/run/last.pt` to restore networks and optimizers, then refill replay. SIGINT/SIGTERM saves at an iteration boundary; wait for exit and verify the persistent checkpoint before shutdown. See `python -m supermimic.train --help` for all options.
+
+### Single-GPU self-collision configuration
+
+Both demo runs use the same [single-GPU launcher](tools/train_self_collision.sh), with one independent policy per invocation:
+
+```bash
+export SUPERMIMIC_EXPERIMENT_ROOT=/path/to/persistent/supermimic
+SUPERMIMIC_GPU=0 bash tools/train_self_collision.sh /path/to/lafan_g1_csv lafan_self_collision
+SUPERMIMIC_GPU=0 bash tools/train_self_collision.sh /path/to/bones_seed_hard/motions.pkl sonic_hard_self_collision
+```
+
+Each command runs in the foreground using the current Python environment. Supply existing local data and distinct run names. Settings: 4096 environments, 1000 replay steps, bf16, compilation, world-model batch 2048, policy batch 4096, 10 world-model batches, 500 world-model-only warmup iterations, seed 0 and a 320k iteration target. Raw BONES-SEED G1 CSVs have headers and use 120 Hz; they cannot be passed directly to the default 30 Hz CSV loader. For this run, root translations were converted from cm to m, extrinsic xyz root Euler angles from degrees to xyzw quaternions, and the 29 SDK-order joint angles to radians, then stored in the joblib format above with `fps=120`. The loader resamples to 50 Hz.
+
+Pass `--self_collision` to both training and evaluation; it is recorded in the checkpoint physics contract. Also pass it when rendering these recordings. Explicit collision exclusions and adjacent-body filtering remain active. Omitting it preserves the existing default, so do not add it when evaluating the bundled old 98k policy.
 
 ## Validation
 

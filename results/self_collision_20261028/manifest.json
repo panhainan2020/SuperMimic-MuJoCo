@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-28",
+  "robot": "g1_29dof",
+  "self_collision": true,
+  "training_backend": "mjlab",
+  "evaluation_backend": "native mujoco",
+  "initialization": "reference first frame",
+  "training": "Two independent single-GPU runs from scratch; neither completed the 320000-iteration target.",
+  "source_code_base": "ccab3e5",
+  "source_code_note": "Original runs used a local working tree with self-collision support; the base commit alone does not contain those changes. This publication isolates the single-GPU changes.",
+  "dataset_url": "https://huggingface.co/datasets/bones-studio/seed",
+  "sonic_project_url": "https://github.com/NVlabs/GR00T-WholeBodyControl",
+  "media_base_url": "https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028",
+  "media_layout": "Right panel retained from original comparisons: policy and red reference in one world-coordinate view, without pose alignment.",
+  "runs": [
+    {
+      "dataset": "G1 LAFAN",
+      "training_motion_count": 40,
+      "final_iteration": 28589,
+      "video_policy_iteration": 27800,
+      "evaluated_clips": [
+        "dance1_subject1"
+      ],
+      "mean_normalized_return": 0.8589819669723511,
+      "failed_clips": [],
+      "source_checkpoint_sha256": "1c64cef111afdc44896ca880284226f735b1cf90d35dc47dcc972ba33f54d755",
+      "video": "dance1_ghost_overlay_single.mp4",
+      "video_sha256": "3dbf892d84a726666b6e1748d4c888a259b4455c5182bad445aa305c3b6ace81",
+      "video_bytes": 29813171,
+      "poster": "lafan-self-collision.jpg",
+      "duration_seconds": 131.46
+    },
+    {
+      "dataset": "BONES-SEED G1 hard-motion subset",
+      "training_motion_count": 514,
+      "category_counts": {
+        "cartwheel": 108,
+        "flip": 56,
+        "handstand": 162,
+        "jump": 140,
+        "roll": 48
+      },
+      "training_duration_seconds": 2664.45,
+      "motion_archive_sha256": "98a5708e1cb00f032d49569ed1798a2a3aa0c306d0dbfd9db9a028bf1cbb0364",
+      "final_iteration": 29675,
+      "video_policy_iteration": 29675,
+      "mean_normalized_return": 0.811957061290741,
+      "per_clip_return": {
+        "230324/flip_090_001__A304": 0.7959,
+        "230324/flip_180_R_001__A304": 0.8037,
+        "230324/flip_360_001__A304": 0.8513,
+        "230324/flip_360_hero_landing_001__A304": 0.8406,
+        "230531/flip_180_R_001__A416": 0.7254,
+        "230531/flip_360_001__A415": 0.8549
+      },
+      "failed_clips": [
+        "230324/flip_360_001__A304",
+        "230324/flip_360_hero_landing_001__A304",
+        "230531/flip_180_R_001__A416"
+      ],
+      "held_final_pose_frames": {
+        "230324/flip_360_001__A304": 1,
+        "230324/flip_360_hero_landing_001__A304": 1,
+        "230531/flip_180_R_001__A416": 2
+      },
+      "source_checkpoint_sha256": "f1759c9a3c138230f0de51130829ef1e18e51614c2023583a21e1746ac0bb108",
+      "video": "flip_ghost_overlay_all_single.mp4",
+      "video_sha256": "3a56e6b5a6119fb47bb7b149539b82512d76ed8c54ff9249eed9068165d24dcd",
+      "video_bytes": 7362193,
+      "poster": "sonic-hard-self-collision.jpg",
+      "duration_seconds": 41.46
+    }
+  ],
+  "fps": 50,
+  "width": 640,
+  "height": 480
+}

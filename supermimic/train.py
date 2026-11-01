@@ -97,7 +97,7 @@ os.makedirs(args.log_dir, exist_ok=True)
 if not args.resume and any(os.path.exists(os.path.join(args.log_dir, n)) for n in ("last.pt", "train_log.csv")):
     raise FileExistsError("Run directory already contains training outputs; use --resume or a fresh --log_dir")
 
-contract = load_contract(args.profile, robot=args.robot, xml_path=args.xml_path)
+contract = load_contract(args.profile, robot=args.robot, xml_path=args.xml_path, self_collision=args.self_collision)
 kin = G1Kinematics(dev, xml_path=contract.xml_path)
 motion = MotionLib.from_dir(args.motion_dir, kin, dev)
 mdp = MDP(kin, motion, torch.tensor(contract.default_q, device=dev), observation_mode=args.observation_mode)

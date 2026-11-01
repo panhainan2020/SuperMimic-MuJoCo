@@ -9,7 +9,7 @@ import numpy as np
 import torch
 
 from supermimic.env import SimCfg, _NativeMujoco, make_sim
-from supermimic.robot_contract import load_contract, make_mjlab_config
+from supermimic.robot_contract import load_contract, make_mjlab_config, assert_contract_compatible
 
 
 class UpstreamContractTest(unittest.TestCase):
@@ -64,6 +64,21 @@ class UpstreamContractTest(unittest.TestCase):
         self.assertEqual(config.sim.nconmax, settings["nconmax"])
         self.assertEqual(config.sim.njmax, settings["njmax"])
         self.assertEqual(config.sim.ls_parallel, settings["ls_parallel"])
+
+    def test_self_collision_opt_in_changes_compiled_masks_and_checkpoint_identity(self):
+        enabled = make_sim("cpu", SimpleNamespace(self_collision=True)).contract
+        self.assertTrue(dict(enabled.physics_settings)["self_collision"])
+        self.assertEqual(enabled.kp, self.contract.kp)
+        with self.assertRaises(ValueError):
+            assert_contract_compatible(self.contract.metadata(), enabled)
+        for contract, expected in ((self.contract, False), (enabled, True)):
+            physics = _NativeMujoco(SimCfg("cpu", "mujoco", contract), 1)
+            model = physics.models[0]
+            robot = np.array([model.geom(i).name.startswith("robot/") for i in range(model.ngeom)]) & (model.geom_contype != 0)
+            self.assertTrue(np.any(robot))
+            self.assertEqual(bool(np.any(model.geom_conaffinity[robot] & 1)), expected)
+            ground = np.array([model.geom(i).name == "terrain" for i in range(model.ngeom)]) & (model.geom_conaffinity != 0)
+            self.assertTrue(np.any(ground))
 
 
 if __name__ == "__main__":

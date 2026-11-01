@@ -67,6 +67,8 @@ def main():
     p.add_argument('--robot', choices=ROBOT_MODELS, default=DEFAULT_ROBOT)
     p.add_argument('--xml-path', type=Path, help='Optional local MJCF override matching the recording')
     p.add_argument('--profile', choices=('upstream', 'paper'), default='upstream')
+    p.add_argument('--self_collision', action='store_true', default=None,
+                   help='Match recordings made with robot self-collision enabled')
     p.add_argument('--comparison', choices=('ghost', 'policy', 'side-by-side'), default='ghost',
                    help='Default: solid policy with translucent reference in shared world coordinates')
     p.add_argument('--side-by-side', action='store_true', help='Compatibility alias for --comparison side-by-side')
@@ -136,7 +138,7 @@ def main():
     if np.any(np.abs(np.linalg.norm(quats[:n_alive], axis=1) - 1.0) > 1e-3):
         raise ValueError('Root quaternions are not normalized wxyz')
     n = n_alive if a.max_seconds is None else min(n_alive, max(1, int(a.max_seconds * 50)))
-    contract = load_contract(a.profile, robot=a.robot, xml_path=a.xml_path)
+    contract = load_contract(a.profile, robot=a.robot, xml_path=a.xml_path, self_collision=a.self_collision)
     cfg = make_mjlab_config(contract, 1)
     scene = Scene(cfg.scene, device='cpu')
     model = scene.compile()

@@ -49,7 +49,7 @@ args.run_dir = str(artifact_dir(args.run_dir))
 print(STORAGE_POLICY, flush=True)
 if args.record:
     artifact_dir(os.path.dirname(os.path.abspath(args.record)))
-contract = load_contract(args.profile, robot=args.robot, xml_path=args.xml_path)
+contract = load_contract(args.profile, robot=args.robot, xml_path=args.xml_path, self_collision=args.self_collision)
 kin = G1Kinematics(dev, xml_path=contract.xml_path)
 motion = MotionLib.from_dir(args.motion_dir, kin, dev)
 mdp = MDP(kin, motion, torch.tensor(contract.default_q, device=dev), observation_mode=args.observation_mode)

@@ -32,6 +32,8 @@ def add_runtime_args(parser):
                         help="packaged robot; g1_29dof matches existing trained checkpoints")
     parser.add_argument("--profile", choices=("upstream", "paper"), default="upstream",
                         help="upstream preserves the third-party baseline; paper is a historical ablation")
+    parser.add_argument("--self_collision", action="store_true", default=None,
+                        help="enable robot self-collision; recorded in the checkpoint physics contract")
     parser.add_argument("--xml_path", default=None)
     parser.add_argument("--observation_mode", choices=("paper93", "legacy99"), default="legacy99",
                         help="legacy99 is the third-party 99D observation; paper93 is an incomplete experimental ablation")

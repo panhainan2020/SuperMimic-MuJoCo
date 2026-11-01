@@ -41,7 +41,8 @@ def make_sim(device: str, args) -> SimCfg:
         raise ValueError("The mjlab backend requires a CUDA device; use mujoco for CPU validation")
     contract = load_contract(getattr(args, "profile", "upstream"),
                              robot=getattr(args, "robot", DEFAULT_ROBOT),
-                             xml_path=getattr(args, "xml_path", None))
+                             xml_path=getattr(args, "xml_path", None),
+                             self_collision=getattr(args, "self_collision", None))
     if abs(contract.control_dt - CONTROL_DT) > 1e-9:
         raise ValueError("Motion, reward and dynamics use a 50 Hz control clock")
     return SimCfg(str(device), backend, contract, int(getattr(args, "seed", 0)))

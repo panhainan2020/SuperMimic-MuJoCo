@@ -65,7 +65,8 @@ class RobotContract:
 
 
 def load_contract(profile: str = "upstream", *, robot: str = DEFAULT_ROBOT,
-                  xml_path: str | Path | None = None) -> RobotContract:
+                  xml_path: str | Path | None = None,
+                  self_collision: bool | None = None) -> RobotContract:
     """Load a local robot with the unchanged third-party PD controller.
 
     Asset selection is independent of control profile. Both G1 variants have the
@@ -89,6 +90,11 @@ def load_contract(profile: str = "upstream", *, robot: str = DEFAULT_ROBOT,
         raise ValueError("The robot must have exactly one floating root")
     motors = [motor_of(name) for name in names]
     kp = tuple(_kp(motor[2]) for motor in motors)
+    physics_settings = UPSTREAM_PHYSICS_SETTINGS if profile == "upstream" else ()
+    if self_collision is not None:
+        settings = dict(physics_settings)
+        settings["self_collision"] = bool(self_collision)
+        physics_settings = tuple(settings.items())
     contract = RobotContract(
         profile=profile, robot=robot, joint_names=names, default_q=tuple(default_joint_pos_list()),
         kp=kp, kd=tuple(_kd(motor[2]) for motor in motors),
@@ -99,7 +105,7 @@ def load_contract(profile: str = "upstream", *, robot: str = DEFAULT_ROBOT,
         # Evaluation/imagined actions stay unbounded in the pinned upstream code.
         sim_dt=0.005, control_dt=0.02, action_clip=None if profile == "upstream" else 20.0,
         root_pos=(0.0, 0.0, 0.76), root_quat_wxyz=(1.0, 0.0, 0.0, 0.0),
-        physics_settings=UPSTREAM_PHYSICS_SETTINGS if profile == "upstream" else (),
+        physics_settings=physics_settings,
     )
     contract.decimation
     return contract

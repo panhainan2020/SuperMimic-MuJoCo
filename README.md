@@ -6,6 +6,19 @@
 
 **[在线评估结果](https://supermimic-mujoco-results.zippyaspen7.chatgpt.site)**：实体策略机器人与青色参考虚影同场景对比，包含 LAFAN 示例、12 条 100STYLE 视频、整段已记录轨迹 MAE 和完整指标表。视频独立托管，不占用 Git 仓库。
 
+## 自碰撞训练演示
+
+两套策略分别从头进行**单卡、自碰撞开启**的训练。点击下方并排封面播放：实体为策略机器人，红色半透明机器人为参考动作，两者位于同一世界坐标画面，不是分屏。
+
+| LAFAN · 舞蹈 | SONIC / BONES-SEED · 高难度空翻 |
+| :---: | :---: |
+| [![LAFAN 自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![高难度动作自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
+| 策略迭代 **27,800** · 131.46 秒 | 策略迭代 **29,675** · 6 段合集，41.46 秒 |
+
+LAFAN 使用 G1 重定向版的 40 条训练动作；右侧使用 [GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl) 所用的 **BONES-SEED G1 重定向数据中的 514 条高难动作子集**：侧手翻 108、空翻 56、倒立 162、跳跃 140、翻滚 48，共约 44.4 分钟。数据下载：[BONES-SEED on Hugging Face](https://huggingface.co/datasets/bones-studio/seed)（G1 CSV 位于 `g1/csv/`）。这里只使用其动作数据，策略由本项目训练，没有使用 SONIC 权重，也没有训练完整 BONES-SEED 语料。
+
+这批是自碰撞开启的初步结果，与下方原有 98k 策略分开报告：舞蹈评估 1 条、归一化回报 0.8590、无失败；空翻评估 6 条、平均回报 0.8120、3 条被判失败，视频保留末尾终止提示。LAFAN 最终停在 28,589 次迭代，但上述视频使用较早的 27,800 版本；两套均未完成原定 320k 训练。[视频与评估来源](results/self_collision_20261028/manifest.json)。MP4 和封面通过 GitHub Release 独立托管。
+
 <a id="install"></a>
 
 ## 环境安装
@@ -108,6 +121,20 @@ python -m supermimic.train \
 另一套模型改为 `--robot g1_29dof_rev_1_0`，并使用不同运行目录。显存需求随并行环境数和回放容量变化。
 
 添加 `--resume /path/to/run/last.pt` 可恢复网络和优化器，随后重新填充回放。SIGINT/SIGTERM 会在迭代边界保存；关机前等待退出并核验持久盘检查点。完整参数见 `python -m supermimic.train --help`。
+
+### 单卡自碰撞配置
+
+上述两套实验使用同一个[单卡启动脚本](tools/train_self_collision.sh)，每次运行训练一套独立策略：
+
+```bash
+export SUPERMIMIC_EXPERIMENT_ROOT=/path/to/persistent/supermimic
+SUPERMIMIC_GPU=0 bash tools/train_self_collision.sh /path/to/lafan_g1_csv lafan_self_collision
+SUPERMIMIC_GPU=0 bash tools/train_self_collision.sh /path/to/bones_seed_hard/motions.pkl sonic_hard_self_collision
+```
+
+每条命令在前台运行，使用当前 Python 环境；数据须已在本地，运行名称须不同。配置为 4096 环境、1000 步回放、bf16、编译、世界模型批量 2048、策略批量 4096、每次 10 个世界模型批次、500 次世界模型预热、seed 0，目标 320k 次迭代。原始 BONES-SEED G1 CSV 是带表头的 120 Hz 数据，不能直接交给默认 30 Hz CSV 加载器：本次先将根平移 cm 转为 m、根旋转外禀 xyz 欧拉角（度）转为 xyzw 四元数、29 个 SDK 顺序关节角转为弧度，保存为上述 joblib 格式并保留 `fps=120`，再由加载器重采样至 50 Hz。
+
+`--self_collision` 同时用于训练和评估，并写入检查点物理配置；渲染这类轨迹时也传入此参数。模型中的显式碰撞排除和相邻刚体过滤仍保留。省略该参数维持原有默认设置，因此不要给仓库自带的旧 98k 策略添加该参数。
 
 <a id="validation"></a>
 
