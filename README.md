@@ -8,16 +8,16 @@
 
 ## 自碰撞训练演示
 
-两套策略分别从头进行**单卡、自碰撞开启**的训练。点击下方并排封面播放：实体为策略机器人，红色半透明机器人为参考动作，两者位于同一世界坐标画面，不是分屏。
+两套策略分别从头进行**单卡、自碰撞开启**的训练。下方并排 GIF 自动循环播放 14 秒节选，点击可打开完整 MP4：实体为策略机器人，红色半透明机器人为参考动作，两者位于同一世界坐标画面，不是分屏。
 
 | LAFAN · 舞蹈 | SONIC / BONES-SEED · 高难度空翻 |
 | :---: | :---: |
-| [![LAFAN 自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![高难度动作自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
+| [![LAFAN 自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.gif)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![高难度动作自碰撞单画面视频](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.gif)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
 | 策略迭代 **27,800** · 131.46 秒 | 策略迭代 **29,675** · 6 段合集，41.46 秒 |
 
 LAFAN 使用 G1 重定向版的 40 条训练动作；右侧使用 [GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl) 所用的 **BONES-SEED G1 重定向数据中的 514 条高难动作子集**：侧手翻 108、空翻 56、倒立 162、跳跃 140、翻滚 48，共约 44.4 分钟。数据下载：[BONES-SEED on Hugging Face](https://huggingface.co/datasets/bones-studio/seed)（G1 CSV 位于 `g1/csv/`）。这里只使用其动作数据，策略由本项目训练，没有使用 SONIC 权重，也没有训练完整 BONES-SEED 语料。
 
-这批是自碰撞开启的初步结果，与下方原有 98k 策略分开报告：舞蹈评估 1 条、归一化回报 0.8590、无失败；空翻评估 6 条、平均回报 0.8120、3 条被判失败，视频保留末尾终止提示。LAFAN 最终停在 28,589 次迭代，但上述视频使用较早的 27,800 版本；两套均未完成原定 320k 训练。[视频与评估来源](results/self_collision_20261028/manifest.json)。MP4 和封面通过 GitHub Release 独立托管。
+这批是自碰撞开启的初步结果，与下方原有 98k 策略分开报告：舞蹈评估 1 条、归一化回报 0.8590、无失败；空翻评估 6 条、平均回报 0.8120、3 条被判失败，视频保留末尾终止提示。LAFAN 最终停在 28,589 次迭代，但上述视频使用较早的 27,800 版本；两套均未完成原定 320k 训练。[视频与评估来源](results/self_collision_20261028/manifest.json)。GIF 与完整 MP4 通过 GitHub Release 独立托管。GIF 为 400×300、10 fps 预览：LAFAN 节选 35–49 秒，空翻节选 0–14 秒；完整视频保持 50 fps。
 
 <a id="install"></a>
 

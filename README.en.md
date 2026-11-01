@@ -8,16 +8,16 @@ An **unofficial MuJoCo/MJLab port of SuperMimic**, based on [zita-ch/supermimic_
 
 ## Self-collision training demos
 
-Two policies trained **from scratch on one GPU each, with self-collision enabled**. Click the side-by-side posters to play: the solid policy robot and red translucent reference share one world-coordinate view, without split-screen panels.
+Two policies trained **from scratch on one GPU each, with self-collision enabled**. The side-by-side GIFs loop 14-second excerpts automatically; click either for the full MP4: the solid policy robot and red translucent reference share one world-coordinate view, without split-screen panels.
 
 | LAFAN · Dance | SONIC / BONES-SEED · Challenging flips |
 | :---: | :---: |
-| [![LAFAN self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![Hard-motion self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.jpg)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
+| [![LAFAN self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/lafan-self-collision.gif)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/dance1_ghost_overlay_single.mp4) | [![Hard-motion self-collision overlay video](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/sonic-hard-self-collision.gif)](https://github.com/panhainan2020/SuperMimic-MuJoCo/releases/download/self-collision-20261028/flip_ghost_overlay_all_single.mp4) |
 | Policy iteration **27,800** · 131.46 seconds | Policy iteration **29,675** · six clips, 41.46 seconds |
 
 LAFAN training uses 40 G1-retargeted motions. The hard-motion run uses **514 selected G1-retargeted BONES-SEED motions**, from the dataset used by [GEAR-SONIC](https://github.com/NVlabs/GR00T-WholeBodyControl): 108 cartwheels, 56 flips, 162 handstands, 140 jumps and 48 rolls, totaling about 44.4 minutes. Download: [BONES-SEED on Hugging Face](https://huggingface.co/datasets/bones-studio/seed), with G1 CSVs under `g1/csv/`. Only motion data is used: these policies are trained by this project, without SONIC weights or the full BONES-SEED corpus.
 
-These preliminary self-collision results are separate from the original 98k policy below: one dance evaluation returns 0.8590 with no failure; six flip evaluations average 0.8120 with three flagged failures, retaining end-of-rollout labels in the video. LAFAN stopped at iteration 28,589, but its video uses the earlier 27,800 policy. Neither run completed the planned 320k iterations. See [media and evaluation provenance](results/self_collision_20261028/manifest.json). Videos and posters are hosted separately as GitHub Release assets.
+These preliminary self-collision results are separate from the original 98k policy below: one dance evaluation returns 0.8590 with no failure; six flip evaluations average 0.8120 with three flagged failures, retaining end-of-rollout labels in the video. LAFAN stopped at iteration 28,589, but its video uses the earlier 27,800 policy. Neither run completed the planned 320k iterations. See [media and evaluation provenance](results/self_collision_20261028/manifest.json). GIFs and full MP4s are hosted separately as GitHub Release assets. GIF previews use 400×300 at 10 fps: LAFAN covers seconds 35–49, and flips cover seconds 0–14. Full videos retain 50 fps.
 
 ## Install
 

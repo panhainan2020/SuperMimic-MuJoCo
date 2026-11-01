@@ -28,6 +28,7 @@
       "video_sha256": "3dbf892d84a726666b6e1748d4c888a259b4455c5182bad445aa305c3b6ace81",
       "video_bytes": 29813171,
       "poster": "lafan-self-collision.jpg",
+      "gif_preview": {"file":"lafan-self-collision.gif","sha256":"2deeee51fbf7d23cbbd9d22f03aa67e8c58f93d2015ef85e43b7d415dfa27a87","bytes":6367094,"source_start_seconds":35,"duration_seconds":14,"fps":10,"width":400,"height":300,"loop":"infinite"},
       "duration_seconds": 131.46
     },
     {
@@ -68,6 +69,7 @@
       "video_sha256": "3a56e6b5a6119fb47bb7b149539b82512d76ed8c54ff9249eed9068165d24dcd",
       "video_bytes": 7362193,
       "poster": "sonic-hard-self-collision.jpg",
+      "gif_preview": {"file":"sonic-hard-self-collision.gif","sha256":"caf829dca3058e29f0d5ac9bb72a477418129808fdfeecbc73a2ea17e9c334da","bytes":5331670,"source_start_seconds":0,"duration_seconds":14,"fps":10,"width":400,"height":300,"loop":"infinite"},
       "duration_seconds": 41.46
     }
   ],
